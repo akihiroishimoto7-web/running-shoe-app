@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="体格・走り方・ケガ歴・好みの12問で、実走レビュー準拠の厳選12モデルからあなたのベスト1足を診断します。">
+<meta name="theme-color" content="#ef5a23">
+<meta property="og:title" content="ランニングシューズ診断 | あなたのベスト1足を">
+<meta property="og:description" content="体格・走り方・ケガ歴から、厳選12モデルのなかのベスト1足を約2分で診断。">
+<meta property="og:type" content="website">
+<title>ランニングシューズ診断 | あなたのベスト1足を</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#16181d; --navy-2:#2c313b;
+    --orange:#ef5a23; --orange-dark:#d2470f; --orange-soft:#fdf1ea;
+    --bg:#fcfbf9; --surface:#f6f4f0;
+    --gray-50:#f6f5f2; --gray-100:#edebe6; --gray-200:#e2dfd8;
+    --gray-500:#7a786f; --gray-700:#3b3a36;
+    --border:#e7e4dd;
+    --text:#16181d;
+    --radius:18px;
+    --shadow:0 1px 2px rgba(22,24,29,.04), 0 16px 34px -20px rgba(22,24,29,.22);
+    --shadow-sm:0 1px 2px rgba(22,24,29,.05);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;-webkit-font-smoothing:antialiased}
+  body{min-height:100vh;line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+  .app{max-width:640px;margin:0 auto;padding:18px;padding-bottom:48px}
+  header.hero{text-align:left;padding:20px 2px 14px}
+  header.hero .logo{font-weight:700;font-size:10.5px;letter-spacing:.22em;color:var(--orange);margin-bottom:10px}
+  header.hero h1{font-size:26px;font-weight:800;color:var(--navy);margin:0 0 8px;line-height:1.22;letter-spacing:-.018em}
+  header.hero p{font-size:13px;color:var(--gray-500);margin:0;line-height:1.7}
+
+  .progress-wrap{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);z-index:10;padding:12px 0 8px;margin-bottom:10px}
+  .progress-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--gray-500);margin-bottom:6px}
+  .progress-bar{height:6px;background:var(--gray-100);border-radius:999px;overflow:hidden}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--orange),#f5895a);width:0;transition:width .45s cubic-bezier(.2,.8,.2,1)}
+
+  .screen{animation:fadeIn .35s ease both}
+  .screen.hidden{display:none}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .start-card{background:#fff;border:1px solid var(--border);border-radius:22px;padding:26px 22px;text-align:left;margin-top:8px;box-shadow:var(--shadow)}
+  .start-card h2{font-size:21px;font-weight:800;color:var(--navy);margin:0 0 10px;line-height:1.35;letter-spacing:-.015em}
+  .start-card ul{list-style:none;text-align:left;font-size:13px;color:var(--gray-700);padding:0;margin:16px 0 22px}
+  .start-card li{margin-bottom:8px;padding-left:18px;position:relative}
+  .start-card li::before{content:"";position:absolute;left:2px;top:.7em;width:6px;height:6px;border-radius:999px;background:var(--orange)}
+
+  .q-head{margin:10px 0 20px}
+  .q-index{display:inline-block;font-size:11px;color:var(--orange);font-weight:700;letter-spacing:.18em;margin-bottom:8px}
+  .q-title{font-size:23px;font-weight:800;color:var(--navy);margin:0 0 8px;line-height:1.34;letter-spacing:-.015em}
+  .q-help{font-size:13px;color:var(--gray-500);margin:0;line-height:1.6}
+
+  .options{display:flex;flex-direction:column;gap:12px}
+  .opt{width:100%;min-height:58px;display:flex;align-items:center;text-align:left;padding:15px 16px;background:#fff;border:1px solid var(--border);border-radius:16px;font-size:14px;color:var(--text);transition:border-color .18s,box-shadow .18s,transform .12s;box-shadow:var(--shadow-sm)}
+  .opt:hover{border-color:var(--navy);box-shadow:0 8px 20px -12px rgba(22,24,29,.25);transform:translateY(-1px)}
+  .opt:active{transform:scale(.985)}
+  .opt.selected{border-color:var(--orange);background:var(--orange-soft);box-shadow:0 8px 20px -12px rgba(239,90,35,.32)}
+  .opt .num{display:inline-flex;align-items:center;justify-content:center;min-width:27px;height:27px;padding:0 8px;border-radius:999px;background:var(--navy);color:#fff;font-size:12px;font-weight:700;margin-right:12px;flex-shrink:0}
+  .opt.selected .num{background:var(--orange)}
+  .opt .label-main{font-weight:500}
+  .opt .label-sub{display:block;font-size:11px;color:var(--gray-500);margin-top:2px;font-weight:400}
+
+  .checks{display:flex;flex-direction:column;gap:12px}
+  .check{min-height:56px;display:flex;align-items:center;padding:14px 16px;background:#fff;border:1px solid var(--border);border-radius:16px;cursor:pointer;font-size:14px;box-shadow:var(--shadow-sm);transition:border-color .18s,background .18s}
+  .check input{appearance:none;width:20px;height:20px;border:2px solid var(--gray-200);border-radius:6px;margin-right:12px;position:relative;flex-shrink:0;transition:all .15s}
+  .check input:checked{background:var(--orange);border-color:var(--orange)}
+  .check input:checked::after{content:"✓";position:absolute;color:#fff;font-size:13px;font-weight:800;top:-1px;left:3px}
+  .check:has(input:checked){border-color:var(--orange);background:var(--orange-soft)}
+
+  .num-input-wrap{display:flex;align-items:baseline;gap:10px;margin-top:6px}
+  .num-input{flex:1;padding:20px 16px;border:1px solid var(--border);border-radius:18px;font-size:24px;font-weight:800;font-family:inherit;background:#fff;text-align:center}
+  .num-input:focus{outline:none;border-color:var(--orange)}
+  .num-input-unit{font-size:15px;color:var(--gray-500);font-weight:700}
+
+  .text-input{width:100%;min-height:56px;padding:15px 16px;border:1px solid var(--border);border-radius:18px;font-size:15px;font-family:inherit;background:#fff}
+  .text-input:focus{outline:none;border-color:var(--orange)}
+
+  .btn-row{display:flex;gap:10px;margin-top:22px}
+  .btn{flex:1;min-height:48px;padding:15px;border-radius:999px;font-size:15px;font-weight:700;letter-spacing:.01em;transition:background .18s,box-shadow .18s,transform .12s}
+  .btn-primary{background:var(--orange);color:#fff;box-shadow:0 8px 20px -10px rgba(239,90,35,.55)}
+  .btn-primary:hover{background:var(--orange-dark);box-shadow:0 10px 22px -10px rgba(239,90,35,.5);transform:translateY(-1px)}
+  .btn-primary:active{transform:translateY(0)}
+  .btn-primary:disabled{background:var(--gray-200);color:var(--gray-500);box-shadow:none;cursor:not-allowed;transform:none}
+  .btn-ghost{background:#fff;color:var(--navy);border:1px solid var(--gray-200)}
+  .btn-ghost:hover{background:var(--gray-50);border-color:var(--gray-500)}
+  .btn-skip{background:transparent;color:var(--gray-500);text-decoration:underline;flex:0 0 auto;min-height:48px;padding:15px 14px}
+
+  .trust-badges{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 4px}
+  .trust-badges span{font-size:11px;font-weight:600;color:var(--gray-700);background:var(--gray-50);border:1px solid var(--border);border-radius:999px;padding:5px 11px}
+
+  .resume-row{margin-top:10px;text-align:center}
+  .resume-btn{width:100%;min-height:48px;padding:13px;border-radius:999px;background:#fff;color:var(--navy);border:1.5px solid var(--gray-200);font-size:14px;font-weight:700}
+  .resume-btn:hover{background:var(--gray-50)}
+
+  .warn-badge{display:flex;gap:8px;align-items:flex-start;background:#fff8f0;border:1px solid #f5d9ae;color:#b45309;font-size:12px;border-radius:12px;padding:10px 12px;margin:12px 0 0;line-height:1.55}
+  .warn-badge .ico{flex-shrink:0}
+
+  .recap-chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px;align-items:center}
+  .recap-chips .chip{background:#fff;border:1px solid var(--border)}
+  .recap-edit{font-size:12px;color:var(--gray-500);text-decoration:underline;background:none;padding:6px 4px;min-height:32px}
+  .recap-edit:hover{color:var(--navy)}
+  .review-cta{display:flex;align-items:center;justify-content:center;min-height:50px;padding:14px 18px;margin-top:16px;border-radius:999px;background:var(--orange);color:#fff;font-size:15px;font-weight:700;letter-spacing:.01em;box-shadow:0 8px 20px -10px rgba(239,90,35,.5);transition:background .18s,box-shadow .18s,transform .12s}
+  .review-cta:hover{background:var(--orange-dark);transform:translateY(-1px)}
+  .review-cta.secondary{background:#fff;color:var(--navy);border:1px solid var(--border);box-shadow:none}
+  .review-cta.secondary:hover{background:var(--gray-50)}
+  .alt-detail .review-cta{margin-top:14px}
+
+  .loading{text-align:center;padding:60px 20px}
+  .spinner{width:48px;height:48px;border:4px solid var(--gray-100);border-top-color:var(--orange);border-radius:50%;margin:0 auto 16px;animation:spin 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .result-head{text-align:left;padding:10px 0 18px}
+  .result-head .badge{display:inline-block;background:var(--orange-soft);color:var(--orange-dark);font-size:10.5px;font-weight:700;letter-spacing:.18em;padding:6px 11px;border-radius:999px;margin-bottom:10px}
+  .result-head h2{font-size:24px;font-weight:800;color:var(--navy);margin:0 0 4px;line-height:1.28;letter-spacing:-.018em}
+  .result-head p{font-size:13px;color:var(--gray-500);margin:0}
+
+  .best-card{background:#fff;border:1px solid var(--border);border-radius:22px;padding:22px 20px;margin-bottom:24px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .best-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),#f5895a)}
+  .winner-label{display:inline-flex;align-items:center;min-height:26px;padding:4px 11px;background:var(--orange-soft);color:var(--orange-dark);border-radius:999px;font-size:10.5px;font-weight:700;letter-spacing:.14em;margin-bottom:12px}
+  .result-type{font-size:12px;color:var(--gray-500);font-weight:700;margin-bottom:8px}
+  .best-card h3{font-size:23px;font-weight:800;color:var(--navy);margin:0 0 4px;line-height:1.24;letter-spacing:-.02em}
+  .best-card .brand{font-size:12px;color:var(--gray-500);margin-bottom:12px}
+  .result-main{display:flex;gap:12px;justify-content:space-between;align-items:flex-start}
+  .result-main-text{min-width:0;flex:1}
+  .score-big{flex:0 0 82px;text-align:center;padding:11px 8px;background:var(--surface);border:1px solid var(--border);border-radius:16px;margin:0}
+  .score-big .val{font-size:34px;font-weight:800;color:var(--orange);line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .score-big .lbl{font-size:10.5px;color:var(--gray-500);font-weight:600;letter-spacing:.14em}
+  .result-summary{font-size:14px;color:var(--gray-700);line-height:1.65;margin:14px 0 8px}
+  .quick-read{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+  .quick-read div{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:10px;font-size:12px;color:var(--gray-700)}
+  .quick-read strong{display:block;color:var(--navy);font-size:11px;margin-bottom:2px}
+  .best-actions{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+  .best-actions .review-cta{margin-top:0}
+
+  .why-block{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:14px;margin:12px 0}
+  .why-title{font-size:11px;font-weight:700;color:var(--orange);letter-spacing:.12em;margin-bottom:8px}
+  .why-row{display:flex;font-size:13px;color:var(--gray-700);margin-bottom:6px;align-items:flex-start;line-height:1.5}
+  .why-row:last-child{margin-bottom:0}
+  .why-row .rk{color:var(--navy);font-weight:700;margin-right:8px;flex-shrink:0;min-width:5em}
+
+  .attr-chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+  .chip{font-size:11px;padding:4px 10px;border-radius:999px;background:var(--gray-100);color:var(--gray-700);font-weight:600}
+  .chip.alert{background:#fff0e6;color:var(--orange-dark)}
+
+  .spec-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px;background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden}
+  .spec-table td{padding:7px 10px;border-bottom:1px solid var(--gray-100)}
+  .spec-table td:first-child{color:var(--gray-500);width:48%}
+  .spec-table td:last-child{text-align:right;font-weight:600;color:var(--navy)}
+
+  .weakness{background:#fff8f0;border-left:3px solid #f59e0b;padding:12px 14px;border-radius:12px;margin:10px 0;font-size:12px;color:var(--gray-700);line-height:1.6}
+  .weakness strong{color:#b45309;display:block;margin-bottom:3px;font-size:11px;letter-spacing:.05em}
+
+
+
+  .alt-title{font-size:13px;font-weight:800;color:var(--navy);margin:24px 0 10px;padding-left:4px}
+  .alt-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:14px;margin-bottom:10px;box-shadow:var(--shadow-sm);display:flex;gap:12px;align-items:center;transition:border-color .18s,box-shadow .18s,transform .12s}
+  .alt-card:hover{border-color:var(--gray-500);box-shadow:0 8px 20px -14px rgba(22,24,29,.3);transform:translateY(-1px)}
+  .alt-rank{min-width:27px;height:27px;border-radius:999px;background:var(--gray-100);color:var(--navy);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .alt-body{flex:1;min-width:0}
+  .alt-name{font-size:14px;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .alt-meta{font-size:11px;color:var(--gray-500)}
+  .alt-score{font-size:20px;font-weight:800;color:var(--orange);flex-shrink:0;font-variant-numeric:tabular-nums}
+  .alt-toggle{font-size:11px;color:var(--gray-500);margin-top:4px}
+
+  .no-data{text-align:center;padding:20px;color:var(--gray-500);font-size:13px;background:var(--gray-50);border-radius:var(--radius);border:1.5px dashed var(--gray-200);margin-top:16px}
+  .no-data strong{display:block;color:var(--navy);font-size:14px;margin-bottom:6px}
+
+  .restart-wrap{text-align:center;margin-top:24px}
+  .restart-btn{padding:14px 28px;background:var(--navy);color:#fff;border-radius:999px;font-weight:700;font-size:14px;display:inline-flex;align-items:center;gap:8px;transition:background .18s,transform .12s}
+  .restart-btn:hover{background:var(--navy-2);transform:translateY(-1px)}
+
+  footer{text-align:center;font-size:11px;color:var(--gray-500);margin-top:32px;padding:16px 0}
+
+  /* ---- 要所のモーション（控えめ・上質）---- */
+  @keyframes revealUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .reveal-stagger>*{opacity:0;animation:revealUp .55s cubic-bezier(.2,.8,.2,1) forwards}
+  @keyframes growBar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .best-card::before{transform-origin:left center;animation:growBar .7s cubic-bezier(.2,.8,.2,1) .12s both}
+  @keyframes scorePop{0%{transform:scale(.9)}60%{transform:scale(1.04)}100%{transform:scale(1)}}
+  .score-big.pop .val{animation:scorePop .5s cubic-bezier(.2,.8,.2,1) both}
+  .loading-step{font-size:12.5px;color:var(--gray-500);margin-top:8px;min-height:18px;transition:opacity .25s ease}
+  .loading-step.swap{opacity:0}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before{animation-duration:.001ms!important;animation-delay:0ms!important;transition-duration:.001ms!important}
+    .reveal-stagger>*{opacity:1!important}
+  }
+
+  @media (max-width:380px){
+    .app{padding:12px}
+    .q-title{font-size:21px}
+    .opt{font-size:13px;padding:12px 14px}
+    .result-main{flex-direction:column}
+    .quick-read{grid-template-columns:1fr}
+    .score-big{width:100%;flex-basis:auto}
+    .best-card h3{font-size:20px}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hero">
+    <div class="logo">RUN SHOE DIAGNOSIS</div>
+    <h1>あなたのベスト1足診断</h1>
+    <p>体格・走り方・好みから厳選12モデルから1足をお選びします</p>
+  </header>
+
+  <div class="progress-wrap" id="progressWrap" style="display:none">
+    <div class="progress-row">
+      <span id="progressLabel">質問 1 / 12</span>
+      <span id="progressPct">8%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <section class="screen" id="screenStart">
+    <div class="start-card">
+      <h2>あなたにぴったりの1足を診断</h2>
+      <p style="font-size:13px;color:var(--gray-700);margin:0">体格・走力・ケガ歴・好みの履き心地から、最新12モデルのなかからベストな1足を選定します。</p>
+      <div class="trust-badges">
+        <span>実走レビュー準拠</span>
+        <span>厳選12モデル</span>
+        <span>弱点も正直に表示</span>
+      </div>
+      <ul>
+        <li>所要時間: 約2〜3分（全12問）</li>
+        <li>体格・走り方・好みから総合的に判定します</li>
+      </ul>
+      <button class="btn btn-primary" style="width:100%" onclick="startQuiz()">診断スタート</button>
+      <div class="resume-row" id="resumeRow" style="display:none">
+        <button class="resume-btn" onclick="resumeQuiz()">前回の続きから再開する</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen hidden" id="screenQuestion">
+    <div class="q-head">
+      <span class="q-index" id="qIndex">QUESTION 1</span>
+      <h2 class="q-title" id="qTitle"></h2>
+      <p class="q-help" id="qHelp"></p>
+    </div>
+    <div id="qBody"></div>
+    <div class="btn-row" id="qNav">
+      <button class="btn btn-ghost" id="btnBack" onclick="goBack()">戻る</button>
+      <button class="btn btn-primary" id="btnNext" onclick="goNext()">次へ</button>
+    </div>
+  </section>
+
+  <section class="screen hidden" id="screenLoading">
+    <div class="loading">
+      <div class="spinner"></div>
+      <div style="font-weight:700;color:var(--navy)">診断中...</div>
+      <div class="loading-step" id="loadingStep">体格と走り方を照合中…</div>
+    </div>
+  </section>
+
+  <section class="screen hidden" id="screenResult">
+    <div class="result-head">
+      <div class="badge">DIAGNOSIS RESULT</div>
+      <h2>あなたのベスト1足</h2>
+      <p id="resultSubtitle">体格・走り方・好みに最もフィットするモデル</p>
+    </div>
+    <div id="resultBody"></div>
+    <div class="restart-wrap">
+      <button class="restart-btn" onclick="restart()">↻ 最初からやり直す</button>
+    </div>
+    <footer>
+      ※ 推奨は実際の履き心地レビュー（Believe in the Run 等）と日本のランナー体格を考慮した独自ロジックに基づきます<br>
+      価格は変動するため、購入前に公式サイト等でご確認ください
+    </footer>
+  </section>
+</div>
+
+<script>
+/* =========================================================
+   Shoe Master — 8 curated models (spec as-of 2025 release)
+   Attributes reflect real-world running-community consensus
+   ========================================================= */
+const BLOG_HOME_URL = "https://ameblo.jp/tougyou-0111/";
+const COMPARISON_ARTICLE_URL = "";
+
+const SHOES = [
+  {
+    id:"pegasus_42", name:"Nike Pegasus 42", jp_name:"ナイキ ペガサス 42", brand:"Nike",
+    price_jpy:14000, heel:37, fore:27, drop:10, weight_g:283,
+    cushioning:"balanced", stability:"moderate", ride:"responsive",
+    width:"regular",
+    best_use:["daily","beginner"],
+    runner_type:["beginner","sub-4","experienced"],
+    injury_safe:["achilles","plantar"], injury_avoid:[],
+    heavy_runner_ok:true,
+    real_feel:"硬め・素直・Zoom Airの軽い反発。安定感はあるが派手さはない。",
+    weakness:"最新の厚底スーパートレーナーと比べると地味で硬い。ゆっくりジョグではやや硬すぎに感じる人も。",
+    ameblo_url:""
+  },
+  {
+    id:"vomero_18", name:"Nike Vomero 18", jp_name:"ナイキ ボメロ 18", brand:"Nike",
+    price_jpy:16500, heel:46, fore:36, drop:10, weight_g:303,
+    cushioning:"soft", stability:"moderate", ride:"grounded",
+    width:"regular",
+    best_use:["recovery","long run","daily"],
+    runner_type:["beginner","sub-4","experienced"],
+    injury_safe:["knee","plantar","achilles"], injury_avoid:[],
+    heavy_runner_ok:true,
+    real_feel:"ふかふか・沈み込み系。ZoomXを上から抑えた柔らかグラウンデッド。",
+    weakness:"重量300g超。速いペースでは鈍重でモッサリ。ショートランには大げさ。",
+    ameblo_url:""
+  },
+  {
+    id:"evo_sl", name:"adidas Adizero Evo SL", jp_name:"アディダス アディゼロ Evo SL", brand:"adidas",
+    price_jpy:16000, heel:39, fore:33, drop:6, weight_g:225,
+    cushioning:"balanced", stability:"low", ride:"bouncy",
+    width:"narrow",
+    best_use:["speed","daily","long run"],
+    runner_type:["sub-4","experienced"],
+    injury_safe:[], injury_avoid:["achilles"],
+    heavy_runner_ok:false,
+    real_feel:"軽量・PEBA系の弾み・プレートなし。何でもこなせる万能スーパートレーナー。",
+    weakness:"幅が狭く不安定ぎみ。プレート無しでコーナリングでブレやすい。アウトソール耐久性も心配。",
+    ameblo_url:""
+  },
+  {
+    id:"novablast_6", name:"ASICS Novablast 6", jp_name:"アシックス ノヴァブラスト 6", brand:"ASICS",
+    price_jpy:13200, heel:41.5, fore:33.5, drop:8, weight_g:250,
+    cushioning:"soft", stability:"low", ride:"bouncy",
+    width:"regular",
+    best_use:["daily","long run"],
+    runner_type:["beginner","sub-4","experienced"],
+    injury_safe:["shin"], injury_avoid:[],
+    heavy_runner_ok:false,
+    real_feel:"前足部にFF Turbo Squaredポッドを搭載し、5より反発がくっきり。トランポリン感はそのままにスピード対応力が向上。",
+    weakness:"ロッカー＋高スタックで低速時に不安定。カーブや疲れた脚ではグラつく。ヒール接地で横ブレしやすい。",
+    ameblo_url:""
+  },
+  {
+    id:"nb_1080_v15", name:"New Balance 1080 v15", jp_name:"ニューバランス 1080 v15", brand:"New Balance",
+    price_jpy:19800, heel:40, fore:36, drop:4, weight_g:250,
+    cushioning:"soft", stability:"moderate", ride:"smooth",
+    width:"wide",
+    best_use:["recovery","long run","daily"],
+    runner_type:["beginner","sub-4","experienced"],
+    injury_safe:["knee","plantar"], injury_avoid:[],
+    heavy_runner_ok:true,
+    real_feel:"新Infinion foamで一新。v14の鉛のような重さが消え、軽く弾むように。柔らかさはそのままに反発が増した正常進化。",
+    weakness:"Fresh Foam時代の超どっしり感が好きな人には軽くなりすぎと感じることも。価格も上昇。",
+    ameblo_url:""
+  },
+  {
+    id:"rebel_v5", name:"New Balance FuelCell Rebel v5", jp_name:"ニューバランス リベル v5", brand:"New Balance",
+    price_jpy:17000, heel:30, fore:24, drop:6, weight_g:216,
+    cushioning:"balanced", stability:"low", ride:"bouncy",
+    width:"narrow",
+    best_use:["speed","daily"],
+    runner_type:["sub-4","experienced"],
+    injury_safe:[], injury_avoid:["achilles"],
+    heavy_runner_ok:false,
+    real_feel:"軽快・プレートなしでも自然に弾む・レーサーに近いトレーナー感。",
+    weakness:"狭く不安定。体重が重いランナーや疲れた脚ではブレる。リカバリーには軽量過ぎ。アッパー耐久性もやや弱い。",
+    ameblo_url:""
+  },
+  {
+    id:"clifton_11", name:"HOKA Clifton 11", jp_name:"ホカ クリフトン 11", brand:"HOKA",
+    price_jpy:18500, heel:42, fore:34, drop:8, weight_g:265,
+    cushioning:"balanced", stability:"moderate", ride:"smooth",
+    width:"regular",
+    best_use:["daily","beginner","recovery"],
+    runner_type:["beginner","sub-4"],
+    injury_safe:["knee","shin","plantar","achilles"], injury_avoid:[],
+    heavy_runner_ok:true,
+    real_feel:"10からのチューンナップ版。ミッドソールは据え置きで、アッパーとインソールがより柔らかく。包み込み感が向上。",
+    weakness:"反発感は控えめで速いペースでは退屈・平坦。中身は10とほぼ同じで劇的な変化はない。アウトソールの露出ラバーが少なく摩耗が早い。",
+    ameblo_url:""
+  },
+  {
+    id:"cloudmonster_3", name:"On Cloudmonster 3", jp_name:"On クラウドモンスター 3", brand:"On",
+    price_jpy:22000, heel:35, fore:29, drop:6, weight_g:280,
+    cushioning:"balanced", stability:"moderate", ride:"responsive",
+    width:"regular",
+    best_use:["daily","speed"],
+    runner_type:["sub-4","experienced"],
+    injury_safe:["knee"], injury_avoid:["plantar"],
+    heavy_runner_ok:true,
+    real_feel:"硬め・スピードボード由来のスナップ・Cloud独特の接地感。テンポ寄りのデイリー。",
+    weakness:"Cloudポッドに小石が挟まる・好みが分かれる。本当のリカバリーには硬すぎ。ヒールがスカスカと感じる人も。",
+    ameblo_url:""
+  },
+  {
+    id:"kayano_33", name:"ASICS Gel-Kayano 33", jp_name:"アシックス ゲルカヤノ 33", brand:"ASICS",
+    price_jpy:20900, heel:39, fore:31, drop:8, weight_g:298,
+    cushioning:"soft", stability:"high", ride:"smooth",
+    width:"wide",
+    best_use:["daily","recovery","beginner"],
+    runner_type:["beginner","sub-4"],
+    injury_safe:["knee","plantar","shin"], injury_avoid:[],
+    heavy_runner_ok:true,
+    real_feel:"安定靴の絶対王者の最新作。FLUIDSUPPORTでガッチリ支えるのに硬すぎず、脚が疲れていても最後まで乱れない安心感。",
+    weakness:"約298gと重量級。反発は控えめでスピード練習には不向き。「守り」に特化した設計。",
+    ameblo_url:""
+  },
+  {
+    id:"nimbus_28", name:"ASICS Gel-Nimbus 28", jp_name:"アシックス ゲルニンバス 28", brand:"ASICS",
+    price_jpy:20900, heel:43.5, fore:35.5, drop:8, weight_g:280,
+    cushioning:"soft", stability:"moderate", ride:"grounded",
+    width:"regular",
+    best_use:["recovery","long run","daily"],
+    runner_type:["beginner","sub-4","experienced"],
+    injury_safe:["knee","plantar","achilles"], injury_avoid:[],
+    heavy_runner_ok:true,
+    real_feel:"43mm超の分厚いFF Blast Plus＋PureGel。歴代最軽量化で、柔らかいのにモッサリしない雲の上系の完成形。",
+    weakness:"イージー・リカバリー寄りでスピードを出すと退屈。2万円超と価格も高め。",
+    ameblo_url:""
+  },
+  {
+    id:"rider_29", name:"Mizuno Wave Rider 29", jp_name:"ミズノ ウェーブライダー 29", brand:"Mizuno",
+    price_jpy:16500, heel:38, fore:28, drop:10, weight_g:258,
+    cushioning:"balanced", stability:"moderate", ride:"smooth",
+    width:"regular",
+    best_use:["daily","beginner","long run"],
+    runner_type:["beginner","sub-4","experienced"],
+    injury_safe:["shin","knee"], injury_avoid:[],
+    heavy_runner_ok:true,
+    real_feel:"Enerzy NXTで往年の硬さが消え、柔らかいのに芯のある転がり。日本の定番デイリーが完全に現代化した1足。",
+    weakness:"10mmドロップはフォアフット走法だと恩恵が薄い。派手な反発はなく、良くも悪くも優等生。",
+    ameblo_url:""
+  },
+  {
+    id:"boston_13", name:"adidas Adizero Boston 13", jp_name:"アディダス アディゼロ ボストン 13", brand:"adidas",
+    price_jpy:17600, heel:37, fore:30, drop:7, weight_g:255,
+    cushioning:"balanced", stability:"moderate", ride:"responsive",
+    width:"narrow",
+    best_use:["speed","long run","daily"],
+    runner_type:["sub-4","experienced"],
+    injury_safe:[], injury_avoid:[],
+    heavy_runner_ok:true,
+    real_feel:"Lightstrike Pro増量＋ENERGY RODSの推進力。テンポ走〜ロング走で本領を発揮する、レースDNAの練習機。",
+    weakness:"つま先はタイトで幅広の足には窮屈。ゆっくりジョグだと硬さが目立つ。",
+    ameblo_url:""
+  }
+];
+
+/* =========================================================
+   State
+   ========================================================= */
+let currentQ = 0;
+const answers = {
+  age:null,         // 1-5 (code)
+  height_cm:null,   // number
+  weight_kg:null,   // number
+  level:null,       // 1-4
+  useCase:null,     // 1-4
+  weekly:null,      // 1-4
+  strike:null,      // 1-4
+  width:null,       // 1-4
+  injuries:[],
+  ride:null,        // "smooth"|"bouncy"|"responsive"|"grounded"|"auto"
+  budget:null,      // 1-4
+  interestedShoe:""
+};
+
+/* =========================================================
+   Questions (12)
+   ========================================================= */
+const QUESTIONS = [
+  {
+    key:"age",
+    title:"Q1. 年齢層は？",
+    help:"年齢に応じて必要なクッション・安定性を調整します",
+    type:"radio",
+    options:[
+      {val:1,label:"29歳以下"},
+      {val:2,label:"30〜39歳"},
+      {val:3,label:"40〜49歳"},
+      {val:4,label:"50〜59歳"},
+      {val:5,label:"60歳以上"}
+    ]
+  },
+  {
+    // プライバシー配慮：正確な数値ではなくレンジで選択。
+    // val は採点用の代表値（レンジ中央）。しきい値ロジックはそのまま使える。
+    key:"height_cm",
+    title:"Q2. 身長は？",
+    help:"体格から安定性の必要度を判定します（おおよそでOK）",
+    type:"radio",
+    options:[
+      {val:150,label:"〜155cm"},
+      {val:160,label:"156〜165cm"},
+      {val:170,label:"166〜175cm"},
+      {val:180,label:"176〜185cm"},
+      {val:190,label:"186cm〜"}
+    ]
+  },
+  {
+    key:"weight_kg",
+    title:"Q3. 体重は？",
+    help:"必要なクッション量・安定性の判定に使います（おおよそでOK）",
+    type:"radio",
+    options:[
+      {val:50,label:"〜54kg"},
+      {val:60,label:"55〜64kg"},
+      {val:70,label:"65〜74kg"},
+      {val:80,label:"75〜84kg"},
+      {val:90,label:"85kg〜"}
+    ]
+  },
+  {
+    key:"level",
+    title:"Q4. あなたの走力レベルは？",
+    help:"フルマラソンまたは普段のペースで近いもの",
+    type:"radio",
+    options:[
+      {val:1,label:"完走目標",sub:"まずは走り切る"},
+      {val:2,label:"5〜6分/km",sub:"サブ4〜サブ4.5"},
+      {val:3,label:"4〜5分/km",sub:"サブ3.5〜サブ4"},
+      {val:4,label:"4分/km以下",sub:"サブ3を狙う"}
+    ]
+  },
+  {
+    key:"useCase",
+    title:"Q5. 主な用途は？",
+    type:"radio",
+    options:[
+      {val:1,label:"レース・ポイント練習メイン"},
+      {val:2,label:"練習とレース兼用"},
+      {val:3,label:"デイリートレーニング"},
+      {val:4,label:"ジョグ・健康維持"}
+    ]
+  },
+  {
+    key:"weekly",
+    title:"Q6. 週間走行距離は？",
+    type:"radio",
+    options:[
+      {val:1,label:"20km未満"},
+      {val:2,label:"20〜40km"},
+      {val:3,label:"40〜60km"},
+      {val:4,label:"60km以上"}
+    ]
+  },
+  {
+    key:"strike",
+    title:"Q7. 着地パターンは？",
+    help:"最初に地面に触れる場所",
+    type:"radio",
+    options:[
+      {val:1,label:"かかとから",sub:"ヒールストライク"},
+      {val:2,label:"かかと〜土踏まず",sub:"ミッドフット"},
+      {val:3,label:"足の前側",sub:"フォアフット"},
+      {val:4,label:"わからない"}
+    ]
+  },
+  {
+    key:"width",
+    title:"Q8. 足幅の好みは？",
+    type:"radio",
+    options:[
+      {val:1,label:"細め",sub:"スリムフィット"},
+      {val:2,label:"普通"},
+      {val:3,label:"広め",sub:"2E / 3E"},
+      {val:4,label:"わからない"}
+    ]
+  },
+  {
+    key:"injuries",
+    title:"Q9. ケガ歴は？",
+    help:"複数選択可",
+    type:"check",
+    options:[
+      {val:"knee",label:"膝の痛み"},
+      {val:"plantar",label:"足底筋膜炎"},
+      {val:"achilles",label:"アキレス腱"},
+      {val:"shin",label:"シンスプリント"},
+      {val:"none",label:"特になし"}
+    ]
+  },
+  {
+    key:"ride",
+    title:"Q10. 好みの乗り味は？",
+    help:"いま履いているシューズで「好きな感覚」に一番近いものを。ここが診断で最も重視されるポイントです",
+    type:"radio",
+    options:[
+      {val:"smooth",label:"滑らか",sub:"ロッカーで素直に前に転がる"},
+      {val:"grounded",label:"どっしり",sub:"沈み込み・柔らかく包まれる"},
+      {val:"responsive",label:"しっかり反発",sub:"硬めでキビキビ・スナップ"},
+      {val:"bouncy",label:"弾む",sub:"トランポリン・ポップ感"},
+      {val:"auto",label:"わからない / お任せ"}
+    ]
+  },
+  {
+    key:"budget",
+    title:"Q11. 予算は？",
+    help:"実勢価格ベース。予算超過しても参考候補は表示されます",
+    type:"radio",
+    options:[
+      {val:1,label:"〜15,000円",sub:"コスパ重視"},
+      {val:2,label:"15,000〜18,000円",sub:"標準的"},
+      {val:3,label:"18,000〜22,000円",sub:"少し奮発"},
+      {val:4,label:"気にしない",sub:"性能重視"}
+    ]
+  },
+  {
+    key:"interestedShoe",
+    title:"Q12. 気になっているシューズはありますか？",
+    help:"任意。スキップ可",
+    type:"text",
+    skippable:true
+  }
+];
+
+/* =========================================================
+   Rendering
+   ========================================================= */
+const $ = id => document.getElementById(id);
+
+const SAVE_KEY = "shoeDiagSave_v1";
+
+function saveProgress(){
+  try{
+    localStorage.setItem(SAVE_KEY, JSON.stringify({currentQ, answers}));
+  }catch(e){ /* private mode etc. */ }
+}
+function clearProgress(){
+  try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
+}
+function loadProgress(){
+  try{
+    const raw = localStorage.getItem(SAVE_KEY);
+    if(!raw) return null;
+    const d = JSON.parse(raw);
+    if(!d || typeof d.currentQ !== "number" || !d.answers) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function startQuiz(){
+  currentQ = 0;
+  clearProgress();
+  resetAnswers();
+  $("screenStart").classList.add("hidden");
+  $("progressWrap").style.display = "block";
+  showQuestion();
+}
+
+function resumeQuiz(){
+  const d = loadProgress();
+  if(!d){ startQuiz(); return; }
+  Object.assign(answers, d.answers);
+  if(!Array.isArray(answers.injuries)) answers.injuries = [];
+  currentQ = Math.min(Math.max(d.currentQ, 0), QUESTIONS.length-1);
+  $("screenStart").classList.add("hidden");
+  $("progressWrap").style.display = "block";
+  showQuestion();
+}
+
+function showQuestion(){
+  $("screenStart").classList.add("hidden");
+  $("screenLoading").classList.add("hidden");
+  $("screenResult").classList.add("hidden");
+  const s = $("screenQuestion");
+  s.classList.remove("hidden");
+  s.style.animation = "none";
+  void s.offsetWidth;
+  s.style.animation = "";
+
+  const q = QUESTIONS[currentQ];
+  $("qIndex").textContent = `QUESTION ${currentQ+1}`;
+  $("qTitle").textContent = q.title;
+  $("qHelp").textContent = q.help || "";
+  $("qHelp").style.display = q.help ? "block" : "none";
+
+  const body = $("qBody");
+  body.innerHTML = "";
+
+  if(q.type === "radio"){
+    const wrap = document.createElement("div");
+    wrap.className = "options";
+    q.options.forEach((opt,i)=>{
+      const b = document.createElement("button");
+      b.className = "opt";
+      b.type = "button";
+      if(answers[q.key] === opt.val) b.classList.add("selected");
+      b.innerHTML = `<span class="num">${i+1}</span><span><span class="label-main">${opt.label}</span>${opt.sub?`<span class="label-sub">${opt.sub}</span>`:""}</span>`;
+      b.onclick = ()=>{
+        answers[q.key] = opt.val;
+        document.querySelectorAll("#qBody .opt").forEach(e=>e.classList.remove("selected"));
+        b.classList.add("selected");
+        updateNav();
+        setTimeout(()=>{ if(currentQ < QUESTIONS.length-1) goNext(); else updateNav(); }, 250);
+      };
+      wrap.appendChild(b);
+    });
+    body.appendChild(wrap);
+  } else if(q.type === "number"){
+    const wrap = document.createElement("div");
+    wrap.className = "num-input-wrap";
+    const inp = document.createElement("input");
+    inp.type = "number";
+    inp.inputMode = "numeric";
+    inp.className = "num-input";
+    inp.placeholder = q.placeholder;
+    inp.min = q.min; inp.max = q.max;
+    if(answers[q.key] !== null) inp.value = answers[q.key];
+    inp.oninput = e=>{
+      const v = parseInt(e.target.value,10);
+      answers[q.key] = (Number.isFinite(v) && v >= q.min && v <= q.max) ? v : null;
+      updateNav();
+    };
+    const unit = document.createElement("span");
+    unit.className = "num-input-unit";
+    unit.textContent = q.unit;
+    wrap.appendChild(inp);
+    wrap.appendChild(unit);
+    body.appendChild(wrap);
+    setTimeout(()=>inp.focus(), 100);
+  } else if(q.type === "check"){
+    const wrap = document.createElement("div");
+    wrap.className = "checks";
+    q.options.forEach(opt=>{
+      const lab = document.createElement("label");
+      lab.className = "check";
+      const checked = answers.injuries.includes(opt.val);
+      lab.innerHTML = `<input type="checkbox" ${checked?"checked":""} value="${opt.val}"><span>${opt.label}</span>`;
+      const input = lab.querySelector("input");
+      input.onchange = ()=>{
+        if(opt.val === "none"){
+          if(input.checked){
+            answers.injuries = ["none"];
+            wrap.querySelectorAll("input").forEach(i=>{ if(i.value !== "none") i.checked=false; });
+          } else {
+            answers.injuries = answers.injuries.filter(x=>x!=="none");
+          }
+        } else {
+          if(input.checked){
+            answers.injuries = answers.injuries.filter(x=>x!=="none");
+            if(!answers.injuries.includes(opt.val)) answers.injuries.push(opt.val);
+            wrap.querySelector('input[value="none"]').checked = false;
+          } else {
+            answers.injuries = answers.injuries.filter(x=>x!==opt.val);
+          }
+        }
+        updateNav();
+      };
+      wrap.appendChild(lab);
+    });
+    body.appendChild(wrap);
+  } else if(q.type === "text"){
+    const inp = document.createElement("input");
+    inp.type = "text";
+    inp.className = "text-input";
+    inp.placeholder = "例: ナイキ ボメロ、ホカ クリフトン など";
+    inp.value = answers.interestedShoe || "";
+    inp.oninput = e=>{ answers.interestedShoe = e.target.value.trim(); updateNav(); };
+    body.appendChild(inp);
+  }
+
+  $("btnBack").style.visibility = currentQ === 0 ? "hidden" : "visible";
+  const nextBtn = $("btnNext");
+  nextBtn.textContent = currentQ === QUESTIONS.length-1 ? "ベスト1足を見る" : "次へ";
+
+  const navRow = $("qNav");
+  navRow.querySelectorAll(".btn-skip").forEach(x=>x.remove());
+  if(q.skippable){
+    const skip = document.createElement("button");
+    skip.className = "btn btn-skip";
+    skip.textContent = "スキップ";
+    skip.onclick = ()=>{ answers.interestedShoe = ""; finishQuiz(); };
+    navRow.appendChild(skip);
+  }
+
+  updateNav();
+  updateProgress();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function updateNav(){
+  const q = QUESTIONS[currentQ];
+  const val = answers[q.key];
+  let ok = false;
+  if(q.type === "check") ok = Array.isArray(val) && val.length > 0;
+  else if(q.type === "text") ok = true;
+  else if(q.type === "number") ok = val !== null && val !== undefined;
+  else ok = val !== null && val !== undefined && val !== "";
+  $("btnNext").disabled = !ok;
+  saveProgress();
+}
+
+const CHAPTERS = [
+  {name:"プロフィール", from:0, to:2},
+  {name:"走り方", from:3, to:7},
+  {name:"好み", from:8, to:11}
+];
+
+function updateProgress(){
+  const pct = Math.round(((currentQ+1)/QUESTIONS.length)*100);
+  const ch = CHAPTERS.find(c=>currentQ >= c.from && currentQ <= c.to) || CHAPTERS[0];
+  const chIdx = CHAPTERS.indexOf(ch)+1;
+  $("progressLabel").textContent = `${ch.name} (${chIdx}/${CHAPTERS.length}) · 質問 ${currentQ+1} / ${QUESTIONS.length}`;
+  $("progressPct").textContent = `${pct}%`;
+  $("progressFill").style.width = `${pct}%`;
+}
+
+function goNext(){
+  if(currentQ < QUESTIONS.length-1){ currentQ++; showQuestion(); }
+  else finishQuiz();
+}
+function goBack(){ if(currentQ > 0){ currentQ--; showQuestion(); } }
+
+function finishQuiz(){
+  $("screenQuestion").classList.add("hidden");
+  $("progressWrap").style.display = "none";
+  $("screenLoading").classList.remove("hidden");
+  // ローディング中に採点ステップを順に切り替える（待ち時間を「意味のある間」に）
+  const steps = ["体格と走り方を照合中…","ケガ歴と好みを評価中…","12モデルを採点中…"];
+  const stepEl = $("loadingStep");
+  let si = 0;
+  if(stepEl){ stepEl.textContent = steps[0]; }
+  const stepIv = setInterval(()=>{
+    si++;
+    if(stepEl && steps[si]){
+      stepEl.classList.add("swap");
+      setTimeout(()=>{ stepEl.textContent = steps[si]; stepEl.classList.remove("swap"); }, 200);
+    }
+  }, 440);
+  setTimeout(()=>{
+    clearInterval(stepIv);
+    $("screenLoading").classList.add("hidden");
+    showResult();
+  }, 1300);
+}
+
+/* =========================================================
+   Scoring — 100pt, body-metric aware
+   ========================================================= */
+// レンジ選択（身長・体重）の表示用ラベルを逆引きする
+// 例: rangeLabel("weight_kg") → "65〜74kg"
+function rangeLabel(key){
+  const q = QUESTIONS.find(x=>x.key===key);
+  if(!q || !q.options) return "";
+  const opt = q.options.find(o=>o.val===answers[key]);
+  return opt ? opt.label : "";
+}
+
+function scoreShoe(shoe){
+  let score = 0;
+  const reasons = { body:"", run:"", ride:"", injury:"" };
+  let excludeReason = null;
+
+  // === Budget (soft: within → +5, slightly over → 0, way over → -10) ===
+  const budgetMax = [15000, 18000, 22000, 999999][answers.budget-1] || 999999;
+  const overBy = shoe.price_jpy - budgetMax;
+  if(overBy <= 0){
+    score += 5; // within budget
+  } else if(overBy <= 3000){
+    score += 0; // slightly over, still considered
+  } else {
+    score -= 10; // significantly over, penalized but not excluded
+  }
+
+  // === Body-metric stability guard (heavy runner protection) ===
+  // Heavy runner on a narrow/low-stability shoe → big penalty or exclusion
+  // w はレンジ選択の代表値。表示にはレンジラベル（rangeLabel）を使う
+  const w = answers.weight_kg;
+  let bodyPts = 10; // up to 10 pts for body-fit
+  const lowStability = shoe.stability === "low";
+  const narrow = shoe.width === "narrow";
+
+  if(w >= 80 && (lowStability || narrow)){
+    score -= 15; // strong penalty
+    bodyPts = 0;
+    reasons.body = `体重${rangeLabel("weight_kg")}×幅${shoe.width==="narrow"?"狭め":"低安定"}設計で横ブレ懸念あり。`;
+  } else if(w >= 70 && lowStability && narrow){
+    score -= 8;
+    bodyPts = 2;
+    reasons.body = `体重${rangeLabel("weight_kg")}で細身×低安定は疲労時にブレやすい。`;
+  } else if(w <= 55 && shoe.weight_g >= 295){
+    // Light runner on heavy shoe — not ideal
+    bodyPts = 5;
+    reasons.body = `体重${rangeLabel("weight_kg")}に対しシューズ重量${shoe.weight_g}gはやや重め。`;
+  } else if(shoe.heavy_runner_ok && w >= 75){
+    bodyPts = 10;
+    reasons.body = `体重${rangeLabel("weight_kg")}でも安定したワイドプラットフォーム。`;
+  } else {
+    bodyPts = 8;
+    reasons.body = `身長${rangeLabel("height_cm")}・体重${rangeLabel("weight_kg")}にマッチするサイズ感。`;
+  }
+  score += bodyPts;
+
+  // === Age-based cushion adjustment ===
+  // Older runners benefit more from soft/grounded; penalty for low stability at 50+
+  const ageCode = answers.age;
+  let agePts = 5; // up to 8 pts
+  if(ageCode >= 4){ // 50+
+    if(shoe.cushioning === "soft" || shoe.ride === "grounded" || shoe.ride === "smooth"){
+      agePts = 8;
+    } else if(shoe.cushioning === "balanced" && shoe.stability !== "low"){
+      agePts = 6;
+    } else {
+      agePts = 2;
+    }
+    if(lowStability) agePts -= 2;
+  } else if(ageCode === 3){ // 40s
+    if(shoe.cushioning === "soft" || shoe.ride === "grounded") agePts = 8;
+    else if(shoe.cushioning === "balanced") agePts = 6;
+    else agePts = 4;
+  } else if(ageCode === 2){
+    agePts = 6; // neutral
+  } else {
+    agePts = 7; // young runners are flexible
+  }
+  score += agePts;
+
+  // === Ride preference (up to 18 pts — the most runner-felt dimension) ===
+  let ridePts = 0;
+  if(answers.ride === "auto"){
+    ridePts = 10; // neutral
+  } else if(answers.ride === shoe.ride){
+    ridePts = 18;
+  } else {
+    // Adjacent rides
+    const adj = {
+      smooth:["grounded"],
+      grounded:["smooth"],
+      bouncy:["responsive"],
+      responsive:["bouncy"]
+    };
+    if(adj[answers.ride] && adj[answers.ride].includes(shoe.ride)) ridePts = 10;
+    else ridePts = 2; // opposite feel
+  }
+  score += ridePts;
+  const rideJP = { smooth:"滑らか", grounded:"どっしり", responsive:"しっかり反発", bouncy:"弾む" };
+  reasons.ride = `好み「${answers.ride==="auto"?"お任せ":rideJP[answers.ride]}」× シューズ「${rideJP[shoe.ride]}」`;
+
+  // === Level & category (15 pts) ===
+  // Map shoe.best_use to level affinity
+  const isRacer = shoe.best_use.includes("speed");
+  const isBeginnerShoe = shoe.best_use.includes("beginner");
+  const isRecovery = shoe.best_use.includes("recovery");
+  let levelPts = 0;
+  if(answers.level === 1){ // 完走
+    if(isBeginnerShoe) levelPts = 15;
+    else if(isRecovery || shoe.ride === "smooth" || shoe.ride === "grounded") levelPts = 12;
+    else if(isRacer) levelPts = 3;
+    else levelPts = 8;
+  } else if(answers.level === 2){ // 5-6/km
+    if(shoe.best_use.includes("daily") && !isRacer) levelPts = 15;
+    else if(shoe.best_use.includes("daily")) levelPts = 12;
+    else if(isRecovery) levelPts = 11;
+    else levelPts = 7;
+  } else if(answers.level === 3){ // 4-5/km
+    if(shoe.best_use.includes("speed") || shoe.best_use.includes("daily")) levelPts = 15;
+    else if(isRecovery) levelPts = 9;
+    else levelPts = 7;
+  } else if(answers.level === 4){ // <4/km
+    if(shoe.best_use.includes("speed")) levelPts = 15;
+    else if(shoe.best_use.includes("daily") && !isRecovery) levelPts = 9;
+    else levelPts = 4;
+  }
+  score += levelPts;
+
+  // === Use case (10 pts) ===
+  const useMap = {
+    1:{primary:"speed", secondary:["daily"]},
+    2:{primary:"speed", secondary:["daily","long run"]},
+    3:{primary:"daily", secondary:["long run","recovery"]},
+    4:{primary:"recovery", secondary:["daily","beginner"]}
+  };
+  const t = useMap[answers.useCase] || useMap[3];
+  let usePts = 0;
+  if(shoe.best_use.includes(t.primary)) usePts = 10;
+  else if(shoe.best_use.some(u=>t.secondary.includes(u))) usePts = 6;
+  else usePts = 1;
+  score += usePts;
+
+  // === Injury (12 pts; avoid → -30) ===
+  const hasInjury = answers.injuries.filter(x=>x!=="none" && x!=="");
+  let injuryPts = 0;
+  let penalty = 0;
+  const safeHits = [], avoidHits = [];
+  hasInjury.forEach(inj=>{
+    if(shoe.injury_avoid.includes(inj)){ penalty += 30; avoidHits.push(inj); }
+    else if(shoe.injury_safe.includes(inj)){ safeHits.push(inj); }
+  });
+  if(hasInjury.length === 0){
+    injuryPts = 7;
+    reasons.injury = "ケガ歴なし・履き心地で選べる。";
+  } else {
+    if(safeHits.length === hasInjury.length) injuryPts = 12;
+    else if(safeHits.length) injuryPts = 8;
+    else injuryPts = 3;
+    const map = {knee:"膝",plantar:"足底",achilles:"アキレス腱",shin:"スネ"};
+    if(avoidHits.length){
+      reasons.injury = `⚠ ${avoidHits.map(x=>map[x]).join("・")}への負担に注意。`;
+    } else if(safeHits.length){
+      reasons.injury = `${safeHits.map(x=>map[x]).join("・")}の負担軽減に配慮。`;
+    } else {
+      reasons.injury = "特段の対策なしだが回避すべき点もなし。";
+    }
+  }
+  score += injuryPts;
+  score -= penalty;
+
+  // === Strike × drop (10 pts) ===
+  let strikePts = 0;
+  const drop = shoe.drop;
+  if(answers.strike === 1){ // heel
+    if(drop >= 10) strikePts = 10;
+    else if(drop >= 8) strikePts = 7;
+    else if(drop >= 6) strikePts = 4;
+    else strikePts = 1;
+  } else if(answers.strike === 2){ // mid
+    if(drop >= 6 && drop <= 9) strikePts = 10;
+    else if(drop >= 5) strikePts = 7;
+    else strikePts = 3;
+  } else if(answers.strike === 3){ // fore
+    if(drop <= 5) strikePts = 10;
+    else if(drop <= 7) strikePts = 7;
+    else if(drop <= 9) strikePts = 4;
+    else strikePts = 1;
+  } else { strikePts = 5; } // unknown
+  score += strikePts;
+
+  // === Width (10 pts) ===
+  let widthPts = 0;
+  if(answers.width === 4){
+    widthPts = 5;
+  } else {
+    const uw = ["narrow","regular","wide"][answers.width-1];
+    if(shoe.width === uw) widthPts = 10;
+    else if(shoe.width === "regular" || uw === "regular") widthPts = 5;
+    else widthPts = 0;
+  }
+  score += widthPts;
+
+  // === Weekly mileage: durability (5 pts) ===
+  let mileagePts = 0;
+  if(answers.weekly >= 3){ // 40km+/week
+    if(shoe.best_use.includes("daily") && !shoe.best_use.includes("speed")) mileagePts = 5;
+    else if(shoe.best_use.includes("daily")) mileagePts = 4;
+    else if(shoe.best_use.includes("recovery")) mileagePts = 4;
+    else mileagePts = 1;
+  } else if(answers.weekly === 2){
+    mileagePts = 3;
+  } else {
+    mileagePts = 4;
+  }
+  score += mileagePts;
+
+  // Build run reason
+  const catJP = shoe.best_use.slice(0,2).map(x=>({daily:"デイリー",speed:"スピード",recovery:"リカバリー","long run":"ロング",beginner:"初心者向け"}[x]||x)).join("・");
+  reasons.run = `${catJP}カテゴリ・${shoe.cushioning==="soft"?"柔らかクッション":shoe.cushioning==="firm"?"しっかり":"バランス"}・安定性${shoe.stability==="high"?"高":shoe.stability==="low"?"低":"中"}。`;
+
+  if(score > 100) score = 100;
+  if(score < 0) score = 0;
+
+  return { score:Math.round(score), reasons, excluded:false };
+}
+
+/* =========================================================
+   Show results
+   ========================================================= */
+function findInterestedShoe(query){
+  if(!query) return null;
+  const q = query.toLowerCase().replace(/\s+/g,"");
+  for(const s of SHOES){
+    const n = (s.name + s.brand + (s.jp_name||"")).toLowerCase().replace(/\s+/g,"");
+    if(n.includes(q) || q.includes(s.id.replace(/_/g,""))) return s;
+  }
+  const tokens = query.toLowerCase().split(/[\s　]+/).filter(t=>t.length>1);
+  for(const s of SHOES){
+    const n = (s.name + " " + s.brand + " " + (s.jp_name||"")).toLowerCase();
+    if(tokens.some(t=>n.includes(t))) return s;
+  }
+  return null;
+}
+
+/* 入力されたが12モデルに無い機種 → 似た特性のDB機種を提案するための対応表 */
+const SIMILAR_SUGGEST = [
+  {match:["ghost","ゴースト"], id:"clifton_11", why:"クセのないバランス型デイリーという立ち位置が近い"},
+  {match:["cumulus","キュムラス"], id:"clifton_11", why:"柔らかすぎないクッションのデイリー枠として性格が近い"},
+  {match:["bondi","ボンダイ"], id:"nimbus_28", why:"厚底マックスクッションの乗り味が近い"},
+  {match:["invincible","インヴィンシブル","インビンシブル"], id:"vomero_18", why:"ZoomXの柔らかい接地感つながり"},
+  {match:["gt-2000","gt2000"], id:"kayano_33", why:"同じASICSの安定系として設計思想が近い"},
+  {match:["endorphin","エンドルフィン"], id:"evo_sl", why:"PEBA系フォームで弾むテンポ寄りトレーナーが近い"},
+  {match:["magic speed","マジックスピード"], id:"boston_13", why:"プレート入りテンポトレーナーとして役割が同じ"},
+  {match:["adios","アディオス"], id:"boston_13", why:"同じadizeroファミリーのテンポ機として性格が近い"},
+  {match:["vaporfly","ヴェイパー","alphafly","アルファフライ","metaspeed","メタスピード"], id:"rebel_v5", why:"レースシューズに近い軽さと弾みを練習で味わえる"},
+  {match:["cloudsurfer","クラウドサーファー"], id:"cloudmonster_3", why:"同じOnのCloudTec系で接地感が近い"}
+];
+
+function findSimilarSuggestion(query){
+  const q = String(query||"").toLowerCase().replace(/\s+/g," ");
+  if(!q) return null;
+  for(const sg of SIMILAR_SUGGEST){
+    if(sg.match.some(t=>q.includes(t))){
+      const shoe = SHOES.find(s=>s.id === sg.id);
+      if(shoe) return {shoe, why:sg.why};
+    }
+  }
+  return null;
+}
+
+/* スコアには影響しないソフト警告（矛盾組合せ・予算超過・ケガ歴） */
+function buildWarnings(s){
+  const out = [];
+  const w = answers.weight_kg;
+  if(w >= 80 && (s.stability === "low" || s.width === "narrow")){
+    out.push(`体重${w}kgに対して${s.width==="narrow"?"細身":"低安定"}設計のため、疲労時の横ブレに注意。購入前に店頭での試し履きをおすすめします。`);
+  }
+  const budgetMax = [15000, 18000, 22000, Infinity][answers.budget-1] || Infinity;
+  if(s.price_jpy > budgetMax){
+    out.push(`実勢価格が予算を約¥${(s.price_jpy - budgetMax).toLocaleString()}超えています。セール時期の確認もおすすめです。`);
+  }
+  const map = {knee:"膝",plantar:"足底",achilles:"アキレス腱",shin:"スネ"};
+  const avoid = answers.injuries.filter(x=>x!=="none" && s.injury_avoid.includes(x));
+  if(avoid.length){
+    out.push(`${avoid.map(x=>map[x]).join("・")}のケガ歴がある場合は負担がかかりやすいモデルです。違和感があれば次点候補も検討を。`);
+  }
+  return out;
+}
+
+/* 結果画面上部の回答サマリ */
+function buildRecap(){
+  const wrap = document.createElement("div");
+  wrap.className = "recap-chips";
+  const ageL = ["29歳以下","30代","40代","50代","60歳以上"][answers.age-1] || "";
+  const levelL = ["完走目標","サブ4〜4.5","サブ3.5〜4","サブ3狙い"][answers.level-1] || "";
+  const weeklyL = ["週20km未満","週20〜40km","週40〜60km","週60km以上"][answers.weekly-1] || "";
+  const injMap = {knee:"膝",plantar:"足底",achilles:"アキレス腱",shin:"スネ"};
+  const inj = answers.injuries.filter(x=>x!=="none").map(x=>injMap[x]).filter(Boolean);
+  const chips = [ageL, `${rangeLabel("height_cm")}・${rangeLabel("weight_kg")}`, levelL, weeklyL];
+  if(inj.length) chips.push(`ケガ歴: ${inj.join("・")}`);
+  wrap.innerHTML = chips.filter(Boolean).map(c=>`<span class="chip">${escapeHtml(c)}</span>`).join("")
+    + `<button class="recap-edit" onclick="editAnswers()">条件を変えて再診断</button>`;
+  return wrap;
+}
+
+function showResult(){
+  clearProgress();
+  const results = SHOES.map(s=>({shoe:s, ...scoreShoe(s)}))
+    .filter(r=>!r.excluded)
+    .sort((a,b)=>b.score-a.score);
+
+  const body = $("resultBody");
+  body.innerHTML = "";
+  body.appendChild(buildRecap());
+
+  if(results.length === 0){
+    body.innerHTML = `<div class="no-data"><strong>該当モデルがありませんでした</strong>予算やケガ条件を調整してお試しください。</div>`;
+  } else {
+    $("resultSubtitle").textContent = `${shortShoeName(results[0].shoe)} をおすすめします`;
+    body.appendChild(buildBestCard(results[0]));
+    if(results.length > 1){
+      const alt = document.createElement("div");
+      alt.className = "alt-title";
+      alt.textContent = "▸ 次点の候補";
+      body.appendChild(alt);
+      results.slice(1, 4).forEach((r,i)=>{
+        body.appendChild(buildAltCard(r, i+2));
+      });
+    }
+  }
+
+  // Q12 interested
+  const interested = findInterestedShoe(answers.interestedShoe);
+  if(answers.interestedShoe){
+    if(interested){
+      const inTop = results.slice(0,4).some(r=>r.shoe.id === interested.id);
+      if(!inTop){
+        const hdr = document.createElement("div");
+        hdr.className = "alt-title";
+        hdr.textContent = "▸ 気になっている1足";
+        body.appendChild(hdr);
+        const ranked = results.findIndex(r=>r.shoe.id === interested.id) + 1;
+        body.appendChild(buildAltCard(results.find(r=>r.shoe.id === interested.id) || {shoe:interested, score:0, reasons:{}}, ranked));
+      }
+    } else {
+      const sim = findSimilarSuggestion(answers.interestedShoe);
+      const note = document.createElement("div");
+      note.className = "no-data";
+      if(sim){
+        note.innerHTML = `<strong>「${escapeHtml(answers.interestedShoe)}」は候補12モデルに含まれていません</strong>`
+          + `似た特性なら <strong style="display:inline;color:var(--orange)">${escapeHtml(shortShoeName(sim.shoe))}</strong> が近い1足です。<br>${escapeHtml(sim.why)}ため、比較候補としてどうぞ。`
+          + reviewCtaHTML(sim.shoe) + (sim.shoe.ameblo_url ? "" : comparisonCtaHTML(sim.shoe));
+      } else {
+        note.innerHTML = `<strong>「${escapeHtml(answers.interestedShoe)}」は候補12モデルに含まれていません</strong>今回の診断は上記12モデルに限定しています。レビュー記事は下記からどうぞ。`
+          + comparisonCtaHTML(null);
+      }
+      body.appendChild(note);
+    }
+  }
+
+  $("screenLoading").classList.add("hidden");
+  $("screenResult").classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+  // 要所モーション：結果ブロックの時間差表示＋スコアのカウントアップ
+  applyStaggerReveal(body);
+  animateScoreCountUp();
+}
+
+// 結果の各ブロックを時間差でふわっと表示
+function applyStaggerReveal(container){
+  if(!container) return;
+  container.classList.add("reveal-stagger");
+  Array.prototype.slice.call(container.children).forEach((el,i)=>{
+    el.style.animationDelay = (i*0.07).toFixed(2)+"s";
+  });
+}
+
+// ベストスコアを 0 → 実値 にカウントアップ
+function animateScoreCountUp(){
+  const el = document.querySelector(".score-big .val");
+  if(!el) return;
+  const target = parseInt(el.textContent, 10);
+  if(isNaN(target)) return;
+  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduce){ el.textContent = target; return; }
+  const box = el.closest(".score-big");
+  const dur = 750, t0 = performance.now();
+  el.textContent = "0";
+  function tick(now){
+    const p = Math.min(1, (now - t0)/dur);
+    const eased = 1 - Math.pow(1-p, 3); // easeOutCubic
+    el.textContent = Math.round(target * eased);
+    if(p < 1){ requestAnimationFrame(tick); }
+    else { el.textContent = target; if(box){ box.classList.add("pop"); } }
+  }
+  requestAnimationFrame(tick);
+}
+
+function buildBestCard(r){
+  const s = r.shoe;
+  const card = document.createElement("div");
+  card.className = "best-card";
+  const chips = [
+    chipHTML("クッション", cushionJP(s.cushioning)),
+    chipHTML("安定性", stabilityJP(s.stability)),
+    chipHTML("乗り味", rideJP(s.ride)),
+    chipHTML("幅", widthJP(s.width))
+  ].join("");
+  const warnings = buildWarnings(s)
+    .map(w=>`<div class="warn-badge"><span class="ico">⚠</span><span>${escapeHtml(w)}</span></div>`)
+    .join("");
+  card.innerHTML = `
+    <span class="winner-label">BEST MATCH FOR YOU</span>
+    <div class="result-main">
+      <div class="result-main-text">
+        <div class="result-type">${escapeHtml(shoeTypeLabel(s))}</div>
+        <h3>${escapeHtml(shortShoeName(s))}</h3>
+        <div class="brand">${escapeHtml(s.brand)} / ${escapeHtml(s.name)}</div>
+      </div>
+      <div class="score-big">
+        <div class="val">${r.score}</div>
+        <div class="lbl">/ 100</div>
+      </div>
+    </div>
+    <p class="result-summary">${escapeHtml(recommendationLine(r))}</p>
+    ${warnings}
+    <div class="quick-read">
+      <div><strong>タイプ</strong>${escapeHtml(shoeTypeLabel(s))}</div>
+      <div><strong>おすすめ用途</strong>${escapeHtml(bestUseLabel(s))}</div>
+    </div>
+    <div class="best-actions">
+      ${reviewCtaHTML(s)}
+      ${comparisonCtaHTML(s)}
+    </div>
+    <div class="attr-chips">${chips}</div>
+    <div class="why-block">
+      <div class="why-title">おすすめ理由</div>
+      <div class="why-row"><span class="rk">体格:</span><span>${escapeHtml(r.reasons.body)}</span></div>
+      <div class="why-row"><span class="rk">走り方:</span><span>${escapeHtml(r.reasons.run)}</span></div>
+      <div class="why-row"><span class="rk">乗り味:</span><span>${escapeHtml(r.reasons.ride)}</span></div>
+      <div class="why-row"><span class="rk">ケガ:</span><span>${escapeHtml(r.reasons.injury)}</span></div>
+    </div>
+    <div class="why-block" style="background:var(--gray-50)">
+      <div class="why-title" style="color:var(--navy)">実際の履き心地</div>
+      <div style="font-size:13px;color:var(--gray-700);line-height:1.6">${escapeHtml(s.real_feel)}</div>
+    </div>
+    <table class="spec-table">
+      <tr><td>ヒールスタック</td><td>${s.heel} mm</td></tr>
+      <tr><td>フォアスタック</td><td>${s.fore} mm</td></tr>
+      <tr><td>ドロップ</td><td>${s.drop} mm</td></tr>
+      <tr><td>重量</td><td>${s.weight_g} g</td></tr>
+      <tr><td>価格</td><td>¥${s.price_jpy.toLocaleString()}</td></tr>
+    </table>
+    <div class="weakness">
+      <strong>⚠ 正直なウィークポイント</strong>
+      ${escapeHtml(s.weakness)}
+    </div>
+
+  `;
+  return card;
+}
+
+function buildAltCard(r, rank){
+  const s = r.shoe;
+  const card = document.createElement("div");
+  card.className = "alt-card";
+  card.innerHTML = `
+    <div class="alt-rank">${rank}</div>
+    <div class="alt-body">
+      <div class="alt-name">${escapeHtml(shortShoeName(s))}</div>
+      <div class="alt-meta">${rideJP(s.ride)} / ${cushionJP(s.cushioning)} / ${s.weight_g}g / ¥${s.price_jpy.toLocaleString()}</div>
+      <div class="alt-toggle">タップで理由を見る</div>
+    </div>
+    <div class="alt-score">${r.score || "-"}</div>
+  `;
+  card.style.cursor = "pointer";
+  card.onclick = ()=>{
+    // Expand to detail on tap
+    if(card.dataset.expanded === "1"){
+      card.nextElementSibling && card.nextElementSibling.classList.contains("alt-detail") && card.nextElementSibling.remove();
+      card.dataset.expanded = "0";
+      return;
+    }
+    const d = document.createElement("div");
+    d.className = "alt-detail weakness";
+    d.style.marginTop = "-6px";
+    d.style.marginBottom = "10px";
+    d.innerHTML = `<strong>実際の履き心地</strong>${escapeHtml(s.real_feel)}<br><br><strong>⚠ 弱点</strong>${escapeHtml(s.weakness)}${reviewCtaHTML(s)}`;
+    card.after(d);
+    card.dataset.expanded = "1";
+  };
+  return card;
+}
+
+function reviewCtaHTML(shoe){
+  if(!shoe.ameblo_url) return "";
+  return `<a class="review-cta" href="${escapeHtml(shoe.ameblo_url)}" target="_blank" rel="noopener noreferrer">詳しいレビューを読む</a>`;
+}
+
+function comparisonCtaHTML(shoe){
+  const url = COMPARISON_ARTICLE_URL || BLOG_HOME_URL;
+  if(!url) return "";
+  const secondary = shoe && shoe.ameblo_url ? " secondary" : "";
+  return `<a class="review-cta${secondary}" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">比較記事・レビュー一覧を見る</a>`;
+}
+
+function shortShoeName(shoe){
+  return shoe.name
+    .replace("New Balance Fresh Foam X ", "NB ")
+    .replace("New Balance FuelCell ", "NB ")
+    .replace("Nike ", "")
+    .replace("ASICS ", "")
+    .replace("HOKA ", "")
+    .replace("adidas ", "")
+    .replace("On ", "");
+}
+
+function shoeTypeLabel(shoe){
+  if(shoe.best_use.includes("recovery")) return "脚を守るクッション重視";
+  if(shoe.best_use.includes("speed")) return "テンポよく走る反発重視";
+  if(shoe.best_use.includes("beginner")) return "失敗しにくい安定重視";
+  if(shoe.best_use.includes("long run")) return "長く走る日の安心重視";
+  return "毎日使いやすいバランス型";
+}
+
+function bestUseLabel(shoe){
+  const labels = {
+    daily:"毎日の練習",
+    speed:"テンポ走・レース",
+    recovery:"ジョグ・回復走",
+    "long run":"ロング走",
+    beginner:"初心者の1足目"
+  };
+  return shoe.best_use.slice(0,2).map(x=>labels[x] || x).join(" / ");
+}
+
+function recommendationLine(r){
+  const s = r.shoe;
+  const hasInjury = answers.injuries.filter(x=>x && x !== "none").length > 0;
+  const guard = hasInjury ? "ケガ歴を考慮しつつ、" : "";
+  return `${guard}${rideJP(s.ride)}な乗り味と安定性${stabilityJP(s.stability)}が合いやすい1足です。`;
+}
+
+function chipHTML(label, val){
+  return `<span class="chip"><strong style="color:var(--navy)">${label}</strong>: ${val}</span>`;
+}
+function cushionJP(c){ return {soft:"柔らか",balanced:"バランス",firm:"しっかり"}[c]||c; }
+function stabilityJP(c){ return {low:"低",moderate:"中",high:"高"}[c]||c; }
+function rideJP(c){ return {smooth:"滑らか",bouncy:"弾む",responsive:"しっかり反発",grounded:"どっしり"}[c]||c; }
+function widthJP(c){ return {narrow:"細め",regular:"標準",wide:"広め"}[c]||c; }
+function escapeHtml(s){
+  return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function runPersonaChecks(){
+  const original = {...answers, injuries:[...answers.injuries]};
+  const personas = [
+    {name:"40代・70kg・膝痛・smooth", data:{age:3,height_cm:170,weight_kg:70,level:3,useCase:3,weekly:2,strike:4,width:2,injuries:["knee"],ride:"smooth",budget:3}},
+    {name:"30代・60kg・なし・bouncy", data:{age:2,height_cm:170,weight_kg:60,level:3,useCase:2,weekly:3,strike:2,width:2,injuries:["none"],ride:"bouncy",budget:4}},
+    {name:"50代・85kg・足底・grounded", data:{age:4,height_cm:170,weight_kg:85,level:1,useCase:4,weekly:1,strike:1,width:3,injuries:["plantar"],ride:"grounded",budget:4}},
+    {name:"40代・75kg・なし・auto", data:{age:3,height_cm:170,weight_kg:75,level:2,useCase:3,weekly:2,strike:4,width:2,injuries:["none"],ride:"auto",budget:2}},
+    {name:"30代・65kg・アキレス腱・responsive", data:{age:2,height_cm:170,weight_kg:65,level:4,useCase:1,weekly:3,strike:3,width:2,injuries:["achilles"],ride:"responsive",budget:4}}
+  ];
+  const result = personas.map(p=>{
+    Object.assign(answers, p.data, {interestedShoe:""});
+    const top = SHOES.map(s=>({name:s.name, score:scoreShoe(s).score, excluded:scoreShoe(s).excluded}))
+      .filter(r=>!r.excluded)
+      .sort((a,b)=>b.score-a.score)
+      .slice(0,3);
+    return {persona:p.name, top};
+  });
+  Object.assign(answers, original);
+  answers.injuries = [...original.injuries];
+  console.table(result.map(r=>({persona:r.persona, top:r.top.map(x=>`${x.name} (${x.score})`).join(" / ")})));
+  return result;
+}
+
+/* =========================================================
+   Restart
+   ========================================================= */
+function resetAnswers(){
+  answers.age=null; answers.height_cm=null; answers.weight_kg=null;
+  answers.level=null; answers.useCase=null; answers.weekly=null;
+  answers.strike=null; answers.width=null; answers.injuries=[];
+  answers.ride=null; answers.budget=null; answers.interestedShoe="";
+}
+
+function restart(){
+  currentQ = 0;
+  resetAnswers();
+  clearProgress();
+  $("resumeRow").style.display = "none";
+  $("screenResult").classList.add("hidden");
+  $("screenStart").classList.remove("hidden");
+  $("progressWrap").style.display = "none";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* 回答を保持したまま質問1に戻る（結果画面の「条件を変えて再診断」） */
+function editAnswers(){
+  currentQ = 0;
+  $("screenResult").classList.add("hidden");
+  $("progressWrap").style.display = "block";
+  showQuestion();
+}
+
+/* 途中保存があれば「続きから」ボタンを表示 */
+(function initResume(){
+  const d = loadProgress();
+  if(d && d.currentQ > 0) $("resumeRow").style.display = "block";
+})();
+
+document.addEventListener("keydown",(e)=>{
+  if(e.isComposing) return;
+  if($("screenQuestion").classList.contains("hidden")) return;
+  const q = QUESTIONS[currentQ];
+  if(!q) return;
+  if(/^[1-5]$/.test(e.key) && q.type === "radio"){
+    const i = parseInt(e.key)-1;
+    const opts = document.querySelectorAll("#qBody .opt");
+    if(opts[i]) opts[i].click();
+  } else if(e.key === "Enter"){
+    if(!$("btnNext").disabled) goNext();
+  }
+});
+</script>
+</body>
+</html>
