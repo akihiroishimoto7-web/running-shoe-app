@@ -177,6 +177,12 @@
 
   footer{text-align:center;font-size:11px;color:var(--gray-500);margin-top:32px;padding:16px 0}
 
+  /* ---- 商品画像 ---- */
+  .best-photo{background:#fff;border:1px solid var(--gray-100);border-radius:14px;padding:12px;margin:14px 0 2px;text-align:center}
+  .best-photo img{max-width:100%;max-height:210px;object-fit:contain;display:inline-block}
+  .alt-thumb{width:54px;height:54px;flex-shrink:0;background:#fff;border:1px solid var(--gray-100);border-radius:10px;object-fit:contain;padding:3px;margin-right:2px}
+  .race-thumb{width:52px;height:52px;flex-shrink:0;background:#fff;border-radius:10px;object-fit:contain;padding:3px;margin-top:2px}
+
   /* ---- サブ3レーシング枠 ---- */
   .race-card{background:var(--navy);border-radius:18px;padding:22px 20px;color:#fff;margin-top:14px}
   .race-label{font-size:10.5px;font-weight:700;letter-spacing:.22em;color:#f5895a;margin-bottom:8px}
@@ -293,7 +299,8 @@
     </div>
     <footer>
       ※ 推奨は実際の履き心地レビュー（Believe in the Run 等）と日本のランナー体格を考慮した独自ロジックに基づきます<br>
-      価格は変動するため、購入前に公式サイト等でご確認ください
+      価格は変動するため、購入前に公式サイト等でご確認ください<br>
+      商品画像は各メーカー公式サイト・公式/正規販売店の商品画像を使用しています
     </footer>
   </section>
 </div>
@@ -1377,6 +1384,7 @@ function buildRaceSection(){
     ${picks.map((s,i)=>`
       <div class="race-pick">
         <span class="rk">${i+1}</span>
+        <img class="race-thumb" src="img/${s.id}.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
         <div>
           <div class="nm">${escapeHtml(s.jp_name)}<span class="race-tag">${escapeHtml(s.tag)}</span></div>
           <div class="meta">${escapeHtml(s.brand)} ／ 約${s.weight_g}g ／ 参考 ¥${s.price_jpy.toLocaleString()}</div>
@@ -1413,6 +1421,7 @@ function buildBestCard(r){
     .join("");
   card.innerHTML = `
     <span class="winner-label">BEST MATCH FOR YOU</span>
+    <div class="best-photo"><img src="img/${s.id}.jpg" alt="${escapeHtml(shortShoeName(s))}" loading="lazy" onerror="this.closest('.best-photo').style.display='none'"></div>
     <div class="result-main">
       <div class="result-main-text">
         <div class="result-type">${escapeHtml(shoeTypeLabel(s))}</div>
@@ -1468,6 +1477,7 @@ function buildAltCard(r, rank){
   card.className = "alt-card";
   card.innerHTML = `
     <div class="alt-rank">${rank}</div>
+    <img class="alt-thumb" src="img/${s.id}.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
     <div class="alt-body">
       <div class="alt-name">${escapeHtml(shortShoeName(s))}</div>
       <div class="alt-meta">${rideJP(s.ride)} / ${cushionJP(s.cushioning)} / ${s.weight_g}g / ¥${s.price_jpy.toLocaleString()}</div>
