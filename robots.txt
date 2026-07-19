@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://runningshoeapps.vercel.app/sitemap.xml

@@ -3,12 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<meta name="description" content="体格・走り方・ケガ歴・好みの12問で、実走レビュー準拠の厳選12モデルからあなたのベスト1足を診断します。">
+<meta name="description" content="体格・走り方・ケガ歴・好みの12問で、実走レビュー準拠の厳選12モデルからあなたのベスト1足を診断します。サブ3向けカーボンレーシング10選も収録。">
 <meta name="theme-color" content="#ef5a23">
+<link rel="canonical" href="https://runningshoeapps.vercel.app/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="ランニングシューズ診断 | あなたのベスト1足を">
 <meta property="og:description" content="体格・走り方・ケガ歴から、厳選12モデルのなかのベスト1足を約2分で診断。">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://runningshoeapps.vercel.app/">
+<meta property="og:site_name" content="ランニングシューズ診断">
+<meta property="og:image" content="https://runningshoeapps.vercel.app/img/pegasus_42.jpg">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ランニングシューズ診断 | あなたのベスト1足を">
+<meta name="twitter:description" content="12問であなたのベスト1足を診断。サブ3向けレーシング枠つき。">
+<meta name="twitter:image" content="https://runningshoeapps.vercel.app/img/pegasus_42.jpg">
 <title>ランニングシューズ診断 | あなたのベスト1足を</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"ランニングシューズ診断","url":"https://runningshoeapps.vercel.app/","description":"体格・走り方・ケガ歴・好みの12問で、あなたに最適なランニングシューズを診断する無料Webアプリ。","applicationCategory":"HealthApplication","inLanguage":"ja","offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"}}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -137,6 +150,8 @@
   .quick-read strong{display:block;color:var(--navy);font-size:11px;margin-bottom:2px}
   .best-actions{display:flex;flex-direction:column;gap:10px;margin:14px 0}
   .best-actions .review-cta{margin-top:0}
+  .share-btn{width:100%;padding:13px;border:1.5px solid var(--gray-200);border-radius:12px;background:#fff;color:var(--navy);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:border-color .2s, background .2s}
+  .share-btn:hover{border-color:var(--orange);background:var(--orange-soft)}
 
   .why-block{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:14px;margin:12px 0}
   .why-title{font-size:11px;font-weight:700;color:var(--orange);letter-spacing:.12em;margin-bottom:8px}
@@ -343,14 +358,14 @@ const SHOES = [
   {
     id:"evo_sl", name:"adidas Adizero Evo SL", jp_name:"アディダス アディゼロ Evo SL", brand:"adidas",
     price_jpy:16000, heel:39, fore:33, drop:6, weight_g:225,
-    cushioning:"balanced", stability:"low", ride:"bouncy",
-    width:"narrow",
+    cushioning:"balanced", stability:"moderate", ride:"responsive",
+    width:"regular",
     best_use:["speed","daily","long run"],
     runner_type:["sub-4","experienced"],
     injury_safe:[], injury_avoid:["achilles"],
     heavy_runner_ok:false,
-    real_feel:"軽量・PEBA系の弾み・プレートなし。何でもこなせる万能スーパートレーナー。",
-    weakness:"幅が狭く不安定ぎみ。プレート無しでコーナリングでブレやすい。アウトソール耐久性も心配。",
+    real_feel:"軽量・Lightstrike Proのキレのある反発・プレートなし。ワイドなベースで見た目以上に安定する、大人気の万能スーパートレーナー。",
+    weakness:"かかとのホールドはやや緩め。アウトソールの耐久性と雨天グリップは価格なり。人気ゆえ品薄カラーが多い。",
     ameblo_url:""
   },
   {
@@ -382,20 +397,20 @@ const SHOES = [
   {
     id:"rebel_v5", name:"New Balance FuelCell Rebel v5", jp_name:"ニューバランス リベル v5", brand:"New Balance",
     price_jpy:17000, heel:30, fore:24, drop:6, weight_g:216,
-    cushioning:"balanced", stability:"low", ride:"bouncy",
-    width:"narrow",
+    cushioning:"balanced", stability:"moderate", ride:"bouncy",
+    width:"regular",
     best_use:["speed","daily"],
     runner_type:["sub-4","experienced"],
     injury_safe:[], injury_avoid:["achilles"],
     heavy_runner_ok:false,
-    real_feel:"軽快・プレートなしでも自然に弾む・レーサーに近いトレーナー感。",
-    weakness:"狭く不安定。体重が重いランナーや疲れた脚ではブレる。リカバリーには軽量過ぎ。アッパー耐久性もやや弱い。",
+    real_feel:"216gの軽快さでプレートなしでも自然に弾む。v5でベースがワイド化し、軽さと安定を両立した高評価トレーナー。",
+    weakness:"リカバリー用途には軽量すぎる。軽さ優先のアッパーは耐久性がやや弱い。どっしりした接地感が好みなら合わない。",
     ameblo_url:""
   },
   {
     id:"clifton_11", name:"HOKA Clifton 11", jp_name:"ホカ クリフトン 11", brand:"HOKA",
     price_jpy:18500, heel:42, fore:34, drop:8, weight_g:265,
-    cushioning:"balanced", stability:"moderate", ride:"smooth",
+    cushioning:"soft", stability:"moderate", ride:"smooth",
     width:"regular",
     best_use:["daily","beginner","recovery"],
     runner_type:["beginner","sub-4"],
@@ -1200,6 +1215,23 @@ const SIMILAR_SUGGEST = [
   {match:["cloudsurfer","クラウドサーファー"], id:"cloudmonster_3", why:"同じOnのCloudTec系で接地感が近い"}
 ];
 
+// Q12入力がレースシューズ（RACE_SHOES）に該当するか検索
+function findInterestedRaceShoe(query){
+  if(!query) return null;
+  const q = query.toLowerCase().replace(/\s+/g,"");
+  if(q.length < 2) return null;
+  for(const s of RACE_SHOES){
+    const n = (s.name + s.brand + (s.jp_name||"")).toLowerCase().replace(/\s+/g,"");
+    if(n.includes(q) || q.includes(s.id.replace(/_/g,""))) return s;
+  }
+  const tokens = query.toLowerCase().split(/[\s　]+/).filter(t=>t.length>1);
+  for(const s of RACE_SHOES){
+    const n = (s.name + " " + s.brand + " " + (s.jp_name||"")).toLowerCase();
+    if(tokens.some(t=>n.includes(t))) return s;
+  }
+  return null;
+}
+
 function findSimilarSuggestion(query){
   const q = String(query||"").toLowerCase().replace(/\s+/g," ");
   if(!q) return null;
@@ -1292,10 +1324,15 @@ function showResult(){
         body.appendChild(buildAltCard(results.find(r=>r.shoe.id === interested.id) || {shoe:interested, score:0, reasons:{}}, ranked));
       }
     } else {
+      const raceHit = findInterestedRaceShoe(answers.interestedShoe);
       const sim = findSimilarSuggestion(answers.interestedShoe);
       const note = document.createElement("div");
       note.className = "no-data";
-      if(sim){
+      if(raceHit){
+        note.innerHTML = `<strong>「${escapeHtml(answers.interestedShoe)}」は本番レース用のカーボンシューズです</strong>`
+          + `<strong style="display:inline;color:var(--orange)">${escapeHtml(raceHit.jp_name)}</strong>（${escapeHtml(raceHit.tag)}・約${raceHit.weight_g}g・参考¥${raceHit.price_jpy.toLocaleString()}）<br>${escapeHtml(raceHit.line)}<br>`
+          + `上の診断は毎日の練習用シューズが対象です。${qualifiesForRaceShoes() ? "詳しくは上の「SUB-3 RACING」枠をご覧ください。" : "練習用とレース用の2足体制がおすすめです。"}`;
+      } else if(sim){
         note.innerHTML = `<strong>「${escapeHtml(answers.interestedShoe)}」は候補12モデルに含まれていません</strong>`
           + `似た特性なら <strong style="display:inline;color:var(--orange)">${escapeHtml(shortShoeName(sim.shoe))}</strong> が近い1足です。<br>${escapeHtml(sim.why)}ため、比較候補としてどうぞ。`
           + reviewCtaHTML(sim.shoe) + (sim.shoe.ameblo_url ? "" : comparisonCtaHTML(sim.shoe));
@@ -1442,6 +1479,7 @@ function buildBestCard(r){
     <div class="best-actions">
       ${reviewCtaHTML(s)}
       ${comparisonCtaHTML(s)}
+      <button type="button" class="share-btn">結果をシェアする</button>
     </div>
     <div class="attr-chips">${chips}</div>
     <div class="why-block">
@@ -1468,7 +1506,23 @@ function buildBestCard(r){
     </div>
 
   `;
+  const shareBtn = card.querySelector(".share-btn");
+  if(shareBtn){ shareBtn.onclick = ()=>shareResult(s, shareBtn); }
   return card;
+}
+
+// 結果をシェア（Web Share API → クリップボードフォールバック）
+async function shareResult(shoe, btn){
+  const url = "https://runningshoeapps.vercel.app/";
+  const text = `私のベスト1足は「${shortShoeName(shoe)}」でした｜ランニングシューズ診断`;
+  if(navigator.share){
+    try{ await navigator.share({title:"ランニングシューズ診断", text, url}); }catch(e){ /* キャンセル時は何もしない */ }
+    return;
+  }
+  try{
+    await navigator.clipboard.writeText(`${text} ${url}`);
+    if(btn){ const t = btn.textContent; btn.textContent = "リンクをコピーしました ✓"; setTimeout(()=>{ btn.textContent = t; }, 2000); }
+  }catch(e){ /* クリップボード不可環境では何もしない */ }
 }
 
 function buildAltCard(r, rank){
@@ -1636,5 +1690,7 @@ document.addEventListener("keydown",(e)=>{
   }
 });
 </script>
+<!-- Vercel Web Analytics（ダッシュボードで有効化後に計測開始） -->
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
