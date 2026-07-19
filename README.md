@@ -10,7 +10,7 @@
 
 ## 更新方法
 
-`index.html` を直接編集して push すると GitHub Pages に自動反映されます。
+`index.html` を直接編集して push すると Vercel（https://runningshoeapps.vercel.app/）に自動反映されます。
 
 - シューズデータ：`const SHOES = [...]`（スペック・実走の感想・弱点）
 - 似た機種の対応表：`const SIMILAR_SUGGEST = [...]`
