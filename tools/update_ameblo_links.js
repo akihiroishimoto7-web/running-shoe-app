@@ -37,7 +37,6 @@ const KEYWORDS = {
   cloudmonster_3: /クラウドモンスター|cloudmonster/i,
   kayano_33: /カヤノ\s*33|kayano\s*33/i,
   nimbus_28: /ニンバス\s*28|nimbus\s*28/i,
-  rider_29: /ウェーブライダー\s*29|ウエーブライダー\s*29|wave\s*rider\s*29/i,
   rider_30: /ウェーブライダー\s*30|ウエーブライダー\s*30|wave\s*rider\s*30/i,
   boston_13: /ボストン\s*13|boston\s*13/i,
   vaporfly_4: /ヴェイパーフライ|ベイパーフライ|vaporfly/i,
