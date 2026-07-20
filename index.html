@@ -218,6 +218,8 @@
   .race-row .nm{font-size:13px;font-weight:700}
   .race-row .ln{font-size:12px;color:rgba(255,255,255,.72);line-height:1.65;margin-top:3px}
   .race-note{font-size:10.5px;color:rgba(255,255,255,.5);line-height:1.7;margin-top:14px}
+  .race-link{display:inline-block;margin-top:7px;color:#f5895a;font-size:12px;font-weight:700;text-decoration:none}
+  .race-link:hover{text-decoration:underline}
 
   /* ---- 要所のモーション（控えめ・上質）---- */
   @keyframes revealUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
@@ -340,7 +342,7 @@ const SHOES = [
     heavy_runner_ok:true,
     real_feel:"硬め・素直・Zoom Airの軽い反発。安定感はあるが派手さはない。",
     weakness:"最新の厚底スーパートレーナーと比べると地味で硬い。ゆっくりジョグではやや硬すぎに感じる人も。",
-    ameblo_url:""
+    ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12962388699.html"
   },
   {
     id:"vomero_18", name:"Nike Vomero 18", jp_name:"ナイキ ボメロ 18", brand:"Nike",
@@ -353,7 +355,7 @@ const SHOES = [
     heavy_runner_ok:true,
     real_feel:"ふかふか・沈み込み系。ZoomXを上から抑えた柔らかグラウンデッド。",
     weakness:"重量300g超。速いペースでは鈍重でモッサリ。ショートランには大げさ。",
-    ameblo_url:""
+    ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12963542993.html"
   },
   {
     id:"evo_sl", name:"adidas Adizero Evo SL", jp_name:"アディダス アディゼロ Evo SL", brand:"adidas",
@@ -366,7 +368,7 @@ const SHOES = [
     heavy_runner_ok:false,
     real_feel:"軽量・Lightstrike Proのキレのある反発・プレートなし。ワイドなベースで見た目以上に安定する、大人気の万能スーパートレーナー。",
     weakness:"かかとのホールドはやや緩め。アウトソールの耐久性と雨天グリップは価格なり。人気ゆえ品薄カラーが多い。",
-    ameblo_url:""
+    ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12955790955.html"
   },
   {
     id:"novablast_6", name:"ASICS Novablast 6", jp_name:"アシックス ノヴァブラスト 6", brand:"ASICS",
@@ -379,7 +381,7 @@ const SHOES = [
     heavy_runner_ok:false,
     real_feel:"前足部にFF Turbo Squaredポッドを搭載し、5より反発がくっきり。トランポリン感はそのままにスピード対応力が向上。",
     weakness:"ロッカー＋高スタックで低速時に不安定。カーブや疲れた脚ではグラつく。ヒール接地で横ブレしやすい。",
-    ameblo_url:""
+    ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12969368888.html"
   },
   {
     id:"nb_1080_v15", name:"New Balance 1080 v15", jp_name:"ニューバランス 1080 v15", brand:"New Balance",
@@ -392,7 +394,7 @@ const SHOES = [
     heavy_runner_ok:true,
     real_feel:"新Infinion foamで一新。v14の鉛のような重さが消え、軽く弾むように。柔らかさはそのままに反発が増した正常進化。",
     weakness:"Fresh Foam時代の超どっしり感が好きな人には軽くなりすぎと感じることも。価格も上昇。",
-    ameblo_url:""
+    ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12966773183.html"
   },
   {
     id:"rebel_v5", name:"New Balance FuelCell Rebel v5", jp_name:"ニューバランス リベル v5", brand:"New Balance",
@@ -405,7 +407,7 @@ const SHOES = [
     heavy_runner_ok:false,
     real_feel:"216gの軽快さでプレートなしでも自然に弾む。v5でベースがワイド化し、軽さと安定を両立した高評価トレーナー。",
     weakness:"リカバリー用途には軽量すぎる。軽さ優先のアッパーは耐久性がやや弱い。どっしりした接地感が好みなら合わない。",
-    ameblo_url:""
+    ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12959982227.html"
   },
   {
     id:"clifton_11", name:"HOKA Clifton 11", jp_name:"ホカ クリフトン 11", brand:"HOKA",
@@ -418,7 +420,7 @@ const SHOES = [
     heavy_runner_ok:true,
     real_feel:"10からのチューンナップ版。ミッドソールは据え置きで、アッパーとインソールがより柔らかく。包み込み感が向上。",
     weakness:"反発感は控えめで速いペースでは退屈・平坦。中身は10とほぼ同じで劇的な変化はない。アウトソールの露出ラバーが少なく摩耗が早い。",
-    ameblo_url:""
+    ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12971779893.html"
   },
   {
     id:"cloudmonster_3", name:"On Cloudmonster 3", jp_name:"On クラウドモンスター 3", brand:"On",
@@ -431,7 +433,7 @@ const SHOES = [
     heavy_runner_ok:true,
     real_feel:"硬め・スピードボード由来のスナップ・Cloud独特の接地感。テンポ寄りのデイリー。",
     weakness:"Cloudポッドに小石が挟まる・好みが分かれる。本当のリカバリーには硬すぎ。ヒールがスカスカと感じる人も。",
-    ameblo_url:""
+    ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12959065095.html"
   },
   {
     id:"kayano_33", name:"ASICS Gel-Kayano 33", jp_name:"アシックス ゲルカヤノ 33", brand:"ASICS",
@@ -444,7 +446,7 @@ const SHOES = [
     heavy_runner_ok:true,
     real_feel:"安定靴の絶対王者の最新作。FLUIDSUPPORTでガッチリ支えるのに硬すぎず、脚が疲れていても最後まで乱れない安心感。",
     weakness:"約298gと重量級。反発は控えめでスピード練習には不向き。「守り」に特化した設計。",
-    ameblo_url:""
+    ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12969267604.html"
   },
   {
     id:"nimbus_28", name:"ASICS Gel-Nimbus 28", jp_name:"アシックス ゲルニンバス 28", brand:"ASICS",
@@ -457,7 +459,7 @@ const SHOES = [
     heavy_runner_ok:true,
     real_feel:"43mm超の分厚いFF Blast Plus＋PureGel。歴代最軽量化で、柔らかいのにモッサリしない雲の上系の完成形。",
     weakness:"イージー・リカバリー寄りでスピードを出すと退屈。2万円超と価格も高め。",
-    ameblo_url:""
+    ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12954928484.html"
   },
   {
     id:"rider_29", name:"Mizuno Wave Rider 29", jp_name:"ミズノ ウェーブライダー 29", brand:"Mizuno",
@@ -470,7 +472,7 @@ const SHOES = [
     heavy_runner_ok:true,
     real_feel:"Enerzy NXTで往年の硬さが消え、柔らかいのに芯のある転がり。日本の定番デイリーが完全に現代化した1足。",
     weakness:"10mmドロップはフォアフット走法だと恩恵が薄い。派手な反発はなく、良くも悪くも優等生。",
-    ameblo_url:""
+    ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12946602556.html"
   },
   {
     id:"boston_13", name:"adidas Adizero Boston 13", jp_name:"アディダス アディゼロ ボストン 13", brand:"adidas",
@@ -483,7 +485,7 @@ const SHOES = [
     heavy_runner_ok:true,
     real_feel:"Lightstrike Pro増量＋ENERGY RODSの推進力。テンポ走〜ロング走で本領を発揮する、レースDNAの練習機。",
     weakness:"つま先はタイトで幅広の足には窮屈。ゆっくりジョグだと硬さが目立つ。",
-    ameblo_url:""
+    ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12943781178.html"
   }
 ];
 
@@ -500,7 +502,8 @@ const RACE_SHOES = [
     price_jpy:36300, weight_g:166, type:"allround",
     tag:"王道・迷ったらこれ",
     line:"カーボン厚底の代名詞。軽さと反発のバランスが完成域で、5km〜フルまで外さない基準器。",
-    caution:"前作より低スタック化。フル終盤の脚保護はアルファフライに譲る。"
+    caution:"前作より低スタック化。フル終盤の脚保護はアルファフライに譲る。",
+    ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12962010564.html"
   },
   {
     id:"alphafly_3", name:"Nike Alphafly 3", jp_name:"ナイキ アルファフライ 3", brand:"Nike",
@@ -1427,6 +1430,7 @@ function buildRaceSection(){
           <div class="meta">${escapeHtml(s.brand)} ／ 約${s.weight_g}g ／ 参考 ¥${s.price_jpy.toLocaleString()}</div>
           <div class="ln">${escapeHtml(s.line)}</div>
           <div class="ln" style="color:rgba(255,255,255,.55)">※ ${escapeHtml(s.caution)}</div>
+          ${s.ameblo_url ? `<a class="race-link" href="${s.ameblo_url}" target="_blank" rel="noopener">ブログの関連記事を読む →</a>` : ""}
         </div>
       </div>`).join("")}
     <details class="race-more">
