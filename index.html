@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<meta name="description" content="体格・走り方・ケガ歴・好みの12問で、実走レビュー準拠の厳選12モデルからあなたのベスト1足を診断します。サブ3向けカーボンレーシング10選も収録。">
+<meta name="description" content="体格・走り方・ケガ歴・好みの12問で、実走レビュー準拠の厳選18モデルからあなたのベスト1足を診断します。サブ3向けカーボンレーシング10選も収録。">
 <meta name="theme-color" content="#ef5a23">
 <link rel="canonical" href="https://runningshoeapps.vercel.app/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="ランニングシューズ診断 | あなたのベスト1足を">
-<meta property="og:description" content="体格・走り方・ケガ歴から、厳選12モデルのなかのベスト1足を約2分で診断。">
+<meta property="og:description" content="体格・走り方・ケガ歴から、厳選18モデルのなかのベスト1足を約2分で診断。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://runningshoeapps.vercel.app/">
 <meta property="og:site_name" content="ランニングシューズ診断">
@@ -251,7 +251,7 @@
   <header class="hero">
     <div class="logo">RUN SHOE DIAGNOSIS</div>
     <h1>あなたのベスト1足診断</h1>
-    <p>体格・走り方・好みから厳選12モデルから1足をお選びします</p>
+    <p>体格・走り方・好みから厳選18モデルから1足をお選びします</p>
   </header>
 
   <div class="progress-wrap" id="progressWrap" style="display:none">
@@ -265,10 +265,10 @@
   <section class="screen" id="screenStart">
     <div class="start-card">
       <h2>あなたにぴったりの1足を診断</h2>
-      <p style="font-size:13px;color:var(--gray-700);margin:0">体格・走力・ケガ歴・好みの履き心地から、最新12モデルのなかからベストな1足を選定します。</p>
+      <p style="font-size:13px;color:var(--gray-700);margin:0">体格・走力・ケガ歴・好みの履き心地から、最新18モデルのなかからベストな1足を選定します。</p>
       <div class="trust-badges">
         <span>実走レビュー準拠</span>
-        <span>厳選12モデル</span>
+        <span>厳選18モデル</span>
         <span>サブ3レース枠 10選</span>
         <span>弱点も正直に表示</span>
       </div>
@@ -486,6 +486,84 @@ const SHOES = [
     real_feel:"Lightstrike Pro増量＋ENERGY RODSの推進力。テンポ走〜ロング走で本領を発揮する、レースDNAの練習機。",
     weakness:"つま先はタイトで幅広の足には窮屈。ゆっくりジョグだと硬さが目立つ。",
     ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12943781178.html"
+  },
+  {
+    id:"pegasus_plus", name:"Nike Pegasus Plus", jp_name:"ナイキ ペガサスプラス", brand:"Nike",
+    price_jpy:24200, heel:36, fore:26, drop:10, weight_g:253,
+    cushioning:"soft", stability:"low", ride:"bouncy",
+    width:"regular",
+    best_use:["speed","daily"],
+    runner_type:["sub-4","experienced"],
+    injury_safe:[], injury_avoid:[],
+    heavy_runner_ok:false,
+    real_feel:"フルレングスZoomXの贅沢なテンポトレーナー。ペガサス42より一段軽く柔らかく弾み、スピード日の相棒として気持ちいい。",
+    weakness:"ZoomXはアウトソール耐久性が価格の割に平凡。安定感は控えめで、ゆっくりジョグ専用にはもったいない。",
+    ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12964283765.html"
+  },
+  {
+    id:"vomero_plus", name:"Nike Vomero Plus", jp_name:"ナイキ ボメロプラス", brand:"Nike",
+    price_jpy:24200, heel:43, fore:33, drop:10, weight_g:281,
+    cushioning:"soft", stability:"moderate", ride:"grounded",
+    width:"regular",
+    best_use:["recovery","long run","daily"],
+    runner_type:["beginner","sub-4","experienced"],
+    injury_safe:["knee","plantar"], injury_avoid:[],
+    heavy_runner_ok:true,
+    real_feel:"フルZoomX×43mmのマックスクッション。ボメロ18より明確に柔らかく弾み、「最も気持ちいいイージーラン」を狙って作られた1足。",
+    weakness:"柔らかさ優先でペースを上げる走りには不向き。ZoomXゆえ耐久性は平凡で、価格も2万円台半ばと安くない。",
+    ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12965358871.html"
+  },
+  {
+    id:"bondi_9", name:"HOKA Bondi 9", jp_name:"ホカ ボンダイ 9", brand:"HOKA",
+    price_jpy:26400, heel:39, fore:34, drop:5, weight_g:303,
+    cushioning:"soft", stability:"moderate", ride:"grounded",
+    width:"wide",
+    best_use:["recovery","daily","beginner"],
+    runner_type:["beginner","sub-4"],
+    injury_safe:["knee","plantar","shin"], injury_avoid:[],
+    heavy_runner_ok:true,
+    real_feel:"HOKAのマックスクッション代名詞。9でベースがさらにワイド化し、どっしり沈む安心感は唯一無二。立ち仕事・ウォークにも人気。",
+    weakness:"303gと重量級で、スピードを出す走りには完全に不向き。5mmドロップはふくらはぎに負担が出る人も。",
+    ameblo_url:""
+  },
+  {
+    id:"mach_7", name:"HOKA Mach 7", jp_name:"ホカ マッハ 7", brand:"HOKA",
+    price_jpy:22000, heel:37, fore:32, drop:5, weight_g:232,
+    cushioning:"balanced", stability:"moderate", ride:"bouncy",
+    width:"regular",
+    best_use:["daily","speed"],
+    runner_type:["beginner","sub-4","experienced"],
+    injury_safe:["shin"], injury_avoid:[],
+    heavy_runner_ok:false,
+    real_feel:"軽快さが身上のHOKA万能機の最新作。232gの軽さと素直な弾みで、ジョグからテンポ走まで1足でこなせる優等生。",
+    weakness:"突出した個性はなく「何でも80点」タイプ。5mmドロップはかかと接地の初心者だと恩恵が薄い場面も。",
+    ameblo_url:""
+  },
+  {
+    id:"cloudsurfer_2", name:"On Cloudsurfer 2", jp_name:"オン クラウドサーファー 2", brand:"On",
+    price_jpy:20900, heel:37, fore:28, drop:9, weight_g:255,
+    cushioning:"soft", stability:"moderate", ride:"smooth",
+    width:"regular",
+    best_use:["daily","beginner"],
+    runner_type:["beginner","sub-4"],
+    injury_safe:[], injury_avoid:[],
+    heavy_runner_ok:false,
+    real_feel:"CloudTec Phaseが接地に合わせて順に潰れ、独特のヌルッと滑らかな転がり。初代より締まった乗り味になり毎日使いやすくなった。",
+    weakness:"初代の雲のような柔らかさを期待すると硬く感じる。反発でグイグイ進むタイプではない。",
+    ameblo_url:""
+  },
+  {
+    id:"cloud_6", name:"On Cloud 6", jp_name:"オン クラウド 6", brand:"On",
+    price_jpy:19800, heel:27, fore:19, drop:8, weight_g:267,
+    cushioning:"firm", stability:"moderate", ride:"responsive",
+    width:"regular",
+    best_use:["beginner","daily"],
+    runner_type:["beginner"],
+    injury_safe:[], injury_avoid:[],
+    heavy_runner_ok:false,
+    real_feel:"Onの看板ライフスタイルモデル。脱ぎ履きしやすく街で映える。ウォーキング〜ゆるジョグと普段使いを1足で済ませたい人向け。",
+    weakness:"クッションは薄く、本格的なランニングトレーニングには不向き。あくまで「生活の中で軽く走る」ための1足。",
+    ameblo_url:""
   }
 ];
 
@@ -950,7 +1028,7 @@ function finishQuiz(){
   $("progressWrap").style.display = "none";
   $("screenLoading").classList.remove("hidden");
   // ローディング中に採点ステップを順に切り替える（待ち時間を「意味のある間」に）
-  const steps = ["体格と走り方を照合中…","ケガ歴と好みを評価中…","12モデルを採点中…"];
+  const steps = ["体格と走り方を照合中…","ケガ歴と好みを評価中…","18モデルを採点中…"];
   const stepEl = $("loadingStep");
   let si = 0;
   if(stepEl){ stepEl.textContent = steps[0]; }
@@ -1213,18 +1291,16 @@ function findInterestedShoe(query){
   return null;
 }
 
-/* 入力されたが12モデルに無い機種 → 似た特性のDB機種を提案するための対応表 */
+/* 入力されたが18モデルに無い機種 → 似た特性のDB機種を提案するための対応表 */
 const SIMILAR_SUGGEST = [
   {match:["ghost","ゴースト"], id:"clifton_11", why:"クセのないバランス型デイリーという立ち位置が近い"},
   {match:["cumulus","キュムラス"], id:"clifton_11", why:"柔らかすぎないクッションのデイリー枠として性格が近い"},
-  {match:["bondi","ボンダイ"], id:"nimbus_28", why:"厚底マックスクッションの乗り味が近い"},
   {match:["invincible","インヴィンシブル","インビンシブル"], id:"vomero_18", why:"ZoomXの柔らかい接地感つながり"},
   {match:["gt-2000","gt2000"], id:"kayano_33", why:"同じASICSの安定系として設計思想が近い"},
   {match:["endorphin","エンドルフィン"], id:"evo_sl", why:"PEBA系フォームで弾むテンポ寄りトレーナーが近い"},
   {match:["magic speed","マジックスピード"], id:"boston_13", why:"プレート入りテンポトレーナーとして役割が同じ"},
   {match:["adios","アディオス"], id:"boston_13", why:"同じadizeroファミリーのテンポ機として性格が近い"},
-  {match:["vaporfly","ヴェイパー","alphafly","アルファフライ","metaspeed","メタスピード"], id:"rebel_v5", why:"レースシューズに近い軽さと弾みを練習で味わえる（本番用カーボンはサブ3向け「SUB-3 RACING」枠に掲載）"},
-  {match:["cloudsurfer","クラウドサーファー"], id:"cloudmonster_3", why:"同じOnのCloudTec系で接地感が近い"}
+  {match:["vaporfly","ヴェイパー","alphafly","アルファフライ","metaspeed","メタスピード"], id:"rebel_v5", why:"レースシューズに近い軽さと弾みを練習で味わえる（本番用カーボンはサブ3向け「SUB-3 RACING」枠に掲載）"}
 ];
 
 // Q12入力がレースシューズ（RACE_SHOES）に該当するか検索
@@ -1345,11 +1421,11 @@ function showResult(){
           + `<strong style="display:inline;color:var(--orange)">${escapeHtml(raceHit.jp_name)}</strong>（${escapeHtml(raceHit.tag)}・約${raceHit.weight_g}g・参考¥${raceHit.price_jpy.toLocaleString()}）<br>${escapeHtml(raceHit.line)}<br>`
           + `上の診断は毎日の練習用シューズが対象です。${qualifiesForRaceShoes() ? "詳しくは上の「SUB-3 RACING」枠をご覧ください。" : "練習用とレース用の2足体制がおすすめです。"}`;
       } else if(sim){
-        note.innerHTML = `<strong>「${escapeHtml(answers.interestedShoe)}」は候補12モデルに含まれていません</strong>`
+        note.innerHTML = `<strong>「${escapeHtml(answers.interestedShoe)}」は候補18モデルに含まれていません</strong>`
           + `似た特性なら <strong style="display:inline;color:var(--orange)">${escapeHtml(shortShoeName(sim.shoe))}</strong> が近い1足です。<br>${escapeHtml(sim.why)}ため、比較候補としてどうぞ。`
           + reviewCtaHTML(sim.shoe) + (sim.shoe.ameblo_url ? "" : comparisonCtaHTML(sim.shoe));
       } else {
-        note.innerHTML = `<strong>「${escapeHtml(answers.interestedShoe)}」は候補12モデルに含まれていません</strong>今回の診断は上記12モデルに限定しています。レビュー記事は下記からどうぞ。`
+        note.innerHTML = `<strong>「${escapeHtml(answers.interestedShoe)}」は候補18モデルに含まれていません</strong>今回の診断は上記18モデルに限定しています。レビュー記事は下記からどうぞ。`
           + comparisonCtaHTML(null);
       }
       body.appendChild(note);
