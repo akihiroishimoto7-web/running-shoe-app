@@ -2089,7 +2089,10 @@ function handleDeepLink(){
     const card = document.getElementById("z-" + id);
     if(!card) return;
     setTimeout(()=>{
-      card.scrollIntoView({behavior:"smooth", block:"center"});
+      // scrollIntoView がSPA的レイアウトで効かない環境があるため絶対座標で明示スクロール
+      const y = card.getBoundingClientRect().top + window.pageYOffset
+        - Math.max(0, (window.innerHeight - card.offsetHeight) / 2);
+      window.scrollTo({top: Math.max(0, y), behavior: "smooth"});
       card.classList.add("hl");
       setTimeout(()=>card.classList.remove("hl"), 4000);
     }, 300);
