@@ -159,8 +159,14 @@ const log = (msg) => {
       return;
     }
 
-    // 4. 書き込み → commit → push
+    // 4. 書き込み → 図鑑を再生成（記事リンクを図鑑側にも反映）→ commit → push
     fs.writeFileSync(FILE, html);
+    try {
+      execSync("node tools/generate_zukan.js", { cwd: REPO });
+      log("regenerated zukan section");
+    } catch (e) {
+      log("WARN: zukan regen failed — " + (e && e.message ? e.message : e));
+    }
     execSync("git add index.html", { cwd: REPO });
     execSync(
       `git commit -m "Auto-update: fill ${filled} Ameblo article link(s)"`,

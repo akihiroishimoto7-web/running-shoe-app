@@ -221,6 +221,24 @@
   .race-link{display:inline-block;margin-top:7px;color:#f5895a;font-size:12px;font-weight:700;text-decoration:none}
   .race-link:hover{text-decoration:underline}
 
+  /* ---- 18モデル図鑑（静的SEOコンテンツ） ---- */
+  .zukan{margin-top:36px;padding-top:8px}
+  .zukan-head{font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--orange);margin-bottom:8px}
+  .zukan h2{font-size:21px;font-weight:800;color:var(--navy);margin:0 0 10px;letter-spacing:-.015em}
+  .zukan-intro{font-size:13px;color:var(--gray-500);line-height:1.8;margin:0 0 18px}
+  .zukan h3.zukan-cat{font-size:15px;font-weight:800;color:var(--navy);margin:26px 0 12px;letter-spacing:.02em}
+  .zukan-card{background:#fff;border:1px solid var(--gray-100);border-radius:16px;padding:16px;margin-bottom:12px;scroll-margin-top:16px;transition:box-shadow .4s, border-color .4s}
+  .zukan-card.hl{border-color:var(--orange);box-shadow:0 10px 30px -14px rgba(239,90,35,.45)}
+  .zukan-top{display:flex;gap:14px;align-items:flex-start}
+  .zukan-img{width:84px;height:84px;flex-shrink:0;background:#fff;border:1px solid var(--gray-100);border-radius:12px;object-fit:contain;padding:4px}
+  .zukan-name{font-size:15px;font-weight:800;color:var(--navy);line-height:1.4}
+  .zukan-spec{font-size:11px;color:var(--gray-500);margin-top:4px;line-height:1.6}
+  .zukan-feel{font-size:12.5px;color:var(--gray-700);line-height:1.75;margin-top:9px}
+  .zukan-weak{font-size:11.5px;color:var(--gray-500);line-height:1.7;margin-top:6px}
+  .zukan-links{margin-top:10px;display:flex;gap:14px;flex-wrap:wrap}
+  .zukan-links a,.zukan-links button{font-size:12px;font-weight:700;color:var(--orange);text-decoration:none;background:none;border:none;padding:0;cursor:pointer;font-family:inherit}
+  .zukan-links a:hover{text-decoration:underline}
+
   /* ---- 要所のモーション（控えめ・上質）---- */
   @keyframes revealUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
   .reveal-stagger>*{opacity:0;animation:revealUp .55s cubic-bezier(.2,.8,.2,1) forwards}
@@ -318,6 +336,468 @@
       ※ 推奨は実際の履き心地レビュー（Believe in the Run 等）と日本のランナー体格を考慮した独自ロジックに基づきます<br>
       価格は変動するため、購入前に公式サイト等でご確認ください<br>
       商品画像は各メーカー公式サイト・公式/正規販売店の商品画像を使用しています
+    </footer>
+  </section>
+
+  <!-- 図鑑：静的HTML（SEO用実体コンテンツ）。tools/generate_zukan.js で自動生成 -->
+  <section class="zukan" id="zukan">
+    <div class="zukan-head">SHOE LIBRARY</div>
+    <h2>収録全モデル図鑑</h2>
+    <p class="zukan-intro">診断に収録している練習用18モデルとサブ3向けカーボンレーシング10選を、実走レビュー準拠の「良さ」と「正直な弱点」つきで一覧できます。気になるモデルが見つかったら、上の診断で自分との相性を確かめてください。</p>
+    <!-- ZUKAN:START -->
+    <h3 class="zukan-cat">練習用トレーナー 18モデル</h3>
+
+    <article class="zukan-card" id="z-pegasus_42">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/pegasus_42.jpg" alt="ナイキ ペガサス 42" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">ナイキ ペガサス 42</h4>
+          <div class="zukan-spec">Nike ／ Nike Pegasus 42<br>約283g ・ スタック37/27mm ・ ドロップ10mm ・ 参考 ¥14,000</div>
+        </div>
+      </div>
+      <p class="zukan-feel">硬め・素直・Zoom Airの軽い反発。安定感はあるが派手さはない。</p>
+      <p class="zukan-weak">⚠ 最新の厚底スーパートレーナーと比べると地味で硬い。ゆっくりジョグではやや硬すぎに感じる人も。</p>
+      <div class="zukan-links">
+        <a href="https://ameblo.jp/tougyou-0111/entry-12962388699.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-vomero_18">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/vomero_18.jpg" alt="ナイキ ボメロ 18" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">ナイキ ボメロ 18</h4>
+          <div class="zukan-spec">Nike ／ Nike Vomero 18<br>約303g ・ スタック46/36mm ・ ドロップ10mm ・ 参考 ¥16,500</div>
+        </div>
+      </div>
+      <p class="zukan-feel">ふかふか・沈み込み系。ZoomXを上から抑えた柔らかグラウンデッド。</p>
+      <p class="zukan-weak">⚠ 重量300g超。速いペースでは鈍重でモッサリ。ショートランには大げさ。</p>
+      <div class="zukan-links">
+        <a href="https://ameblo.jp/tougyou-0111/entry-12963542993.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-evo_sl">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/evo_sl.jpg" alt="アディダス アディゼロ Evo SL" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">アディダス アディゼロ Evo SL</h4>
+          <div class="zukan-spec">adidas ／ adidas Adizero Evo SL<br>約225g ・ スタック39/33mm ・ ドロップ6mm ・ 参考 ¥16,000</div>
+        </div>
+      </div>
+      <p class="zukan-feel">軽量・Lightstrike Proのキレのある反発・プレートなし。ワイドなベースで見た目以上に安定する、大人気の万能スーパートレーナー。</p>
+      <p class="zukan-weak">⚠ かかとのホールドはやや緩め。アウトソールの耐久性と雨天グリップは価格なり。人気ゆえ品薄カラーが多い。</p>
+      <div class="zukan-links">
+        <a href="https://ameblo.jp/tougyou-0111/entry-12955790955.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-novablast_6">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/novablast_6.jpg" alt="アシックス ノヴァブラスト 6" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">アシックス ノヴァブラスト 6</h4>
+          <div class="zukan-spec">ASICS ／ ASICS Novablast 6<br>約250g ・ スタック41.5/33.5mm ・ ドロップ8mm ・ 参考 ¥13,200</div>
+        </div>
+      </div>
+      <p class="zukan-feel">前足部にFF Turbo Squaredポッドを搭載し、5より反発がくっきり。トランポリン感はそのままにスピード対応力が向上。</p>
+      <p class="zukan-weak">⚠ ロッカー＋高スタックで低速時に不安定。カーブや疲れた脚ではグラつく。ヒール接地で横ブレしやすい。</p>
+      <div class="zukan-links">
+        <a href="https://ameblo.jp/tougyou-0111/entry-12969368888.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-nb_1080_v15">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/nb_1080_v15.jpg" alt="ニューバランス 1080 v15" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">ニューバランス 1080 v15</h4>
+          <div class="zukan-spec">New Balance ／ New Balance 1080 v15<br>約250g ・ スタック40/36mm ・ ドロップ4mm ・ 参考 ¥19,800</div>
+        </div>
+      </div>
+      <p class="zukan-feel">新Infinion foamで一新。v14の鉛のような重さが消え、軽く弾むように。柔らかさはそのままに反発が増した正常進化。</p>
+      <p class="zukan-weak">⚠ Fresh Foam時代の超どっしり感が好きな人には軽くなりすぎと感じることも。価格も上昇。</p>
+      <div class="zukan-links">
+        <a href="https://ameblo.jp/tougyou-0111/entry-12966773183.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-rebel_v5">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/rebel_v5.jpg" alt="ニューバランス リベル v5" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">ニューバランス リベル v5</h4>
+          <div class="zukan-spec">New Balance ／ New Balance FuelCell Rebel v5<br>約216g ・ スタック30/24mm ・ ドロップ6mm ・ 参考 ¥17,000</div>
+        </div>
+      </div>
+      <p class="zukan-feel">216gの軽快さでプレートなしでも自然に弾む。v5でベースがワイド化し、軽さと安定を両立した高評価トレーナー。</p>
+      <p class="zukan-weak">⚠ リカバリー用途には軽量すぎる。軽さ優先のアッパーは耐久性がやや弱い。どっしりした接地感が好みなら合わない。</p>
+      <div class="zukan-links">
+        <a href="https://ameblo.jp/tougyou-0111/entry-12959982227.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-clifton_11">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/clifton_11.jpg" alt="ホカ クリフトン 11" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">ホカ クリフトン 11</h4>
+          <div class="zukan-spec">HOKA ／ HOKA Clifton 11<br>約265g ・ スタック42/34mm ・ ドロップ8mm ・ 参考 ¥18,500</div>
+        </div>
+      </div>
+      <p class="zukan-feel">10からのチューンナップ版。ミッドソールは据え置きで、アッパーとインソールがより柔らかく。包み込み感が向上。</p>
+      <p class="zukan-weak">⚠ 反発感は控えめで速いペースでは退屈・平坦。中身は10とほぼ同じで劇的な変化はない。アウトソールの露出ラバーが少なく摩耗が早い。</p>
+      <div class="zukan-links">
+        <a href="https://ameblo.jp/tougyou-0111/entry-12971779893.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-cloudmonster_3">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/cloudmonster_3.jpg" alt="On クラウドモンスター 3" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">On クラウドモンスター 3</h4>
+          <div class="zukan-spec">On ／ On Cloudmonster 3<br>約280g ・ スタック35/29mm ・ ドロップ6mm ・ 参考 ¥22,000</div>
+        </div>
+      </div>
+      <p class="zukan-feel">硬め・スピードボード由来のスナップ・Cloud独特の接地感。テンポ寄りのデイリー。</p>
+      <p class="zukan-weak">⚠ Cloudポッドに小石が挟まる・好みが分かれる。本当のリカバリーには硬すぎ。ヒールがスカスカと感じる人も。</p>
+      <div class="zukan-links">
+        <a href="https://ameblo.jp/tougyou-0111/entry-12959065095.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-kayano_33">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/kayano_33.jpg" alt="アシックス ゲルカヤノ 33" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">アシックス ゲルカヤノ 33</h4>
+          <div class="zukan-spec">ASICS ／ ASICS Gel-Kayano 33<br>約298g ・ スタック39/31mm ・ ドロップ8mm ・ 参考 ¥20,900</div>
+        </div>
+      </div>
+      <p class="zukan-feel">安定靴の絶対王者の最新作。FLUIDSUPPORTでガッチリ支えるのに硬すぎず、脚が疲れていても最後まで乱れない安心感。</p>
+      <p class="zukan-weak">⚠ 約298gと重量級。反発は控えめでスピード練習には不向き。「守り」に特化した設計。</p>
+      <div class="zukan-links">
+        <a href="https://ameblo.jp/tougyou-0111/entry-12969267604.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-nimbus_28">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/nimbus_28.jpg" alt="アシックス ゲルニンバス 28" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">アシックス ゲルニンバス 28</h4>
+          <div class="zukan-spec">ASICS ／ ASICS Gel-Nimbus 28<br>約280g ・ スタック43.5/35.5mm ・ ドロップ8mm ・ 参考 ¥20,900</div>
+        </div>
+      </div>
+      <p class="zukan-feel">43mm超の分厚いFF Blast Plus＋PureGel。歴代最軽量化で、柔らかいのにモッサリしない雲の上系の完成形。</p>
+      <p class="zukan-weak">⚠ イージー・リカバリー寄りでスピードを出すと退屈。2万円超と価格も高め。</p>
+      <div class="zukan-links">
+        <a href="https://ameblo.jp/tougyou-0111/entry-12954928484.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-rider_30">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/rider_30.jpg" alt="ミズノ ウェーブライダー 30" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">ミズノ ウェーブライダー 30</h4>
+          <div class="zukan-spec">Mizuno ／ Mizuno Wave Rider 30<br>約265g ・ スタック42.5/34.5mm ・ ドロップ8mm ・ 参考 ¥17,600</div>
+        </div>
+      </div>
+      <p class="zukan-feel">30代目で42mm級ハイスタックに大変身。フルレングスWaveプレート＋改良フォームで、柔らかく滑らかなのに芯が残る。日本の定番が新時代へ。</p>
+      <p class="zukan-weak">⚠ 高スタック化で往年の地面に近い接地感は薄れた。ドロップも10mm→8mmに変わり、29までの感覚に慣れた人は違和感があるかも。</p>
+      <div class="zukan-links">
+        <a href="https://ameblo.jp/tougyou-0111/entry-12972069281.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-boston_13">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/boston_13.jpg" alt="アディダス アディゼロ ボストン 13" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">アディダス アディゼロ ボストン 13</h4>
+          <div class="zukan-spec">adidas ／ adidas Adizero Boston 13<br>約255g ・ スタック37/30mm ・ ドロップ7mm ・ 参考 ¥17,600</div>
+        </div>
+      </div>
+      <p class="zukan-feel">Lightstrike Pro増量＋ENERGY RODSの推進力。テンポ走〜ロング走で本領を発揮する、レースDNAの練習機。</p>
+      <p class="zukan-weak">⚠ つま先はタイトで幅広の足には窮屈。ゆっくりジョグだと硬さが目立つ。</p>
+      <div class="zukan-links">
+        <a href="https://ameblo.jp/tougyou-0111/entry-12943781178.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-pegasus_plus">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/pegasus_plus.jpg" alt="ナイキ ペガサスプラス" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">ナイキ ペガサスプラス</h4>
+          <div class="zukan-spec">Nike ／ Nike Pegasus Plus<br>約253g ・ スタック36/26mm ・ ドロップ10mm ・ 参考 ¥24,200</div>
+        </div>
+      </div>
+      <p class="zukan-feel">フルレングスZoomXの贅沢なテンポトレーナー。ペガサス42より一段軽く柔らかく弾み、スピード日の相棒として気持ちいい。</p>
+      <p class="zukan-weak">⚠ ZoomXはアウトソール耐久性が価格の割に平凡。安定感は控えめで、ゆっくりジョグ専用にはもったいない。</p>
+      <div class="zukan-links">
+        <a href="https://ameblo.jp/tougyou-0111/entry-12964283765.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-vomero_plus">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/vomero_plus.jpg" alt="ナイキ ボメロプラス" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">ナイキ ボメロプラス</h4>
+          <div class="zukan-spec">Nike ／ Nike Vomero Plus<br>約281g ・ スタック43/33mm ・ ドロップ10mm ・ 参考 ¥24,200</div>
+        </div>
+      </div>
+      <p class="zukan-feel">フルZoomX×43mmのマックスクッション。ボメロ18より明確に柔らかく弾み、「最も気持ちいいイージーラン」を狙って作られた1足。</p>
+      <p class="zukan-weak">⚠ 柔らかさ優先でペースを上げる走りには不向き。ZoomXゆえ耐久性は平凡で、価格も2万円台半ばと安くない。</p>
+      <div class="zukan-links">
+        <a href="https://ameblo.jp/tougyou-0111/entry-12965358871.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-bondi_9">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/bondi_9.jpg" alt="ホカ ボンダイ 9" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">ホカ ボンダイ 9</h4>
+          <div class="zukan-spec">HOKA ／ HOKA Bondi 9<br>約303g ・ スタック39/34mm ・ ドロップ5mm ・ 参考 ¥26,400</div>
+        </div>
+      </div>
+      <p class="zukan-feel">HOKAのマックスクッション代名詞。9でベースがさらにワイド化し、どっしり沈む安心感は唯一無二。立ち仕事・ウォークにも人気。</p>
+      <p class="zukan-weak">⚠ 303gと重量級で、スピードを出す走りには完全に不向き。5mmドロップはふくらはぎに負担が出る人も。</p>
+      <div class="zukan-links">
+        
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-mach_7">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/mach_7.jpg" alt="ホカ マッハ 7" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">ホカ マッハ 7</h4>
+          <div class="zukan-spec">HOKA ／ HOKA Mach 7<br>約232g ・ スタック37/32mm ・ ドロップ5mm ・ 参考 ¥22,000</div>
+        </div>
+      </div>
+      <p class="zukan-feel">軽快さが身上のHOKA万能機の最新作。232gの軽さと素直な弾みで、ジョグからテンポ走まで1足でこなせる優等生。</p>
+      <p class="zukan-weak">⚠ 突出した個性はなく「何でも80点」タイプ。5mmドロップはかかと接地の初心者だと恩恵が薄い場面も。</p>
+      <div class="zukan-links">
+        
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-cloudsurfer_2">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/cloudsurfer_2.jpg" alt="オン クラウドサーファー 2" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">オン クラウドサーファー 2</h4>
+          <div class="zukan-spec">On ／ On Cloudsurfer 2<br>約255g ・ スタック37/28mm ・ ドロップ9mm ・ 参考 ¥20,900</div>
+        </div>
+      </div>
+      <p class="zukan-feel">CloudTec Phaseが接地に合わせて順に潰れ、独特のヌルッと滑らかな転がり。初代より締まった乗り味になり毎日使いやすくなった。</p>
+      <p class="zukan-weak">⚠ 初代の雲のような柔らかさを期待すると硬く感じる。反発でグイグイ進むタイプではない。</p>
+      <div class="zukan-links">
+        
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-cloud_6">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/cloud_6.jpg" alt="オン クラウド 6" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">オン クラウド 6</h4>
+          <div class="zukan-spec">On ／ On Cloud 6<br>約267g ・ スタック27/19mm ・ ドロップ8mm ・ 参考 ¥19,800</div>
+        </div>
+      </div>
+      <p class="zukan-feel">Onの看板ライフスタイルモデル。脱ぎ履きしやすく街で映える。ウォーキング〜ゆるジョグと普段使いを1足で済ませたい人向け。</p>
+      <p class="zukan-weak">⚠ クッションは薄く、本格的なランニングトレーニングには不向き。あくまで「生活の中で軽く走る」ための1足。</p>
+      <div class="zukan-links">
+        
+        <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
+      </div>
+    </article>
+    <h3 class="zukan-cat">サブ3向けカーボンレーシング 10選</h3>
+
+    <article class="zukan-card" id="z-vaporfly_4">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/vaporfly_4.jpg" alt="ナイキ ヴェイパーフライ 4" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">ナイキ ヴェイパーフライ 4</h4>
+          <div class="zukan-spec">Nike ／ Nike Vaporfly 4 ・ 王道・迷ったらこれ<br>約166g ・ 参考 ¥36,300</div>
+        </div>
+      </div>
+      <p class="zukan-feel">カーボン厚底の代名詞。軽さと反発のバランスが完成域で、5km〜フルまで外さない基準器。</p>
+      <p class="zukan-weak">⚠ 前作より低スタック化。フル終盤の脚保護はアルファフライに譲る。</p>
+      <div class="zukan-links">
+        <a href="https://ameblo.jp/tougyou-0111/entry-12962010564.html" target="_blank" rel="noopener">ブログの関連記事を読む →</a>
+        <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-alphafly_3">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/alphafly_3.jpg" alt="ナイキ アルファフライ 3" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">ナイキ アルファフライ 3</h4>
+          <div class="zukan-spec">Nike ／ Nike Alphafly 3 ・ 最大クッション・WRモデル<br>約218g ・ 参考 ¥39,600</div>
+        </div>
+      </div>
+      <p class="zukan-feel">マラソン世界記録を生んだフル特化機。ZoomX＋エアポッドで終盤の脚残りが別格。</p>
+      <p class="zukan-weak">⚠ 重量はレーサーとしては重め。5〜10kmの短い距離では持て余す。</p>
+      <div class="zukan-links">
+        
+        <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-metaspeed_sky_tokyo">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/metaspeed_sky_tokyo.jpg" alt="アシックス メタスピード スカイ トーキョー" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">アシックス メタスピード スカイ トーキョー</h4>
+          <div class="zukan-spec">ASICS ／ ASICS Metaspeed Sky Tokyo ・ ストライド型<br>約170g ・ 参考 ¥27,500</div>
+        </div>
+      </div>
+      <p class="zukan-feel">FF LEAP＋FF TURBO PLUSの新世代。ストライドを伸ばして加速するタイプの日本定番レーサー。</p>
+      <p class="zukan-weak">⚠ ピッチ走法ならエッジを。跳ねを活かせる走力が前提。</p>
+      <div class="zukan-links">
+        
+        <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-metaspeed_edge_tokyo">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/metaspeed_edge_tokyo.jpg" alt="アシックス メタスピード エッジ トーキョー" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">アシックス メタスピード エッジ トーキョー</h4>
+          <div class="zukan-spec">ASICS ／ ASICS Metaspeed Edge Tokyo ・ ピッチ型<br>約170g ・ 参考 ¥27,500</div>
+        </div>
+      </div>
+      <p class="zukan-feel">回転数で押していくランナー向けの角度付きプレート。日本人ランナーの支持が厚い1足。</p>
+      <p class="zukan-weak">⚠ ストライドで伸ばすタイプならスカイのほうが合う。</p>
+      <div class="zukan-links">
+        
+        <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-metaspeed_ray">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/metaspeed_ray.jpg" alt="アシックス メタスピード レイ" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">アシックス メタスピード レイ</h4>
+          <div class="zukan-spec">ASICS ／ ASICS Metaspeed Ray ・ 超軽量129g<br>約129g ・ 参考 ¥33,000</div>
+        </div>
+      </div>
+      <p class="zukan-feel">市販カーボン最軽量クラス。フォアフットで弾む感覚を最優先する上級者の飛び道具。</p>
+      <p class="zukan-weak">⚠ 軽さ特化ゆえ脚保護は薄め。フォームが崩れると恩恵が消える。</p>
+      <div class="zukan-links">
+        
+        <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-adios_pro_5">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/adios_pro_5.jpg" alt="アディダス アディゼロ アディオス プロ 5" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">アディダス アディゼロ アディオス プロ 5</h4>
+          <div class="zukan-spec">adidas ／ adidas Adizero Adios Pro 5 ・ 2026年新作<br>約215g ・ 参考 ¥33,000</div>
+        </div>
+      </div>
+      <p class="zukan-feel">円筒形EnergyRods 3.0＋Energy Rimで転がりと安定を両立した最新世代。中位グループにも扱いやすい。</p>
+      <p class="zukan-weak">⚠ 広域発売2026年5月〜で在庫・カラーはタイミング次第。</p>
+      <div class="zukan-links">
+        
+        <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-rebellion_pro_3">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/rebellion_pro_3.jpg" alt="ミズノ ウェーブリベリオンプロ 3" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">ミズノ ウェーブリベリオンプロ 3</h4>
+          <div class="zukan-spec">Mizuno ／ Mizuno Wave Rebellion Pro 3 ・ 攻撃的ジオメトリ<br>約225g ・ 参考 ¥24,200</div>
+        </div>
+      </div>
+      <p class="zukan-feel">ヒール61mmの最尖鋭ジオメトリ。ミッド〜前寄り接地で乗れたときの推進力は市販最強クラス。</p>
+      <p class="zukan-weak">⚠ かかと接地とは相性が悪い。乗りこなすには練習が必要。</p>
+      <div class="zukan-links">
+        
+        <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-sc_elite_v5">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/sc_elite_v5.jpg" alt="ニューバランス SCエリート v5" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">ニューバランス SCエリート v5</h4>
+          <div class="zukan-spec">New Balance ／ New Balance FuelCell SC Elite v5 ・ 軽量アグレッシブ<br>約200g ・ 参考 ¥34,100</div>
+        </div>
+      </div>
+      <p class="zukan-feel">v4の安定志向から一転、軽く鋭いレーサーへ。PEBAフォームの反発と足入れの良さが武器。</p>
+      <p class="zukan-weak">⚠ 前作の「楽に走れる安心感」を求めると印象が違う。</p>
+      <div class="zukan-links">
+        
+        <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-fastr_3">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/fastr_3.jpg" alt="プーマ ファストR ニトロ エリート 3" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">プーマ ファストR ニトロ エリート 3</h4>
+          <div class="zukan-spec">Puma ／ Puma Fast-R Nitro Elite 3 ・ エコノミー実証No.1<br>約170g ・ 参考 ¥39,600</div>
+        </div>
+      </div>
+      <p class="zukan-feel">被験者全員のランニングエコノミーが3%以上改善という研究結果を持つ尖った1足。ハマれば最速。</p>
+      <p class="zukan-weak">⚠ 安定性は低く上級者向け。フルで使いこなすには脚が要る。</p>
+      <div class="zukan-links">
+        
+        <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
+      </div>
+    </article>
+
+    <article class="zukan-card" id="z-cloudboom_strike">
+      <div class="zukan-top">
+        <img class="zukan-img" src="img/cloudboom_strike.jpg" alt="オン クラウドブーム ストライク" loading="lazy" onerror="this.style.display='none'">
+        <div>
+          <h4 class="zukan-name">オン クラウドブーム ストライク</h4>
+          <div class="zukan-spec">On ／ On Cloudboom Strike ・ 安定寄りレーサー<br>約215g ・ 参考 ¥36,000</div>
+        </div>
+      </div>
+      <p class="zukan-feel">Helion HFの厚底を安定したプラットフォームに載せたOnの本気レーサー。癖が少なく移行しやすい。</p>
+      <p class="zukan-weak">⚠ 最軽量級の切れ味はない。日本のレースでの装着率はまだ少数派。</p>
+      <div class="zukan-links">
+        
+        <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
+      </div>
+    </article>
+    <!-- ZUKAN:END -->
+    <footer style="text-align:left">
+      ※ 図鑑の内容は診断データと同一です。価格は参考値で変動します。
     </footer>
   </section>
 </div>
@@ -1600,9 +2080,33 @@ function buildBestCard(r){
   return card;
 }
 
+// ディープリンク：?r=<shoeId> で該当モデルの図鑑カードへスクロール＆ハイライト
+// アメブロ記事から「この靴の詳細へ」逆リンクを張る用途を想定
+function handleDeepLink(){
+  try{
+    const id = new URLSearchParams(location.search).get("r");
+    if(!id) return;
+    const card = document.getElementById("z-" + id);
+    if(!card) return;
+    setTimeout(()=>{
+      card.scrollIntoView({behavior:"smooth", block:"center"});
+      card.classList.add("hl");
+      setTimeout(()=>card.classList.remove("hl"), 4000);
+    }, 300);
+  }catch(e){ /* 何もしない */ }
+}
+document.addEventListener("DOMContentLoaded", handleDeepLink);
+
+// 図鑑カードから診断を開始（スタート画面へスクロール）
+function zukanToDiagnosis(){
+  window.scrollTo({top:0, behavior:"smooth"});
+  const s = document.getElementById("screenStart");
+  if(s && !s.classList.contains("hidden")){ /* スタート画面ならそのまま */ }
+}
+
 // 結果をシェア（Web Share API → クリップボードフォールバック）
 async function shareResult(shoe, btn){
-  const url = "https://runningshoeapps.vercel.app/";
+  const url = "https://runningshoeapps.vercel.app/?r=" + shoe.id;
   const text = `私のベスト1足は「${shortShoeName(shoe)}」でした｜ランニングシューズ診断`;
   if(navigator.share){
     try{ await navigator.share({title:"ランニングシューズ診断", text, url}); }catch(e){ /* キャンセル時は何もしない */ }
