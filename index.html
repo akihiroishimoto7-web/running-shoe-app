@@ -232,6 +232,8 @@
   .zukan-card.hl{border-color:var(--orange);box-shadow:0 10px 30px -14px rgba(239,90,35,.45)}
   .zukan-top{display:flex;gap:14px;align-items:flex-start}
   .zukan-img{width:84px;height:84px;flex-shrink:0;background:#fff;border:1px solid var(--gray-100);border-radius:12px;object-fit:contain;padding:4px}
+  /* <picture> はレイアウト上の箱を作らず、中の img にスタイルを効かせる */
+  .zukan-top>picture,.race-pick>picture,.alt-card>picture{flex-shrink:0;display:block;font-size:0}
   .zukan-name{font-size:15px;font-weight:800;color:var(--navy);line-height:1.4}
   .zukan-spec{font-size:11px;color:var(--gray-500);margin-top:4px;line-height:1.6}
   .zukan-feel{font-size:12.5px;color:var(--gray-700);line-height:1.75;margin-top:9px}
@@ -395,7 +397,10 @@
 
     <article class="zukan-card" id="z-pegasus_42" data-brand="nike" data-purpose="speed stability" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/pegasus_42.jpg" alt="ナイキ ペガサス 42" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/pegasus_42.webp" type="image/webp">
+          <img class="zukan-img" src="img/pegasus_42.jpg" alt="ナイキ ペガサス 42" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">ナイキ ペガサス 42</h4>
           <div class="zukan-spec">Nike ／ Nike Pegasus 42<br>約283g ・ スタック37/27mm ・ ドロップ10mm ・ 参考 ¥14,000</div>
@@ -411,7 +416,10 @@
 
     <article class="zukan-card" id="z-vomero_18" data-brand="nike" data-purpose="cushion stability" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/vomero_18.jpg" alt="ナイキ ボメロ 18" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/vomero_18.webp" type="image/webp">
+          <img class="zukan-img" src="img/vomero_18.jpg" alt="ナイキ ボメロ 18" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">ナイキ ボメロ 18</h4>
           <div class="zukan-spec">Nike ／ Nike Vomero 18<br>約303g ・ スタック46/36mm ・ ドロップ10mm ・ 参考 ¥16,500</div>
@@ -427,7 +435,10 @@
 
     <article class="zukan-card" id="z-evo_sl" data-brand="adidas" data-purpose="cushion speed" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/evo_sl.jpg" alt="アディダス アディゼロ Evo SL" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/evo_sl.webp" type="image/webp">
+          <img class="zukan-img" src="img/evo_sl.jpg" alt="アディダス アディゼロ Evo SL" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">アディダス アディゼロ Evo SL</h4>
           <div class="zukan-spec">adidas ／ adidas Adizero Evo SL<br>約225g ・ スタック39/33mm ・ ドロップ6mm ・ 参考 ¥16,000</div>
@@ -443,7 +454,10 @@
 
     <article class="zukan-card" id="z-novablast_6" data-brand="asics" data-purpose="cushion" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/novablast_6.jpg" alt="アシックス ノヴァブラスト 6" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/novablast_6.webp" type="image/webp">
+          <img class="zukan-img" src="img/novablast_6.jpg" alt="アシックス ノヴァブラスト 6" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">アシックス ノヴァブラスト 6</h4>
           <div class="zukan-spec">ASICS ／ ASICS Novablast 6<br>約250g ・ スタック41.5/33.5mm ・ ドロップ8mm ・ 参考 ¥13,200</div>
@@ -459,7 +473,10 @@
 
     <article class="zukan-card" id="z-nb_1080_v15" data-brand="newbalance" data-purpose="cushion stability" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/nb_1080_v15.jpg" alt="ニューバランス 1080 v15" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/nb_1080_v15.webp" type="image/webp">
+          <img class="zukan-img" src="img/nb_1080_v15.jpg" alt="ニューバランス 1080 v15" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">ニューバランス 1080 v15</h4>
           <div class="zukan-spec">New Balance ／ New Balance 1080 v15<br>約250g ・ スタック40/36mm ・ ドロップ4mm ・ 参考 ¥19,800</div>
@@ -475,7 +492,10 @@
 
     <article class="zukan-card" id="z-rebel_v5" data-brand="newbalance" data-purpose="speed" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/rebel_v5.jpg" alt="ニューバランス リベル v5" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/rebel_v5.webp" type="image/webp">
+          <img class="zukan-img" src="img/rebel_v5.jpg" alt="ニューバランス リベル v5" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">ニューバランス リベル v5</h4>
           <div class="zukan-spec">New Balance ／ New Balance FuelCell Rebel v5<br>約225g ・ スタック35/29mm ・ ドロップ6mm ・ 参考 ¥17,000</div>
@@ -491,7 +511,10 @@
 
     <article class="zukan-card" id="z-clifton_11" data-brand="hoka" data-purpose="cushion stability" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/clifton_11.jpg" alt="ホカ クリフトン 11" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/clifton_11.webp" type="image/webp">
+          <img class="zukan-img" src="img/clifton_11.jpg" alt="ホカ クリフトン 11" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">ホカ クリフトン 11</h4>
           <div class="zukan-spec">HOKA ／ HOKA Clifton 11<br>約265g ・ スタック42/34mm ・ ドロップ8mm ・ 参考 ¥18,500</div>
@@ -507,7 +530,10 @@
 
     <article class="zukan-card" id="z-cloudmonster_3" data-brand="on" data-purpose="speed stability" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/cloudmonster_3.jpg" alt="On クラウドモンスター 3" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/cloudmonster_3.webp" type="image/webp">
+          <img class="zukan-img" src="img/cloudmonster_3.jpg" alt="On クラウドモンスター 3" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">On クラウドモンスター 3</h4>
           <div class="zukan-spec">On ／ On Cloudmonster 3<br>約280g ・ スタック35/29mm ・ ドロップ6mm ・ 参考 ¥22,000</div>
@@ -523,7 +549,10 @@
 
     <article class="zukan-card" id="z-kayano_33" data-brand="asics" data-purpose="cushion stability" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/kayano_33.jpg" alt="アシックス ゲルカヤノ 33" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/kayano_33.webp" type="image/webp">
+          <img class="zukan-img" src="img/kayano_33.jpg" alt="アシックス ゲルカヤノ 33" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">アシックス ゲルカヤノ 33</h4>
           <div class="zukan-spec">ASICS ／ ASICS Gel-Kayano 33<br>約298g ・ スタック39/31mm ・ ドロップ8mm ・ 参考 ¥20,900</div>
@@ -539,7 +568,10 @@
 
     <article class="zukan-card" id="z-nimbus_28" data-brand="asics" data-purpose="cushion stability" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/nimbus_28.jpg" alt="アシックス ゲルニンバス 28" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/nimbus_28.webp" type="image/webp">
+          <img class="zukan-img" src="img/nimbus_28.jpg" alt="アシックス ゲルニンバス 28" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">アシックス ゲルニンバス 28</h4>
           <div class="zukan-spec">ASICS ／ ASICS Gel-Nimbus 28<br>約280g ・ スタック43.5/35.5mm ・ ドロップ8mm ・ 参考 ¥20,900</div>
@@ -555,7 +587,10 @@
 
     <article class="zukan-card" id="z-rider_30" data-brand="mizuno" data-purpose="cushion stability" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/rider_30.jpg" alt="ミズノ ウェーブライダー 30" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/rider_30.webp" type="image/webp">
+          <img class="zukan-img" src="img/rider_30.jpg" alt="ミズノ ウェーブライダー 30" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">ミズノ ウェーブライダー 30</h4>
           <div class="zukan-spec">Mizuno ／ Mizuno Wave Rider 30<br>約265g ・ スタック42.5/34.5mm ・ ドロップ8mm ・ 参考 ¥17,600</div>
@@ -571,7 +606,10 @@
 
     <article class="zukan-card" id="z-boston_13" data-brand="adidas" data-purpose="cushion speed stability" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/boston_13.jpg" alt="アディダス アディゼロ ボストン 13" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/boston_13.webp" type="image/webp">
+          <img class="zukan-img" src="img/boston_13.jpg" alt="アディダス アディゼロ ボストン 13" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">アディダス アディゼロ ボストン 13</h4>
           <div class="zukan-spec">adidas ／ adidas Adizero Boston 13<br>約255g ・ スタック37/30mm ・ ドロップ7mm ・ 参考 ¥17,600</div>
@@ -587,7 +625,10 @@
 
     <article class="zukan-card" id="z-pegasus_plus" data-brand="nike" data-purpose="cushion speed" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/pegasus_plus.jpg" alt="ナイキ ペガサスプラス" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/pegasus_plus.webp" type="image/webp">
+          <img class="zukan-img" src="img/pegasus_plus.jpg" alt="ナイキ ペガサスプラス" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">ナイキ ペガサスプラス</h4>
           <div class="zukan-spec">Nike ／ Nike Pegasus Plus<br>約253g ・ スタック36/26mm ・ ドロップ10mm ・ 参考 ¥24,200</div>
@@ -603,7 +644,10 @@
 
     <article class="zukan-card" id="z-vomero_plus" data-brand="nike" data-purpose="cushion stability" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/vomero_plus.jpg" alt="ナイキ ボメロプラス" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/vomero_plus.webp" type="image/webp">
+          <img class="zukan-img" src="img/vomero_plus.jpg" alt="ナイキ ボメロプラス" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">ナイキ ボメロプラス</h4>
           <div class="zukan-spec">Nike ／ Nike Vomero Plus<br>約281g ・ スタック43/33mm ・ ドロップ10mm ・ 参考 ¥24,200</div>
@@ -619,7 +663,10 @@
 
     <article class="zukan-card" id="z-bondi_9" data-brand="hoka" data-purpose="cushion stability" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/bondi_9.jpg" alt="ホカ ボンダイ 9" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/bondi_9.webp" type="image/webp">
+          <img class="zukan-img" src="img/bondi_9.jpg" alt="ホカ ボンダイ 9" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">ホカ ボンダイ 9</h4>
           <div class="zukan-spec">HOKA ／ HOKA Bondi 9<br>約303g ・ スタック39/34mm ・ ドロップ5mm ・ 参考 ¥26,400</div>
@@ -635,7 +682,10 @@
 
     <article class="zukan-card" id="z-mach_7" data-brand="hoka" data-purpose="speed" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/mach_7.jpg" alt="ホカ マッハ 7" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/mach_7.webp" type="image/webp">
+          <img class="zukan-img" src="img/mach_7.jpg" alt="ホカ マッハ 7" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">ホカ マッハ 7</h4>
           <div class="zukan-spec">HOKA ／ HOKA Mach 7<br>約232g ・ スタック37/32mm ・ ドロップ5mm ・ 参考 ¥22,000</div>
@@ -651,7 +701,10 @@
 
     <article class="zukan-card" id="z-cloudsurfer_2" data-brand="on" data-purpose="cushion" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/cloudsurfer_2.jpg" alt="オン クラウドサーファー 2" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/cloudsurfer_2.webp" type="image/webp">
+          <img class="zukan-img" src="img/cloudsurfer_2.jpg" alt="オン クラウドサーファー 2" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">オン クラウドサーファー 2</h4>
           <div class="zukan-spec">On ／ On Cloudsurfer 2<br>約255g ・ スタック37/28mm ・ ドロップ9mm ・ 参考 ¥20,900</div>
@@ -667,7 +720,10 @@
 
     <article class="zukan-card" id="z-cloud_6" data-brand="on" data-purpose="speed" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/cloud_6.jpg" alt="オン クラウド 6" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/cloud_6.webp" type="image/webp">
+          <img class="zukan-img" src="img/cloud_6.jpg" alt="オン クラウド 6" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">オン クラウド 6</h4>
           <div class="zukan-spec">On ／ On Cloud 6<br>約267g ・ スタック27/19mm ・ ドロップ8mm ・ 参考 ¥19,800</div>
@@ -684,7 +740,10 @@
 
     <article class="zukan-card" id="z-vaporfly_4" data-brand="nike" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/vaporfly_4.jpg" alt="ナイキ ヴェイパーフライ 4" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/vaporfly_4.webp" type="image/webp">
+          <img class="zukan-img" src="img/vaporfly_4.jpg" alt="ナイキ ヴェイパーフライ 4" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">ナイキ ヴェイパーフライ 4</h4>
           <div class="zukan-spec">Nike ／ Nike Vaporfly 4 ・ 王道・迷ったらこれ<br>約166g ・ 参考 ¥36,300</div>
@@ -700,7 +759,10 @@
 
     <article class="zukan-card" id="z-alphafly_3" data-brand="nike" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/alphafly_3.jpg" alt="ナイキ アルファフライ 3" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/alphafly_3.webp" type="image/webp">
+          <img class="zukan-img" src="img/alphafly_3.jpg" alt="ナイキ アルファフライ 3" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">ナイキ アルファフライ 3</h4>
           <div class="zukan-spec">Nike ／ Nike Alphafly 3 ・ 最大クッション・WRモデル<br>約218g ・ 参考 ¥39,600</div>
@@ -716,7 +778,10 @@
 
     <article class="zukan-card" id="z-metaspeed_sky_tokyo" data-brand="asics" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/metaspeed_sky_tokyo.jpg" alt="アシックス メタスピード スカイ トーキョー" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/metaspeed_sky_tokyo.webp" type="image/webp">
+          <img class="zukan-img" src="img/metaspeed_sky_tokyo.jpg" alt="アシックス メタスピード スカイ トーキョー" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">アシックス メタスピード スカイ トーキョー</h4>
           <div class="zukan-spec">ASICS ／ ASICS Metaspeed Sky Tokyo ・ ストライド型<br>約170g ・ 参考 ¥27,500</div>
@@ -732,7 +797,10 @@
 
     <article class="zukan-card" id="z-metaspeed_edge_tokyo" data-brand="asics" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/metaspeed_edge_tokyo.jpg" alt="アシックス メタスピード エッジ トーキョー" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/metaspeed_edge_tokyo.webp" type="image/webp">
+          <img class="zukan-img" src="img/metaspeed_edge_tokyo.jpg" alt="アシックス メタスピード エッジ トーキョー" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">アシックス メタスピード エッジ トーキョー</h4>
           <div class="zukan-spec">ASICS ／ ASICS Metaspeed Edge Tokyo ・ ピッチ型<br>約170g ・ 参考 ¥27,500</div>
@@ -748,7 +816,10 @@
 
     <article class="zukan-card" id="z-metaspeed_ray" data-brand="asics" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/metaspeed_ray.jpg" alt="アシックス メタスピード レイ" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/metaspeed_ray.webp" type="image/webp">
+          <img class="zukan-img" src="img/metaspeed_ray.jpg" alt="アシックス メタスピード レイ" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">アシックス メタスピード レイ</h4>
           <div class="zukan-spec">ASICS ／ ASICS Metaspeed Ray ・ 超軽量129g<br>約129g ・ 参考 ¥33,000</div>
@@ -764,7 +835,10 @@
 
     <article class="zukan-card" id="z-adios_pro_5" data-brand="adidas" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/adios_pro_5.jpg" alt="アディダス アディゼロ アディオス プロ 5" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/adios_pro_5.webp" type="image/webp">
+          <img class="zukan-img" src="img/adios_pro_5.jpg" alt="アディダス アディゼロ アディオス プロ 5" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">アディダス アディゼロ アディオス プロ 5</h4>
           <div class="zukan-spec">adidas ／ adidas Adizero Adios Pro 5 ・ 2026年新作<br>約215g ・ 参考 ¥33,000</div>
@@ -780,7 +854,10 @@
 
     <article class="zukan-card" id="z-rebellion_pro_3" data-brand="mizuno" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/rebellion_pro_3.jpg" alt="ミズノ ウェーブリベリオンプロ 3" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/rebellion_pro_3.webp" type="image/webp">
+          <img class="zukan-img" src="img/rebellion_pro_3.jpg" alt="ミズノ ウェーブリベリオンプロ 3" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">ミズノ ウェーブリベリオンプロ 3</h4>
           <div class="zukan-spec">Mizuno ／ Mizuno Wave Rebellion Pro 3 ・ 攻撃的ジオメトリ<br>約225g ・ 参考 ¥24,200</div>
@@ -796,7 +873,10 @@
 
     <article class="zukan-card" id="z-sc_elite_v5" data-brand="newbalance" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/sc_elite_v5.jpg" alt="ニューバランス SCエリート v5" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/sc_elite_v5.webp" type="image/webp">
+          <img class="zukan-img" src="img/sc_elite_v5.jpg" alt="ニューバランス SCエリート v5" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">ニューバランス SCエリート v5</h4>
           <div class="zukan-spec">New Balance ／ New Balance FuelCell SC Elite v5 ・ 軽量アグレッシブ<br>約200g ・ 参考 ¥34,100</div>
@@ -812,7 +892,10 @@
 
     <article class="zukan-card" id="z-fastr_3" data-brand="puma" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/fastr_3.jpg" alt="プーマ ファストR ニトロ エリート 3" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/fastr_3.webp" type="image/webp">
+          <img class="zukan-img" src="img/fastr_3.jpg" alt="プーマ ファストR ニトロ エリート 3" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">プーマ ファストR ニトロ エリート 3</h4>
           <div class="zukan-spec">Puma ／ Puma Fast-R Nitro Elite 3 ・ エコノミー実証No.1<br>約170g ・ 参考 ¥39,600</div>
@@ -828,7 +911,10 @@
 
     <article class="zukan-card" id="z-cloudboom_strike" data-brand="on" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/cloudboom_strike.jpg" alt="オン クラウドブーム ストライク" loading="lazy" onerror="this.style.display='none'">
+        <picture>
+          <source srcset="img/cloudboom_strike.webp" type="image/webp">
+          <img class="zukan-img" src="img/cloudboom_strike.jpg" alt="オン クラウドブーム ストライク" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>
         <div>
           <h4 class="zukan-name">オン クラウドブーム ストライク</h4>
           <div class="zukan-spec">On ／ On Cloudboom Strike ・ 安定寄りレーサー<br>約215g ・ 参考 ¥36,000</div>
@@ -2035,7 +2121,7 @@ function buildRaceSection(){
     ${picks.map((s,i)=>`
       <div class="race-pick">
         <span class="rk">${i+1}</span>
-        <img class="race-thumb" src="img/${s.id}.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+        ${pictureHTML(s.id, "", "race-thumb")}
         <div>
           <div class="nm">${escapeHtml(s.jp_name)}<span class="race-tag">${escapeHtml(s.tag)}</span></div>
           <div class="meta">${escapeHtml(s.brand)} ／ 約${s.weight_g}g ／ 参考 ¥${s.price_jpy.toLocaleString()}</div>
@@ -2073,7 +2159,10 @@ function buildBestCard(r){
     .join("");
   card.innerHTML = `
     <span class="winner-label">BEST MATCH FOR YOU</span>
-    <div class="best-photo"><img src="img/${s.id}.jpg" alt="${escapeHtml(shortShoeName(s))}" loading="lazy" onerror="this.closest('.best-photo').style.display='none'"></div>
+    <div class="best-photo"><picture>
+      <source srcset="img/${s.id}.webp" type="image/webp">
+      <img src="img/${s.id}.jpg" alt="${escapeHtml(shortShoeName(s))}" loading="lazy" decoding="async" onerror="this.closest('.best-photo').style.display='none'">
+    </picture></div>
     <div class="result-main">
       <div class="result-main-text">
         <div class="result-type">${escapeHtml(shoeTypeLabel(s))}</div>
@@ -2226,7 +2315,7 @@ function buildAltCard(r, rank){
   card.className = "alt-card";
   card.innerHTML = `
     <div class="alt-rank">${rank}</div>
-    <img class="alt-thumb" src="img/${s.id}.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+    ${pictureHTML(s.id, "", "alt-thumb")}
     <div class="alt-body">
       <div class="alt-name">${escapeHtml(shortShoeName(s))}</div>
       <div class="alt-meta">${rideJP(s.ride)} / ${cushionJP(s.cushioning)} / ${s.weight_g}g / ¥${s.price_jpy.toLocaleString()}</div>
@@ -2304,6 +2393,13 @@ function recommendationLine(r){
 
 function chipHTML(label, val){
   return `<span class="chip"><strong style="color:var(--navy)">${label}</strong>: ${val}</span>`;
+}
+// WebP優先・JPEGフォールバック（未対応ブラウザでも従来通り表示される）
+function pictureHTML(id, alt, cls){
+  return `<picture>
+      <source srcset="img/${id}.webp" type="image/webp">
+      <img class="${cls}" src="img/${id}.jpg" alt="${alt}" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+    </picture>`;
 }
 function cushionJP(c){ return {soft:"柔らか",balanced:"バランス",firm:"しっかり"}[c]||c; }
 function stabilityJP(c){ return {low:"低",moderate:"中",high:"高"}[c]||c; }

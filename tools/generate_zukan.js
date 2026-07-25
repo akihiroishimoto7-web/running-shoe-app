@@ -51,10 +51,16 @@ function purposeTags(s) {
   return tags.length ? tags : ["cushion"];
 }
 
+// WebP優先・JPEGフォールバック。対応外ブラウザでも従来通り表示される
+const picture = (id, alt, cls) => `<picture>
+          <source srcset="img/${id}.webp" type="image/webp">
+          <img class="${cls}" src="img/${id}.jpg" alt="${alt}" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+        </picture>`;
+
 const trainerCard = (s) => `
     <article class="zukan-card" id="z-${s.id}" data-brand="${brandSlug(s.brand)}" data-purpose="${purposeTags(s).join(" ")}" data-kind="trainer">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/${s.id}.jpg" alt="${esc(s.jp_name)}" loading="lazy" onerror="this.style.display='none'">
+        ${picture(s.id, esc(s.jp_name), "zukan-img")}
         <div>
           <h4 class="zukan-name">${esc(s.jp_name)}</h4>
           <div class="zukan-spec">${esc(s.brand)} ／ ${esc(s.name)}<br>約${s.weight_g}g ・ スタック${s.heel}/${s.fore}mm ・ ドロップ${s.drop}mm ・ 参考 ¥${s.price_jpy.toLocaleString()}</div>
@@ -71,7 +77,7 @@ const trainerCard = (s) => `
 const raceCard = (s) => `
     <article class="zukan-card" id="z-${s.id}" data-brand="${brandSlug(s.brand)}" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
-        <img class="zukan-img" src="img/${s.id}.jpg" alt="${esc(s.jp_name)}" loading="lazy" onerror="this.style.display='none'">
+        ${picture(s.id, esc(s.jp_name), "zukan-img")}
         <div>
           <h4 class="zukan-name">${esc(s.jp_name)}</h4>
           <div class="zukan-spec">${esc(s.brand)} ／ ${esc(s.name)} ・ ${esc(s.tag)}<br>約${s.weight_g}g ・ 参考 ¥${s.price_jpy.toLocaleString()}</div>
