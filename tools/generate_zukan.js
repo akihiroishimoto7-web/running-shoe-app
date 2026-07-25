@@ -29,8 +29,30 @@ const esc = (s) =>
 const SHOES = extractArray("SHOES");
 const RACE = extractArray("RACE_SHOES");
 
+// フィルター用のキー。ブランドは表記ゆれを吸収して小文字スラッグ化する
+const brandSlug = (b) =>
+  String(b || "")
+    .toLowerCase()
+    .replace(/\s+/g, "");
+
+// 目的タグ：1足が複数に該当してよい（クッション/スピード/安定）
+function purposeTags(s) {
+  const tags = [];
+  const use = s.best_use || [];
+  if (s.cushioning === "soft" || s.cushioning === "max" || use.includes("recovery") || use.includes("long run")) {
+    tags.push("cushion");
+  }
+  if (s.ride === "propulsive" || s.ride === "responsive" || use.includes("tempo") || use.includes("speed")) {
+    tags.push("speed");
+  }
+  if (s.stability === "stable" || s.stability === "high" || s.heavy_runner_ok) {
+    tags.push("stability");
+  }
+  return tags.length ? tags : ["cushion"];
+}
+
 const trainerCard = (s) => `
-    <article class="zukan-card" id="z-${s.id}">
+    <article class="zukan-card" id="z-${s.id}" data-brand="${brandSlug(s.brand)}" data-purpose="${purposeTags(s).join(" ")}" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/${s.id}.jpg" alt="${esc(s.jp_name)}" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -47,7 +69,7 @@ const trainerCard = (s) => `
     </article>`;
 
 const raceCard = (s) => `
-    <article class="zukan-card" id="z-${s.id}">
+    <article class="zukan-card" id="z-${s.id}" data-brand="${brandSlug(s.brand)}" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
         <img class="zukan-img" src="img/${s.id}.jpg" alt="${esc(s.jp_name)}" loading="lazy" onerror="this.style.display='none'">
         <div>

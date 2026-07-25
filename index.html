@@ -240,6 +240,23 @@
   .zukan-links a,.zukan-links button{font-size:12px;font-weight:700;color:var(--orange);text-decoration:none;background:none;border:none;padding:0;cursor:pointer;font-family:inherit}
   .zukan-links a:hover{text-decoration:underline}
 
+  /* ---- 図鑑フィルター ---- */
+  .zukan-filter{background:#fff;border:1px solid var(--gray-100);border-radius:14px;padding:12px 14px;margin:0 0 18px}
+  .zf-row{display:flex;align-items:flex-start;gap:10px}
+  .zf-row+.zf-row{margin-top:10px;padding-top:10px;border-top:1px solid var(--gray-100)}
+  .zf-label{flex-shrink:0;font-size:11px;font-weight:800;color:var(--gray-500);letter-spacing:.06em;padding-top:6px;width:56px;white-space:nowrap}
+  .zf-chips{display:flex;flex-wrap:wrap;gap:6px}
+  .zf-chip{font-family:inherit;font-size:12px;font-weight:700;color:var(--gray-700);background:var(--gray-50,#f6f6f6);border:1px solid var(--gray-100);border-radius:999px;padding:6px 12px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+  .zf-chip:hover{border-color:var(--orange);color:var(--orange)}
+  .zf-chip.is-on{background:var(--orange);border-color:var(--orange);color:#fff}
+  .zf-status{font-size:11.5px;color:var(--gray-500);margin-top:10px}
+  .zukan-card[hidden]{display:none}
+  .zukan-cat[hidden]{display:none}
+  @media (max-width:420px){
+    .zf-row{flex-direction:column;gap:6px}
+    .zf-label{width:auto;padding-top:0}
+  }
+
   /* ---- 要所のモーション（控えめ・上質）---- */
   @keyframes revealUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
   .reveal-stagger>*{opacity:0;animation:revealUp .55s cubic-bezier(.2,.8,.2,1) forwards}
@@ -345,10 +362,38 @@
     <div class="zukan-head">SHOE LIBRARY</div>
     <h2>収録全モデル図鑑</h2>
     <p class="zukan-intro">診断に収録している練習用18モデルとサブ3向けカーボンレーシング10選を、実走レビュー準拠の「良さ」と「正直な弱点」つきで一覧できます。気になるモデルが見つかったら、上の診断で自分との相性を確かめてください。</p>
+
+    <!-- 図鑑フィルター（JSなしでも図鑑は全件表示されるため、SEO・非対応環境でも問題なし） -->
+    <div class="zukan-filter" id="zukanFilter" hidden>
+      <div class="zf-row">
+        <span class="zf-label">目的</span>
+        <div class="zf-chips" data-group="purpose">
+          <button type="button" class="zf-chip is-on" data-val="all">すべて</button>
+          <button type="button" class="zf-chip" data-val="cushion">クッション・ジョグ</button>
+          <button type="button" class="zf-chip" data-val="speed">テンポ・スピード</button>
+          <button type="button" class="zf-chip" data-val="stability">安定・プロテクション</button>
+        </div>
+      </div>
+      <div class="zf-row">
+        <span class="zf-label">ブランド</span>
+        <div class="zf-chips" data-group="brand">
+          <button type="button" class="zf-chip is-on" data-val="all">すべて</button>
+          <button type="button" class="zf-chip" data-val="nike">Nike</button>
+          <button type="button" class="zf-chip" data-val="asics">ASICS</button>
+          <button type="button" class="zf-chip" data-val="adidas">adidas</button>
+          <button type="button" class="zf-chip" data-val="newbalance">New Balance</button>
+          <button type="button" class="zf-chip" data-val="hoka">HOKA</button>
+          <button type="button" class="zf-chip" data-val="on">On</button>
+          <button type="button" class="zf-chip" data-val="mizuno">Mizuno</button>
+          <button type="button" class="zf-chip" data-val="puma">Puma</button>
+        </div>
+      </div>
+      <div class="zf-status" id="zukanFilterStatus" role="status" aria-live="polite"></div>
+    </div>
     <!-- ZUKAN:START -->
     <h3 class="zukan-cat">練習用トレーナー 18モデル</h3>
 
-    <article class="zukan-card" id="z-pegasus_42">
+    <article class="zukan-card" id="z-pegasus_42" data-brand="nike" data-purpose="speed stability" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/pegasus_42.jpg" alt="ナイキ ペガサス 42" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -364,7 +409,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-vomero_18">
+    <article class="zukan-card" id="z-vomero_18" data-brand="nike" data-purpose="cushion stability" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/vomero_18.jpg" alt="ナイキ ボメロ 18" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -380,7 +425,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-evo_sl">
+    <article class="zukan-card" id="z-evo_sl" data-brand="adidas" data-purpose="cushion speed" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/evo_sl.jpg" alt="アディダス アディゼロ Evo SL" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -396,7 +441,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-novablast_6">
+    <article class="zukan-card" id="z-novablast_6" data-brand="asics" data-purpose="cushion" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/novablast_6.jpg" alt="アシックス ノヴァブラスト 6" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -412,7 +457,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-nb_1080_v15">
+    <article class="zukan-card" id="z-nb_1080_v15" data-brand="newbalance" data-purpose="cushion stability" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/nb_1080_v15.jpg" alt="ニューバランス 1080 v15" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -428,7 +473,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-rebel_v5">
+    <article class="zukan-card" id="z-rebel_v5" data-brand="newbalance" data-purpose="speed" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/rebel_v5.jpg" alt="ニューバランス リベル v5" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -444,7 +489,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-clifton_11">
+    <article class="zukan-card" id="z-clifton_11" data-brand="hoka" data-purpose="cushion stability" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/clifton_11.jpg" alt="ホカ クリフトン 11" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -460,7 +505,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-cloudmonster_3">
+    <article class="zukan-card" id="z-cloudmonster_3" data-brand="on" data-purpose="speed stability" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/cloudmonster_3.jpg" alt="On クラウドモンスター 3" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -476,7 +521,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-kayano_33">
+    <article class="zukan-card" id="z-kayano_33" data-brand="asics" data-purpose="cushion stability" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/kayano_33.jpg" alt="アシックス ゲルカヤノ 33" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -492,7 +537,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-nimbus_28">
+    <article class="zukan-card" id="z-nimbus_28" data-brand="asics" data-purpose="cushion stability" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/nimbus_28.jpg" alt="アシックス ゲルニンバス 28" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -508,7 +553,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-rider_30">
+    <article class="zukan-card" id="z-rider_30" data-brand="mizuno" data-purpose="cushion stability" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/rider_30.jpg" alt="ミズノ ウェーブライダー 30" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -524,7 +569,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-boston_13">
+    <article class="zukan-card" id="z-boston_13" data-brand="adidas" data-purpose="cushion speed stability" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/boston_13.jpg" alt="アディダス アディゼロ ボストン 13" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -540,7 +585,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-pegasus_plus">
+    <article class="zukan-card" id="z-pegasus_plus" data-brand="nike" data-purpose="cushion speed" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/pegasus_plus.jpg" alt="ナイキ ペガサスプラス" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -556,7 +601,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-vomero_plus">
+    <article class="zukan-card" id="z-vomero_plus" data-brand="nike" data-purpose="cushion stability" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/vomero_plus.jpg" alt="ナイキ ボメロプラス" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -572,7 +617,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-bondi_9">
+    <article class="zukan-card" id="z-bondi_9" data-brand="hoka" data-purpose="cushion stability" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/bondi_9.jpg" alt="ホカ ボンダイ 9" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -588,7 +633,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-mach_7">
+    <article class="zukan-card" id="z-mach_7" data-brand="hoka" data-purpose="speed" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/mach_7.jpg" alt="ホカ マッハ 7" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -604,7 +649,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-cloudsurfer_2">
+    <article class="zukan-card" id="z-cloudsurfer_2" data-brand="on" data-purpose="cushion" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/cloudsurfer_2.jpg" alt="オン クラウドサーファー 2" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -620,7 +665,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-cloud_6">
+    <article class="zukan-card" id="z-cloud_6" data-brand="on" data-purpose="speed" data-kind="trainer">
       <div class="zukan-top">
         <img class="zukan-img" src="img/cloud_6.jpg" alt="オン クラウド 6" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -637,7 +682,7 @@
     </article>
     <h3 class="zukan-cat">サブ3向けカーボンレーシング 10選</h3>
 
-    <article class="zukan-card" id="z-vaporfly_4">
+    <article class="zukan-card" id="z-vaporfly_4" data-brand="nike" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
         <img class="zukan-img" src="img/vaporfly_4.jpg" alt="ナイキ ヴェイパーフライ 4" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -653,7 +698,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-alphafly_3">
+    <article class="zukan-card" id="z-alphafly_3" data-brand="nike" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
         <img class="zukan-img" src="img/alphafly_3.jpg" alt="ナイキ アルファフライ 3" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -669,7 +714,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-metaspeed_sky_tokyo">
+    <article class="zukan-card" id="z-metaspeed_sky_tokyo" data-brand="asics" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
         <img class="zukan-img" src="img/metaspeed_sky_tokyo.jpg" alt="アシックス メタスピード スカイ トーキョー" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -685,7 +730,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-metaspeed_edge_tokyo">
+    <article class="zukan-card" id="z-metaspeed_edge_tokyo" data-brand="asics" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
         <img class="zukan-img" src="img/metaspeed_edge_tokyo.jpg" alt="アシックス メタスピード エッジ トーキョー" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -701,7 +746,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-metaspeed_ray">
+    <article class="zukan-card" id="z-metaspeed_ray" data-brand="asics" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
         <img class="zukan-img" src="img/metaspeed_ray.jpg" alt="アシックス メタスピード レイ" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -717,7 +762,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-adios_pro_5">
+    <article class="zukan-card" id="z-adios_pro_5" data-brand="adidas" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
         <img class="zukan-img" src="img/adios_pro_5.jpg" alt="アディダス アディゼロ アディオス プロ 5" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -733,7 +778,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-rebellion_pro_3">
+    <article class="zukan-card" id="z-rebellion_pro_3" data-brand="mizuno" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
         <img class="zukan-img" src="img/rebellion_pro_3.jpg" alt="ミズノ ウェーブリベリオンプロ 3" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -749,7 +794,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-sc_elite_v5">
+    <article class="zukan-card" id="z-sc_elite_v5" data-brand="newbalance" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
         <img class="zukan-img" src="img/sc_elite_v5.jpg" alt="ニューバランス SCエリート v5" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -765,7 +810,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-fastr_3">
+    <article class="zukan-card" id="z-fastr_3" data-brand="puma" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
         <img class="zukan-img" src="img/fastr_3.jpg" alt="プーマ ファストR ニトロ エリート 3" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -781,7 +826,7 @@
       </div>
     </article>
 
-    <article class="zukan-card" id="z-cloudboom_strike">
+    <article class="zukan-card" id="z-cloudboom_strike" data-brand="on" data-purpose="speed" data-kind="race">
       <div class="zukan-top">
         <img class="zukan-img" src="img/cloudboom_strike.jpg" alt="オン クラウドブーム ストライク" loading="lazy" onerror="this.style.display='none'">
         <div>
@@ -2107,6 +2152,59 @@ function zukanToDiagnosis(){
   const s = document.getElementById("screenStart");
   if(s && !s.classList.contains("hidden")){ /* スタート画面ならそのまま */ }
 }
+
+/* ---- 図鑑フィルター ----
+   JSが動く環境でだけUIを出す（no-JSでは全件表示のままでSEOに影響しない） */
+(function initZukanFilter(){
+  const wrap = document.getElementById("zukanFilter");
+  if(!wrap) return;
+  const cards = Array.prototype.slice.call(document.querySelectorAll(".zukan-card"));
+  if(!cards.length) return;
+  wrap.hidden = false;
+
+  const state = {purpose:"all", brand:"all"};
+  const statusEl = document.getElementById("zukanFilterStatus");
+
+  function apply(){
+    let shown = 0;
+    cards.forEach(card=>{
+      const brand = card.getAttribute("data-brand") || "";
+      const purpose = (card.getAttribute("data-purpose") || "").split(/\s+/);
+      const okBrand = state.brand === "all" || brand === state.brand;
+      const okPurpose = state.purpose === "all" || purpose.indexOf(state.purpose) !== -1;
+      const show = okBrand && okPurpose;
+      card.hidden = !show;
+      if(show) shown++;
+    });
+    // 見出し（練習用／レーシング）は、その配下に表示中カードが無ければ隠す
+    document.querySelectorAll(".zukan-cat").forEach(head=>{
+      let any = false;
+      let el = head.nextElementSibling;
+      while(el && !el.classList.contains("zukan-cat")){
+        if(el.classList.contains("zukan-card") && !el.hidden){ any = true; break; }
+        el = el.nextElementSibling;
+      }
+      head.hidden = !any;
+    });
+    if(statusEl){
+      statusEl.textContent = (state.purpose === "all" && state.brand === "all")
+        ? `全${cards.length}モデルを表示中`
+        : `${shown}モデルを表示中（該当なしの場合は条件を変えてください）`;
+    }
+  }
+
+  wrap.addEventListener("click", e=>{
+    const btn = e.target.closest(".zf-chip");
+    if(!btn) return;
+    const group = btn.parentElement.getAttribute("data-group");
+    if(!group) return;
+    state[group] = btn.getAttribute("data-val");
+    btn.parentElement.querySelectorAll(".zf-chip").forEach(b=>b.classList.toggle("is-on", b === btn));
+    apply();
+  });
+
+  apply();
+})();
 
 // 結果をシェア（Web Share API → クリップボードフォールバック）
 async function shareResult(shoe, btn){
