@@ -164,6 +164,20 @@
   .chip{font-size:11px;padding:4px 10px;border-radius:999px;background:var(--gray-100);color:var(--gray-700);font-weight:600}
   .chip.alert{background:#fff0e6;color:var(--orange-dark)}
 
+  /* 評価軸（5段階） */
+  .rt-block{background:#fff;border:1px solid var(--gray-100);border-radius:14px;padding:12px 14px;margin:10px 0}
+  .rt-title{font-size:11px;font-weight:800;color:var(--gray-500);letter-spacing:.08em;margin-bottom:8px}
+  .rt-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+  .rt-row:last-child{margin-bottom:0}
+  .rt-label{font-size:12px;color:var(--gray-700);font-weight:600;width:6.5em;flex-shrink:0}
+  .rt-dots{display:flex;gap:4px}
+  .rt-dot{width:15px;height:6px;border-radius:3px;background:var(--gray-100)}
+  .rt-dot.on{background:var(--orange)}
+  /* 比較候補の差分ラベル */
+  .alt-diff{display:inline-block;font-size:10.5px;font-weight:700;color:var(--orange-dark);background:#fff0e6;border-radius:999px;padding:2px 8px;margin-top:4px}
+  /* 安全表記（結果画面に1回） */
+  .safety-note{font-size:11px;line-height:1.75;color:var(--gray-500);background:var(--gray-50,#f6f6f6);border-radius:12px;padding:12px 14px;margin:18px 0 4px}
+
   .spec-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px;background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden}
   .spec-table td{padding:7px 10px;border-bottom:1px solid var(--gray-100)}
   .spec-table td:first-child{color:var(--gray-500);width:48%}
@@ -2000,7 +2014,7 @@ function showResult(){
       alt.textContent = "▸ 次点の候補";
       body.appendChild(alt);
       results.slice(1, 4).forEach((r,i)=>{
-        body.appendChild(buildAltCard(r, i+2));
+        body.appendChild(buildAltCard(r, i+2, results[0].shoe));
       });
     }
   }
@@ -2021,7 +2035,7 @@ function showResult(){
         hdr.textContent = "▸ 気になっている1足";
         body.appendChild(hdr);
         const ranked = results.findIndex(r=>r.shoe.id === interested.id) + 1;
-        body.appendChild(buildAltCard(results.find(r=>r.shoe.id === interested.id) || {shoe:interested, score:0, reasons:{}}, ranked));
+        body.appendChild(buildAltCard(results.find(r=>r.shoe.id === interested.id) || {shoe:interested, score:0, reasons:{}}, ranked, results[0] && results[0].shoe));
       }
     } else {
       const raceHit = findInterestedRaceShoe(answers.interestedShoe);
@@ -2043,6 +2057,12 @@ function showResult(){
       body.appendChild(note);
     }
   }
+
+  // 安全表記：結果画面に1回だけ、控えめに
+  const safety = document.createElement("p");
+  safety.className = "safety-note";
+  safety.textContent = "本診断はシューズ選びの参考情報です。痛みが続く場合や走行中に痛みが増す場合は、ランニングを中止し、医療機関等へご相談ください。";
+  body.appendChild(safety);
 
   $("screenLoading").classList.add("hidden");
   $("screenResult").classList.remove("hidden");
@@ -2186,6 +2206,7 @@ function buildBestCard(r){
       <button type="button" class="share-btn">結果をシェアする</button>
     </div>
     <div class="attr-chips">${chips}</div>
+    ${ratingBarsHTML(s)}
     <div class="why-block">
       <div class="why-title">おすすめ理由</div>
       <div class="why-row"><span class="rk">体格:</span><span>${escapeHtml(r.reasons.body)}</span></div>
@@ -2309,16 +2330,20 @@ async function shareResult(shoe, btn){
   }catch(e){ /* クリップボード不可環境では何もしない */ }
 }
 
-function buildAltCard(r, rank){
+function buildAltCard(r, rank, bestShoe){
   const s = r.shoe;
   const card = document.createElement("div");
   card.className = "alt-card";
+  // ベストマッチとの違いを一言で示す（無ければ従来通り）
+  const diff = (bestShoe && bestShoe.id !== s.id)
+    ? `<div class="alt-diff">${escapeHtml(diffLabel(bestShoe, s))}</div>` : "";
   card.innerHTML = `
     <div class="alt-rank">${rank}</div>
     ${pictureHTML(s.id, "", "alt-thumb")}
     <div class="alt-body">
       <div class="alt-name">${escapeHtml(shortShoeName(s))}</div>
       <div class="alt-meta">${rideJP(s.ride)} / ${cushionJP(s.cushioning)} / ${s.weight_g}g / ¥${s.price_jpy.toLocaleString()}</div>
+      ${diff}
       <div class="alt-toggle">タップで理由を見る</div>
     </div>
     <div class="alt-score">${r.score || "-"}</div>
@@ -2393,6 +2418,84 @@ function recommendationLine(r){
 
 function chipHTML(label, val){
   return `<span class="chip"><strong style="color:var(--navy)">${label}</strong>: ${val}</span>`;
+}
+
+/* =========================================================
+   評価軸（5段階）: 既存のシューズデータから算出する。
+   スコアリングには一切影響させず、表示専用。
+   ========================================================= */
+function shoeRatings(s){
+  const clamp = n => Math.max(1, Math.min(5, Math.round(n)));
+  const stack = (s.heel + s.fore) / 2;
+
+  // クッション: 柔らかさ×スタック高
+  let cushion = {soft:4.4, balanced:3.2, firm:2.2}[s.cushioning] ?? 3;
+  if(stack >= 40) cushion += 0.8; else if(stack >= 34) cushion += 0.3; else if(stack < 28) cushion -= 0.5;
+
+  // 安定性: stability＋体重対応＋幅
+  let stability = {high:4.5, moderate:3.2, low:1.9}[s.stability] ?? 3;
+  if(s.heavy_runner_ok) stability += 0.5;
+  if(s.width === "wide") stability += 0.3; else if(s.width === "narrow") stability -= 0.4;
+
+  // 軽快感: 軽さが主。300g超はもたつく
+  let light = 5 - (s.weight_g - 215) / 26;
+
+  // 反発力: 乗り味で決まる
+  let bounce = {responsive:4.4, bouncy:4.6, smooth:3.0, grounded:2.4}[s.ride] ?? 3;
+  if(s.best_use.includes("speed")) bounce += 0.5;
+
+  // 脚への優しさ: クッションとケガ配慮、レース志向は控えめ
+  let gentle = cushion * 0.6 + stability * 0.3 + 0.6;
+  if((s.injury_safe || []).length >= 2) gentle += 0.5;
+  if((s.injury_avoid || []).length) gentle -= 0.8;
+  if(s.best_use.includes("speed") && !s.best_use.includes("daily")) gentle -= 0.6;
+
+  return {
+    cushion: clamp(cushion),
+    stability: clamp(stability),
+    light: clamp(light),
+    bounce: clamp(bounce),
+    gentle: clamp(gentle)
+  };
+}
+
+const RATING_LABELS = [
+  ["cushion","クッション"],
+  ["stability","安定性"],
+  ["light","軽快感"],
+  ["bounce","反発力"],
+  ["gentle","脚への優しさ"]
+];
+
+function ratingBarsHTML(s){
+  const r = shoeRatings(s);
+  const rows = RATING_LABELS.map(([key,label])=>{
+    const v = r[key];
+    const dots = [1,2,3,4,5].map(i=>`<span class="rt-dot${i<=v?" on":""}"></span>`).join("");
+    return `<div class="rt-row"><span class="rt-label">${label}</span><span class="rt-dots" role="img" aria-label="${label} 5段階中${v}">${dots}</span></div>`;
+  }).join("");
+  return `<div class="rt-block"><div class="rt-title">評価の目安</div>${rows}</div>`;
+}
+
+// ベストマッチと比べた際の「差」を短い言葉にする（比較候補用）
+function diffLabel(best, alt){
+  const b = shoeRatings(best), a = shoeRatings(alt);
+  const cands = [
+    {d:a.light - b.light, up:"より軽快", down:"どっしり寄り"},
+    {d:a.stability - b.stability, up:"より安定", down:"より軽やか"},
+    {d:a.cushion - b.cushion, up:"よりクッション厚め", down:"より地面が近い"},
+    {d:a.bounce - b.bounce, up:"より反発強め", down:"より穏やかな反発"},
+    {d:a.gentle - b.gentle, up:"より脚にやさしい", down:"よりレース寄り"}
+  ];
+  cands.sort((x,y)=>Math.abs(y.d) - Math.abs(x.d));
+  const top = cands[0];
+  if(!top || Math.abs(top.d) < 1){
+    const price = alt.price_jpy - best.price_jpy;
+    if(price <= -2000) return "価格が抑えめ";
+    if(price >= 2000) return "価格は上がる";
+    return "近い性格の1足";
+  }
+  return top.d > 0 ? top.up : top.down;
 }
 // WebP優先・JPEGフォールバック（未対応ブラウザでも従来通り表示される）
 function pictureHTML(id, alt, cls){
