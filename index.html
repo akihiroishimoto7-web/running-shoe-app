@@ -266,6 +266,15 @@
   .zf-chip:hover{border-color:var(--orange);color:var(--orange)}
   .zf-chip.is-on{background:var(--orange);border-color:var(--orange);color:#fff}
   .zf-status{font-size:11.5px;color:var(--gray-500);margin-top:10px}
+  .zf-search{flex:1;min-width:0}
+  .zf-search input{width:100%;font-family:inherit;font-size:13px;color:var(--gray-700);background:var(--gray-50,#f6f6f6);border:1px solid var(--gray-100);border-radius:10px;padding:9px 12px;min-height:40px;-webkit-appearance:none;appearance:none}
+  .zf-search input:focus{outline:2px solid var(--orange);outline-offset:1px;background:#fff}
+  .zukan-more-wrap{text-align:center;margin:6px 0 4px}
+  .zukan-more{font-family:inherit;font-size:13px;font-weight:700;color:var(--orange);background:#fff;border:1px solid var(--orange);border-radius:999px;padding:11px 26px;min-height:44px;cursor:pointer;transition:background .2s,color .2s}
+  .zukan-more:hover{background:var(--orange);color:#fff}
+  .zukan-empty{background:#fff;border:1px dashed var(--gray-100);border-radius:14px;padding:22px 16px;text-align:center;font-size:12.5px;color:var(--gray-500);line-height:1.8}
+  .zukan-empty strong{display:block;font-size:14px;color:var(--navy);margin-bottom:4px}
+  .zukan-reset{display:inline-block;margin-top:10px;font-family:inherit;font-size:12.5px;font-weight:700;color:var(--orange);background:none;border:1px solid var(--orange);border-radius:999px;padding:9px 20px;min-height:40px;cursor:pointer}
   .zukan-card[hidden]{display:none}
   .zukan-cat[hidden]{display:none}
   @media (max-width:420px){
@@ -381,6 +390,12 @@
 
     <!-- 図鑑フィルター（JSなしでも図鑑は全件表示されるため、SEO・非対応環境でも問題なし） -->
     <div class="zukan-filter" id="zukanFilter" hidden>
+      <div class="zf-row">
+        <span class="zf-label">検索</span>
+        <div class="zf-search">
+          <input type="search" id="zukanSearch" placeholder="モデル名で探す（例：ペガサス）" aria-label="シューズをモデル名で検索" autocomplete="off">
+        </div>
+      </div>
       <div class="zf-row">
         <span class="zf-label">目的</span>
         <div class="zf-chips" data-group="purpose">
@@ -508,10 +523,10 @@
       <div class="zukan-top">
         <picture>
           <source srcset="img/rebel_v5.webp" type="image/webp">
-          <img class="zukan-img" src="img/rebel_v5.jpg" alt="ニューバランス リベル v5" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
+          <img class="zukan-img" src="img/rebel_v5.jpg" alt="ニューバランス レベル v5" loading="lazy" decoding="async" onerror="this.closest('picture').style.display='none'">
         </picture>
         <div>
-          <h4 class="zukan-name">ニューバランス リベル v5</h4>
+          <h4 class="zukan-name">ニューバランス レベル v5</h4>
           <div class="zukan-spec">New Balance ／ New Balance FuelCell Rebel v5<br>約225g ・ スタック35/29mm ・ ドロップ6mm ・ 参考 ¥17,000</div>
         </div>
       </div>
@@ -942,6 +957,14 @@
       </div>
     </article>
     <!-- ZUKAN:END -->
+    <div class="zukan-more-wrap" id="zukanMoreWrap" hidden>
+      <button type="button" class="zukan-more" id="zukanMore">さらに表示</button>
+    </div>
+    <div class="zukan-empty" id="zukanEmpty" hidden>
+      <strong>条件に合うモデルがありません</strong>
+      検索語やフィルターを変えてお試しください。
+      <button type="button" class="zukan-reset" id="zukanReset">条件をリセット</button>
+    </div>
     <footer style="text-align:left">
       ※ 図鑑の内容は診断データと同一です。価格は参考値で変動します。
     </footer>
@@ -1023,7 +1046,7 @@ const SHOES = [
     ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12966773183.html"
   },
   {
-    id:"rebel_v5", name:"New Balance FuelCell Rebel v5", jp_name:"ニューバランス リベル v5", brand:"New Balance",
+    id:"rebel_v5", name:"New Balance FuelCell Rebel v5", jp_name:"ニューバランス レベル v5", brand:"New Balance",
     price_jpy:17000, heel:35, fore:29, drop:6, weight_g:225,
     cushioning:"balanced", stability:"moderate", ride:"bouncy",
     width:"regular",
@@ -2272,20 +2295,39 @@ function zukanToDiagnosis(){
   if(!cards.length) return;
   wrap.hidden = false;
 
-  const state = {purpose:"all", brand:"all"};
+  const PAGE = 6; // スマホで探しやすいよう初期表示を絞る
+  const state = {purpose:"all", brand:"all", q:"", limit:PAGE};
   const statusEl = document.getElementById("zukanFilterStatus");
+  const searchEl = document.getElementById("zukanSearch");
+  const moreWrap = document.getElementById("zukanMoreWrap");
+  const moreBtn  = document.getElementById("zukanMore");
+  const emptyEl  = document.getElementById("zukanEmpty");
+  const resetBtn = document.getElementById("zukanReset");
+
+  // 検索用の文字列を1度だけ作る（日本語名・英語名・ブランド）
+  cards.forEach(card=>{
+    const name = (card.querySelector(".zukan-name")||{}).textContent || "";
+    const spec = (card.querySelector(".zukan-spec")||{}).textContent || "";
+    card.dataset.search = (name + " " + spec).toLowerCase();
+  });
+
+  const norm = s => (s||"").trim().toLowerCase();
+
+  function matches(card){
+    const brand = card.getAttribute("data-brand") || "";
+    const purpose = (card.getAttribute("data-purpose") || "").split(/\s+/);
+    if(state.brand !== "all" && brand !== state.brand) return false;
+    if(state.purpose !== "all" && purpose.indexOf(state.purpose) === -1) return false;
+    if(state.q && (card.dataset.search || "").indexOf(state.q) === -1) return false;
+    return true;
+  }
 
   function apply(){
-    let shown = 0;
-    cards.forEach(card=>{
-      const brand = card.getAttribute("data-brand") || "";
-      const purpose = (card.getAttribute("data-purpose") || "").split(/\s+/);
-      const okBrand = state.brand === "all" || brand === state.brand;
-      const okPurpose = state.purpose === "all" || purpose.indexOf(state.purpose) !== -1;
-      const show = okBrand && okPurpose;
-      card.hidden = !show;
-      if(show) shown++;
-    });
+    const hits = cards.filter(matches);
+    const limit = state.q ? hits.length : state.limit; // 検索時は全件出す
+    cards.forEach(card=>{ card.hidden = true; });
+    hits.slice(0, limit).forEach(card=>{ card.hidden = false; });
+
     // 見出し（練習用／レーシング）は、その配下に表示中カードが無ければ隠す
     document.querySelectorAll(".zukan-cat").forEach(head=>{
       let any = false;
@@ -2296,11 +2338,18 @@ function zukanToDiagnosis(){
       }
       head.hidden = !any;
     });
+
+    const visible = Math.min(hits.length, limit);
     if(statusEl){
-      statusEl.textContent = (state.purpose === "all" && state.brand === "all")
-        ? `全${cards.length}モデルを表示中`
-        : `${shown}モデルを表示中（該当なしの場合は条件を変えてください）`;
+      statusEl.textContent = hits.length === 0
+        ? "該当するモデルがありません"
+        : (visible < hits.length
+            ? `${hits.length}件中 ${visible}件を表示中`
+            : `${hits.length}件を表示中`);
     }
+    if(moreWrap) moreWrap.hidden = !(hits.length > visible);
+    if(moreBtn) moreBtn.textContent = `さらに表示（残り${Math.max(0, hits.length - visible)}件）`;
+    if(emptyEl) emptyEl.hidden = hits.length !== 0;
   }
 
   wrap.addEventListener("click", e=>{
@@ -2309,9 +2358,40 @@ function zukanToDiagnosis(){
     const group = btn.parentElement.getAttribute("data-group");
     if(!group) return;
     state[group] = btn.getAttribute("data-val");
+    state.limit = PAGE; // 条件を変えたら先頭から
     btn.parentElement.querySelectorAll(".zf-chip").forEach(b=>b.classList.toggle("is-on", b === btn));
     apply();
   });
+
+  if(searchEl){
+    let timer = null;
+    searchEl.addEventListener("input", ()=>{
+      clearTimeout(timer);
+      timer = setTimeout(()=>{ state.q = norm(searchEl.value); state.limit = PAGE; apply(); }, 150);
+    });
+  }
+
+  if(moreBtn){
+    moreBtn.addEventListener("click", ()=>{
+      state.limit += PAGE;
+      apply();
+      // 追加分の先頭あたりへ視線を移す
+      const shown = cards.filter(c=>!c.hidden);
+      const target = shown[Math.max(0, state.limit - PAGE)];
+      if(target) target.scrollIntoView({block:"center", behavior:"smooth"});
+    });
+  }
+
+  if(resetBtn){
+    resetBtn.addEventListener("click", ()=>{
+      state.purpose = "all"; state.brand = "all"; state.q = ""; state.limit = PAGE;
+      if(searchEl) searchEl.value = "";
+      wrap.querySelectorAll(".zf-chips").forEach(g=>{
+        g.querySelectorAll(".zf-chip").forEach(b=>b.classList.toggle("is-on", b.getAttribute("data-val") === "all"));
+      });
+      apply();
+    });
+  }
 
   apply();
 })();
