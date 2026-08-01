@@ -73,6 +73,17 @@
   .start-detail{margin-top:18px;padding:0 4px}
   .start-detail p{font-size:12.5px;color:var(--gray-500);line-height:1.85;margin:12px 0 0}
 
+  /* これまでの診断結果（直近3件） */
+  .hist-block{margin-top:16px;background:#fff;border:1px solid var(--gray-100);border-radius:16px;padding:14px 16px}
+  .hist-title{font-size:11px;font-weight:800;color:var(--gray-500);letter-spacing:.08em;margin-bottom:10px}
+  .hist-list{list-style:none;margin:0;padding:0}
+  .hist-item{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid var(--gray-100)}
+  .hist-item:first-child{border-top:0}
+  .hist-thumb{width:34px;height:34px;flex-shrink:0;background:#fff;border:1px solid var(--gray-100);border-radius:8px;object-fit:contain;padding:2px}
+  .hist-item>picture{flex-shrink:0;display:block;font-size:0}
+  .hist-name{font-size:13px;font-weight:700;color:var(--navy);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .hist-meta{font-size:11px;color:var(--gray-500);flex-shrink:0}
+
   .q-head{margin:10px 0 20px}
   .q-index{display:inline-block;font-size:11px;color:var(--orange);font-weight:700;letter-spacing:.18em;margin-bottom:8px}
   .q-title{font-size:23px;font-weight:800;color:var(--navy);margin:0 0 8px;line-height:1.34;letter-spacing:-.015em}
@@ -343,6 +354,9 @@
         <button class="resume-btn" onclick="resumeQuiz()">前回の続きから再開</button>
       </div>
     </div>
+
+    <!-- 過去の診断結果（あるときだけ表示） -->
+    <div class="hist-block" id="historyBlock" hidden></div>
 
     <!-- ファーストビューの下：このアプリの中身を説明する -->
     <div class="start-detail">
@@ -1512,6 +1526,71 @@ function loadProgress(){
   }catch(e){ return null; }
 }
 
+/* =========================================================
+   診断履歴（直近3回）
+   古い形式が残っていても壊れないよう、versionを持たせて検証する
+   ========================================================= */
+const HISTORY_KEY = "shoeDiagHistory";
+const HISTORY_VERSION = 1;
+const HISTORY_MAX = 3;
+
+function loadHistory(){
+  try{
+    const raw = localStorage.getItem(HISTORY_KEY);
+    if(!raw) return [];
+    const d = JSON.parse(raw);
+    // 想定外の形式・古いバージョンは捨てて作り直す（クラッシュさせない）
+    if(!d || d.version !== HISTORY_VERSION || !Array.isArray(d.items)) return [];
+    return d.items.filter(it =>
+      it && typeof it.shoeId === "string" && typeof it.at === "number"
+    ).slice(0, HISTORY_MAX);
+  }catch(e){ return []; }
+}
+
+function saveHistory(shoe, score){
+  if(!shoe || !shoe.id) return;
+  try{
+    const items = loadHistory();
+    const entry = {
+      shoeId: shoe.id,
+      name: shortShoeName(shoe),
+      score: typeof score === "number" ? score : 0,
+      at: Date.now()
+    };
+    // 同じ靴が連続したときは最新だけ残す
+    const rest = items.filter(it => it.shoeId !== entry.shoeId);
+    const next = [entry].concat(rest).slice(0, HISTORY_MAX);
+    localStorage.setItem(HISTORY_KEY, JSON.stringify({version:HISTORY_VERSION, items:next}));
+  }catch(e){ /* 容量超過・プライベートモード等は黙って諦める */ }
+}
+
+function historyDateLabel(ts){
+  try{
+    const d = new Date(ts);
+    return `${d.getMonth()+1}/${d.getDate()}`;
+  }catch(e){ return ""; }
+}
+
+// スタート画面に「前回の結果」を出す（2件目以降があれば履歴として並べる）
+function renderHistory(){
+  const wrap = $("historyBlock");
+  if(!wrap) return;
+  const items = loadHistory();
+  if(!items.length){ wrap.hidden = true; wrap.innerHTML = ""; return; }
+  const rows = items.map(it=>{
+    const shoe = SHOES.find(s=>s.id === it.shoeId);
+    const label = escapeHtml(it.name || (shoe ? shortShoeName(shoe) : it.shoeId));
+    const thumb = shoe ? pictureHTML(shoe.id, "", "hist-thumb") : "";
+    return `<li class="hist-item">
+      ${thumb}
+      <span class="hist-name">${label}</span>
+      <span class="hist-meta">${historyDateLabel(it.at)}・${it.score}点</span>
+    </li>`;
+  }).join("");
+  wrap.innerHTML = `<div class="hist-title">これまでの診断結果</div><ul class="hist-list">${rows}</ul>`;
+  wrap.hidden = false;
+}
+
 function startQuiz(){
   currentQ = 0;
   clearProgress();
@@ -2044,6 +2123,7 @@ function showResult(){
   } else {
     $("resultSubtitle").textContent = `${shortShoeName(results[0].shoe)} をおすすめします`;
     body.appendChild(buildBestCard(results[0]));
+    saveHistory(results[0].shoe, results[0].score);
     if(results.length > 1){
       const alt = document.createElement("div");
       alt.className = "alt-title";
@@ -2646,6 +2726,7 @@ function restart(){
   $("screenResult").classList.add("hidden");
   $("screenStart").classList.remove("hidden");
   $("progressWrap").style.display = "none";
+  renderHistory(); // 直前の結果を反映してから戻す
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
@@ -2661,6 +2742,7 @@ function editAnswers(){
 (function initResume(){
   const d = loadProgress();
   if(d && d.currentQ > 0) $("resumeRow").style.display = "block";
+  renderHistory();
 })();
 
 document.addEventListener("keydown",(e)=>{
