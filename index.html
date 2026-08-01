@@ -68,6 +68,10 @@
   .start-card ul{list-style:none;text-align:left;font-size:13px;color:var(--gray-700);padding:0;margin:16px 0 22px}
   .start-card li{margin-bottom:8px;padding-left:18px;position:relative}
   .start-card li::before{content:"";position:absolute;left:2px;top:.7em;width:6px;height:6px;border-radius:999px;background:var(--orange)}
+  .start-card ul{margin-top:0}
+  /* ファーストビュー下の説明。診断開始の邪魔をしない控えめな見た目にする */
+  .start-detail{margin-top:18px;padding:0 4px}
+  .start-detail p{font-size:12.5px;color:var(--gray-500);line-height:1.85;margin:12px 0 0}
 
   .q-head{margin:10px 0 20px}
   .q-index{display:inline-block;font-size:11px;color:var(--orange);font-weight:700;letter-spacing:.18em;margin-bottom:8px}
@@ -315,8 +319,8 @@
 <div class="app">
   <header class="hero">
     <div class="logo">RUN SHOE DIAGNOSIS</div>
-    <h1>ランニングシューズ診断アプリ</h1>
-    <p>体格・走り方・好みの12問で、厳選18モデルからあなたのベスト1足を無料診断します</p>
+    <h1>あなたに合うランニングシューズを、12問で診断</h1>
+    <p>体格・走り方・ケガ歴・好みから、約2分で判定します</p>
   </header>
 
   <div class="progress-wrap" id="progressWrap" style="display:none">
@@ -328,23 +332,28 @@
   </div>
 
   <section class="screen" id="screenStart">
+    <!-- 診断を始めることに集中させる -->
     <div class="start-card">
-      <h2>あなたにぴったりの1足を診断</h2>
-      <p style="font-size:13px;color:var(--gray-700);margin:0">体格・走力・ケガ歴・好みの履き心地から、最新18モデルのなかからベストな1足を選定します。</p>
+      <ul>
+        <li>所要時間 約2分（全12問）</li>
+        <li>登録不要・無料</li>
+      </ul>
+      <button class="btn btn-primary" style="width:100%" onclick="startQuiz()">無料で診断を始める</button>
+      <div class="resume-row" id="resumeRow" style="display:none">
+        <button class="resume-btn" onclick="resumeQuiz()">前回の続きから再開</button>
+      </div>
+    </div>
+
+    <!-- ファーストビューの下：このアプリの中身を説明する -->
+    <div class="start-detail">
       <div class="trust-badges">
         <span>実走レビュー準拠</span>
         <span>厳選18モデル</span>
         <span>サブ3レース枠 10選</span>
         <span>弱点も正直に表示</span>
       </div>
-      <ul>
-        <li>所要時間: 約2〜3分（全12問）</li>
-        <li>体格・走り方・好みから総合的に判定します</li>
-      </ul>
-      <button class="btn btn-primary" style="width:100%" onclick="startQuiz()">診断スタート</button>
-      <div class="resume-row" id="resumeRow" style="display:none">
-        <button class="resume-btn" onclick="resumeQuiz()">前回の続きから再開する</button>
-      </div>
+      <p>体格・走力・ケガ歴・好みの履き心地から、練習用の最新18モデルのなかであなたに合う1足を選定します。海外レビュー3媒体の評価をもとに、良い点だけでなく弱点も正直に表示します。</p>
+      <p>サブ3を狙う方には、本番用のカーボンレーシング10選も別枠でご案内します。</p>
     </div>
   </section>
 
