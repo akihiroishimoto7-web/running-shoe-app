@@ -164,6 +164,8 @@
   .score-big{flex:0 0 82px;text-align:center;padding:11px 8px;background:var(--surface);border:1px solid var(--border);border-radius:16px;margin:0}
   .score-big .val{font-size:34px;font-weight:800;color:var(--orange);line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
   .score-big .lbl{font-size:10.5px;color:var(--gray-500);font-weight:600;letter-spacing:.14em}
+  .score-grade{margin-top:5px;padding-top:5px;border-top:1px solid var(--border);font-size:11px;font-weight:800;color:var(--orange-dark);letter-spacing:.04em}
+  .score-note{font-size:12px;color:var(--gray-500);line-height:1.8;margin:0 0 4px}
   .result-summary{font-size:14px;color:var(--gray-700);line-height:1.65;margin:14px 0 8px}
   .quick-read{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
   .quick-read div{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:10px;font-size:12px;color:var(--gray-700)}
@@ -2374,9 +2376,11 @@ function buildBestCard(r, isTied){
       <div class="score-big">
         <div class="val">${r.score}</div>
         <div class="lbl">/ 100</div>
+        <div class="score-grade">${escapeHtml(scoreGrade(r.score))}</div>
       </div>
     </div>
     <p class="result-summary">${escapeHtml(recommendationLine(r))}</p>
+    <p class="score-note">${escapeHtml(scoreNote(r.score))}</p>
     ${warnings}
     <div class="quick-read">
       <div><strong>タイプ</strong>${escapeHtml(shoeTypeLabel(s))}</div>
@@ -2659,6 +2663,22 @@ function recommendationLine(r){
 
 function chipHTML(label, val){
   return `<span class="chip"><strong style="color:var(--navy)">${label}</strong>: ${val}</span>`;
+}
+
+/* スコアだけでは高いのか普通なのか伝わらないため、目安の言葉を添える。
+   全回答パターンを検証した実際の分布（中央値86点）に合わせた区切り。 */
+function scoreGrade(score){
+  if(score >= 90) return "相性◎";
+  if(score >= 85) return "相性○";
+  if(score >= 78) return "まずまず";
+  return "妥協あり";
+}
+// スコアの意味を1行で補足する
+function scoreNote(score){
+  if(score >= 90) return "収録18モデルのなかでも、あなたの条件によく合う部類です。";
+  if(score >= 85) return "無理なく履ける相性です。迷ったらこの1足で問題ありません。";
+  if(score >= 78) return "大きな不満は出にくい相性ですが、条件を少し譲っている部分があります。";
+  return "条件が厳しめで、どこかを妥協する必要があります。予算やケガの条件を見直すと変わることがあります。";
 }
 
 /* =========================================================
