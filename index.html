@@ -339,8 +339,8 @@
 <div class="app">
   <header class="hero">
     <div class="logo">RUN SHOE DIAGNOSIS</div>
-    <h1>あなたに合うランニングシューズを、11問で診断</h1>
-    <p>体格・走り方・ケガ歴・好みから、約2分で判定します</p>
+    <h1>「結局どれを買えばいい？」に答えます。</h1>
+    <p>実走レビュー準拠。良い点も弱点も正直に伝えます</p>
   </header>
 
   <div class="progress-wrap" id="progressWrap" style="display:none">
@@ -1155,6 +1155,7 @@ const SHOES = [
     runner_type:["beginner","sub-4","experienced"],
     injury_safe:["shin","knee"], injury_avoid:[],
     heavy_runner_ok:true,
+    plate:true,
     real_feel:"30代目で42mm級ハイスタックに大変身。フルレングスWaveプレート＋改良フォームで、柔らかく滑らかなのに芯が残る。日本の定番が新時代へ。",
     weakness:"高スタック化で往年の地面に近い接地感は薄れた。ドロップも10mm→8mmに変わり、29までの感覚に慣れた人は違和感があるかも。",
     ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12972069281.html"
@@ -1168,6 +1169,7 @@ const SHOES = [
     runner_type:["sub-4","experienced"],
     injury_safe:[], injury_avoid:[],
     heavy_runner_ok:true,
+    plate:true,
     real_feel:"Lightstrike Pro増量＋ENERGY RODSの推進力。テンポ走〜ロング走で本領を発揮する、レースDNAの練習機。",
     weakness:"つま先はタイトで幅広の足には窮屈。ゆっくりジョグだと硬さが目立つ。",
     ameblo_url:"https://ameblo.jp/tougyou-0111/entry-12943781178.html"
@@ -1928,6 +1930,13 @@ function scoreShoe(shoe){
   else if(shoe.best_use.includes(t.primary)) usePts = 7;  // こなせるが主ではない
   else if(shoe.best_use.some(u=>t.secondary.includes(u))) usePts = 4;
   else usePts = 1;
+  // プレート/ロッド入りはレース寄りの練習で本領を発揮する一方、
+  // ゆっくり走る用途では硬さが出る。用途によって評価を分ける。
+  if(shoe.plate){
+    if(answers.useCase === 1) usePts = Math.min(10, usePts + 3);
+    else if(answers.useCase === 2) usePts = Math.min(10, usePts + 2);
+    else if(answers.useCase === 4) usePts = Math.max(1, usePts - 3);
+  }
   score += usePts;
 
   // === Injury (12 pts; avoid → -30) ===
