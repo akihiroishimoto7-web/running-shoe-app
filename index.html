@@ -194,6 +194,15 @@
   .rt-dot.on{background:var(--orange)}
   /* 比較候補の差分ラベル */
   .alt-diff{display:inline-block;font-size:10.5px;font-weight:700;color:var(--orange-dark);background:#fff0e6;border-radius:999px;padding:2px 8px;margin-top:4px}
+  /* 拮抗しているときの案内。断定を避け、事実として伝える */
+  .tie-notice{background:#f4f8fc;border:1px solid #d6e4f0;border-radius:16px;padding:15px 17px;margin:2px 0 14px}
+  .tie-head{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:7px}
+  .tie-notice p{font-size:12.5px;color:var(--gray-700);line-height:1.85;margin:0 0 7px}
+  .tie-notice p:last-child{margin-bottom:0}
+  .tie-notice strong{color:var(--orange-dark)}
+  .tie-hint{color:var(--gray-700)}
+  .tie-note{font-size:11.5px;color:var(--gray-500)}
+  .alt-tie{display:inline-block;font-size:10px;font-weight:700;color:#1c5a8a;background:#e5eff8;border-radius:999px;padding:2px 7px;margin-left:6px;vertical-align:middle}
   /* 安全表記（結果画面に1回） */
   .safety-note{font-size:11px;line-height:1.75;color:var(--gray-500);background:var(--gray-50,#f6f6f6);border-radius:12px;padding:12px 14px;margin:18px 0 4px}
 
@@ -395,7 +404,7 @@
   <section class="screen hidden" id="screenResult">
     <div class="result-head">
       <div class="badge">DIAGNOSIS RESULT</div>
-      <h2>あなたのベスト1足</h2>
+      <h2 id="resultTitle">あなたのベスト1足</h2>
       <p id="resultSubtitle">体格・走り方・好みに最もフィットするモデル</p>
     </div>
     <div id="resultBody"></div>
@@ -2093,6 +2102,36 @@ function buildWarnings(s){
 }
 
 /* 結果画面上部の回答サマリ */
+/* スコアが拮抗したときに「互角である」と正直に伝える。
+   1足に断定せず、何で選べばいいかの手がかりを添える。 */
+function buildTieNotice(tied){
+  const wrap = document.createElement("div");
+  wrap.className = "tie-notice";
+
+  const names = tied.map(t=>shortShoeName(t.shoe));
+  // 決め手になる実際の差だけを挙げる（差が無いものは書かない）
+  const prices = tied.map(t=>t.shoe.price_jpy);
+  const weights = tied.map(t=>t.shoe.weight_g);
+  const hints = [];
+  const cheapIdx = prices.indexOf(Math.min(...prices));
+  const lightIdx = weights.indexOf(Math.min(...weights));
+  if(Math.max(...prices) - Math.min(...prices) >= 2000){
+    hints.push(`価格を抑えるなら <strong>${escapeHtml(shortShoeName(tied[cheapIdx].shoe))}</strong>（¥${Math.min(...prices).toLocaleString()}）`);
+  }
+  // 最安と最軽量が同じ靴なら重複して挙げない
+  if(Math.max(...weights) - Math.min(...weights) >= 20 && lightIdx !== cheapIdx){
+    hints.push(`軽さを取るなら <strong>${escapeHtml(shortShoeName(tied[lightIdx].shoe))}</strong>（${Math.min(...weights)}g）`);
+  }
+
+  wrap.innerHTML =
+    `<div class="tie-head">この条件では ${tied.length}足がほぼ互角です</div>`
+    + `<p>${escapeHtml(names.join("・"))} は、あなたの回答に対する適合度がほとんど変わりません。`
+    + `どれを選んでも大きな失敗にはなりにくい組み合わせです。</p>`
+    + (hints.length ? `<p class="tie-hint">${hints.join("／")}。あとは実際に履いた感触やサイズ感で選んでください。</p>` : "")
+    + `<p class="tie-note">下では便宜上1位から並べていますが、この差は「優劣」ではありません。</p>`;
+  return wrap;
+}
+
 function buildRecap(){
   const wrap = document.createElement("div");
   wrap.className = "recap-chips";
@@ -2121,16 +2160,32 @@ function showResult(){
   if(results.length === 0){
     body.innerHTML = `<div class="no-data"><strong>該当モデルがありませんでした</strong>予算やケガ条件を調整してお試しください。</div>`;
   } else {
-    $("resultSubtitle").textContent = `${shortShoeName(results[0].shoe)} をおすすめします`;
-    body.appendChild(buildBestCard(results[0]));
+    // スコアが1点差以内なら「ほぼ互角」とみなす。
+    // 1足に丸めて断定するのは正直ではないため、互角なら互角と伝える。
+    const TIE_RANGE = 1;
+    const tied = results.filter(r => results[0].score - r.score <= TIE_RANGE);
+
+    // 互角のときは「ベスト1足」と断定しない
+    $("resultTitle").textContent = tied.length > 1 ? "あなたに合う候補" : "あなたのベスト1足";
+    $("resultSubtitle").textContent = tied.length > 1
+      ? `${tied.length}足がほぼ互角でした`
+      : `${shortShoeName(results[0].shoe)} をおすすめします`;
+
+    if(tied.length > 1){
+      body.appendChild(buildTieNotice(tied));
+    }
+
+    body.appendChild(buildBestCard(results[0], tied.length > 1));
     saveHistory(results[0].shoe, results[0].score);
+
     if(results.length > 1){
       const alt = document.createElement("div");
       alt.className = "alt-title";
-      alt.textContent = "▸ 次点の候補";
+      // 互角のときは「次点」ではなく「同じくらい合う候補」と呼ぶ
+      alt.textContent = tied.length > 1 ? "▸ 同じくらい合う候補" : "▸ 次点の候補";
       body.appendChild(alt);
       results.slice(1, 4).forEach((r,i)=>{
-        body.appendChild(buildAltCard(r, i+2, results[0].shoe));
+        body.appendChild(buildAltCard(r, i+2, results[0].shoe, results[0].score - r.score <= TIE_RANGE));
       });
     }
   }
@@ -2280,7 +2335,7 @@ function buildRaceSection(){
   return wrap;
 }
 
-function buildBestCard(r){
+function buildBestCard(r, isTied){
   const s = r.shoe;
   const card = document.createElement("div");
   card.className = "best-card";
@@ -2294,7 +2349,7 @@ function buildBestCard(r){
     .map(w=>`<div class="warn-badge"><span class="ico">⚠</span><span>${escapeHtml(w)}</span></div>`)
     .join("");
   card.innerHTML = `
-    <span class="winner-label">BEST MATCH FOR YOU</span>
+    <span class="winner-label">${isTied ? "TOP CANDIDATE" : "BEST MATCH FOR YOU"}</span>
     <div class="best-photo"><picture>
       <source srcset="img/${s.id}.webp" type="image/webp">
       <img src="img/${s.id}.jpg" alt="${escapeHtml(shortShoeName(s))}" loading="lazy" decoding="async" onerror="this.closest('.best-photo').style.display='none'">
@@ -2503,18 +2558,20 @@ async function shareResult(shoe, btn){
   }catch(e){ /* クリップボード不可環境では何もしない */ }
 }
 
-function buildAltCard(r, rank, bestShoe){
+function buildAltCard(r, rank, bestShoe, isTied){
   const s = r.shoe;
   const card = document.createElement("div");
   card.className = "alt-card";
   // ベストマッチとの違いを一言で示す（無ければ従来通り）
   const diff = (bestShoe && bestShoe.id !== s.id)
     ? `<div class="alt-diff">${escapeHtml(diffLabel(bestShoe, s))}</div>` : "";
+  // 互角の候補にはその旨を明示する
+  const tieMark = isTied ? `<span class="alt-tie">ほぼ互角</span>` : "";
   card.innerHTML = `
     <div class="alt-rank">${rank}</div>
     ${pictureHTML(s.id, "", "alt-thumb")}
     <div class="alt-body">
-      <div class="alt-name">${escapeHtml(shortShoeName(s))}</div>
+      <div class="alt-name">${escapeHtml(shortShoeName(s))}${tieMark}</div>
       <div class="alt-meta">${rideJP(s.ride)} / ${cushionJP(s.cushioning)} / ${s.weight_g}g / ¥${s.price_jpy.toLocaleString()}</div>
       ${diff}
       <div class="alt-toggle">タップで理由を見る</div>
