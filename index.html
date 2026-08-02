@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="description" content="ランニングシューズ診断アプリ。体格・走り方・ケガ歴・好みの12問に答えるだけで、実走レビュー準拠の厳選18モデルからあなたに最適なベスト1足を無料診断。サブ3向けカーボンレーシング10選も収録。">
+<meta name="description" content="ランニングシューズ診断アプリ。体格・走り方・ケガ歴・好みの11問に答えるだけで、実走レビュー準拠の厳選18モデルからあなたに最適なベスト1足を無料診断。サブ3向けカーボンレーシング10選も収録。">
 <meta name="keywords" content="ランニングシューズ診断,シューズ診断アプリ,ランニングシューズ おすすめ,ランニングシューズ 選び方,ランニングシューズ 初心者,シューズ 診断,ランニングシューズ 比較">
 <meta name="theme-color" content="#ef5a23">
 <link rel="canonical" href="https://runningshoeapps.vercel.app/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="ランニングシューズ診断アプリ｜18モデルから無料でベスト1足を診断">
-<meta property="og:description" content="12問に答えるだけ。体格・走り方・ケガ歴から、厳選18モデルのなかのベスト1足を約2分で無料診断するアプリ。">
+<meta property="og:description" content="11問に答えるだけ。体格・走り方・ケガ歴から、厳選18モデルのなかのベスト1足を約2分で無料診断するアプリ。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://runningshoeapps.vercel.app/">
 <meta property="og:site_name" content="ランニングシューズ診断アプリ">
@@ -17,11 +17,11 @@
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ランニングシューズ診断アプリ｜18モデルから無料でベスト1足を診断">
-<meta name="twitter:description" content="12問であなたのベスト1足を無料診断。サブ3向けレーシング枠つき。">
+<meta name="twitter:description" content="11問であなたのベスト1足を無料診断。サブ3向けレーシング枠つき。">
 <meta name="twitter:image" content="https://runningshoeapps.vercel.app/img/pegasus_42.jpg">
 <title>ランニングシューズ診断アプリ｜18モデルから無料でベスト1足を診断</title>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"ランニングシューズ診断アプリ","alternateName":["ランニングシューズ診断","シューズ診断アプリ"],"url":"https://runningshoeapps.vercel.app/","description":"体格・走り方・ケガ歴・好みの12問で、あなたに最適なランニングシューズを診断する無料Webアプリ。厳選18モデルから提案。","applicationCategory":"HealthApplication","operatingSystem":"Web","inLanguage":"ja","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"},"sameAs":["https://ameblo.jp/tougyou-0111/"]}
+{"@context":"https://schema.org","@type":"WebApplication","name":"ランニングシューズ診断アプリ","alternateName":["ランニングシューズ診断","シューズ診断アプリ"],"url":"https://runningshoeapps.vercel.app/","description":"体格・走り方・ケガ歴・好みの11問で、あなたに最適なランニングシューズを診断する無料Webアプリ。厳選18モデルから提案。","applicationCategory":"HealthApplication","operatingSystem":"Web","inLanguage":"ja","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"},"sameAs":["https://ameblo.jp/tougyou-0111/"]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -339,7 +339,7 @@
 <div class="app">
   <header class="hero">
     <div class="logo">RUN SHOE DIAGNOSIS</div>
-    <h1>あなたに合うランニングシューズを、12問で診断</h1>
+    <h1>あなたに合うランニングシューズを、11問で診断</h1>
     <p>体格・走り方・ケガ歴・好みから、約2分で判定します</p>
   </header>
 
@@ -355,7 +355,7 @@
     <!-- 診断を始めることに集中させる -->
     <div class="start-card">
       <ul>
-        <li>所要時間 約2分（全12問）</li>
+        <li>所要時間 約2分（全11問）</li>
         <li>登録不要・無料</li>
       </ul>
       <button class="btn btn-primary" style="width:100%" onclick="startQuiz()">無料で診断を始める</button>
@@ -1347,17 +1347,16 @@ const RACE_SHOES = [
    ========================================================= */
 let currentQ = 0;
 const answers = {
-  age:null,         // 1-5 (code)
-  height_cm:null,   // number
-  weight_kg:null,   // number
-  level:null,       // 1-4
-  useCase:null,     // 1-4
-  weekly:null,      // 1-4
-  strike:null,      // 1-4
-  width:null,       // 1-4
+  age:null,          // 1-5 (code)
+  currentIssue:null, // "soft"|"firm"|"heavy"|"unstable"|"none" 今の靴の不満
+  weight_kg:null,    // number
+  level:null,        // 1-4
+  useCase:null,      // 1-4
+  strike:null,       // 1-4
+  width:null,        // 1-4
   injuries:[],
-  ride:null,        // "smooth"|"bouncy"|"responsive"|"grounded"|"auto"
-  budget:null,      // 1-4
+  ride:null,         // "smooth"|"bouncy"|"responsive"|"grounded"|"auto"
+  budget:null,       // 1-4
   interestedShoe:""
 };
 
@@ -1381,16 +1380,16 @@ const QUESTIONS = [
   {
     // プライバシー配慮：正確な数値ではなくレンジで選択。
     // val は採点用の代表値（レンジ中央）。しきい値ロジックはそのまま使える。
-    key:"height_cm",
-    title:"Q2. 身長は？",
-    help:"体格から安定性の必要度を判定します（おおよそでOK）",
+    key:"currentIssue",
+    title:"Q2. 今のシューズで気になることは？",
+    help:"いま履いている靴の不満から、変えるべき方向を判断します",
     type:"radio",
     options:[
-      {val:150,label:"〜155cm"},
-      {val:160,label:"156〜165cm"},
-      {val:170,label:"166〜175cm"},
-      {val:180,label:"176〜185cm"},
-      {val:190,label:"186cm〜"}
+      {val:"soft",  label:"沈み込みすぎる・脚が流れる"},
+      {val:"firm",  label:"硬くて脚に響く"},
+      {val:"heavy", label:"重くて後半にもたつく"},
+      {val:"unstable", label:"着地がぐらつく・ふらつく"},
+      {val:"none",  label:"特にない・初めて選ぶ"}
     ]
   },
   {
@@ -1430,19 +1429,8 @@ const QUESTIONS = [
     ]
   },
   {
-    key:"weekly",
-    title:"Q6. 週間走行距離は？",
-    type:"radio",
-    options:[
-      {val:1,label:"20km未満"},
-      {val:2,label:"20〜40km"},
-      {val:3,label:"40〜60km"},
-      {val:4,label:"60km以上"}
-    ]
-  },
-  {
     key:"strike",
-    title:"Q7. 着地パターンは？",
+    title:"Q6. 着地パターンは？",
     help:"最初に地面に触れる場所",
     type:"radio",
     options:[
@@ -1454,7 +1442,7 @@ const QUESTIONS = [
   },
   {
     key:"width",
-    title:"Q8. 足幅の好みは？",
+    title:"Q7. 足幅の好みは？",
     type:"radio",
     options:[
       {val:1,label:"細め",sub:"スリムフィット"},
@@ -1465,7 +1453,7 @@ const QUESTIONS = [
   },
   {
     key:"injuries",
-    title:"Q9. ケガ歴は？",
+    title:"Q8. ケガ歴は？",
     help:"複数選択可",
     type:"check",
     options:[
@@ -1478,7 +1466,7 @@ const QUESTIONS = [
   },
   {
     key:"ride",
-    title:"Q10. 好みの乗り味は？",
+    title:"Q9. 好みの乗り味は？",
     help:"いま履いているシューズで「好きな感覚」に一番近いものを。ここが診断で最も重視されるポイントです",
     type:"radio",
     options:[
@@ -1491,7 +1479,7 @@ const QUESTIONS = [
   },
   {
     key:"budget",
-    title:"Q11. 予算は？",
+    title:"Q10. 予算は？",
     help:"実勢価格ベース。予算超過しても参考候補は表示されます",
     type:"radio",
     options:[
@@ -1503,7 +1491,7 @@ const QUESTIONS = [
   },
   {
     key:"interestedShoe",
-    title:"Q12. 気になっているシューズはありますか？",
+    title:"Q11. 気になっているシューズはありますか？",
     help:"任意。スキップ可",
     type:"text",
     skippable:true
@@ -1723,7 +1711,7 @@ function showQuestion(){
 
   $("btnBack").style.visibility = currentQ === 0 ? "hidden" : "visible";
   const nextBtn = $("btnNext");
-  nextBtn.textContent = currentQ === QUESTIONS.length-1 ? "ベスト1足を見る" : "次へ";
+  nextBtn.textContent = currentQ === QUESTIONS.length-1 ? "診断結果を見る" : "次へ";
 
   const navRow = $("qNav");
   navRow.querySelectorAll(".btn-skip").forEach(x=>x.remove());
@@ -1849,7 +1837,7 @@ function scoreShoe(shoe){
     reasons.body = `体重${rangeLabel("weight_kg")}でも安定したワイドプラットフォーム。`;
   } else {
     bodyPts = 8;
-    reasons.body = `身長${rangeLabel("height_cm")}・体重${rangeLabel("weight_kg")}にマッチするサイズ感。`;
+    reasons.body = `体重${rangeLabel("weight_kg")}にマッチするサイズ感。`;
   }
   score += bodyPts;
 
@@ -1933,9 +1921,12 @@ function scoreShoe(shoe){
     4:{primary:"recovery", secondary:["daily","beginner"]}
   };
   const t = useMap[answers.useCase] || useMap[3];
+  // best_use の先頭がそのシューズの主用途。全18足が daily を含むため、
+  // 「含むかどうか」だけでは差がつかない。主用途かどうかで重みを変える。
   let usePts = 0;
-  if(shoe.best_use.includes(t.primary)) usePts = 10;
-  else if(shoe.best_use.some(u=>t.secondary.includes(u))) usePts = 6;
+  if(shoe.best_use[0] === t.primary) usePts = 10;        // 主用途が一致
+  else if(shoe.best_use.includes(t.primary)) usePts = 7;  // こなせるが主ではない
+  else if(shoe.best_use.some(u=>t.secondary.includes(u))) usePts = 4;
   else usePts = 1;
   score += usePts;
 
@@ -1999,19 +1990,29 @@ function scoreShoe(shoe){
   }
   score += widthPts;
 
-  // === Weekly mileage: durability (5 pts) ===
-  let mileagePts = 0;
-  if(answers.weekly >= 3){ // 40km+/week
-    if(shoe.best_use.includes("daily") && !shoe.best_use.includes("speed")) mileagePts = 5;
-    else if(shoe.best_use.includes("daily")) mileagePts = 4;
-    else if(shoe.best_use.includes("recovery")) mileagePts = 4;
-    else mileagePts = 1;
-  } else if(answers.weekly === 2){
-    mileagePts = 3;
+  // === 今の靴への不満 (10 pts) ===
+  // 不満の裏返しが求めている方向。反対の性格を高く評価する
+  let issuePts = 5;
+  const ci = answers.currentIssue;
+  if(ci === "soft"){
+    // 沈み込みすぎ → しっかり系・安定側へ
+    issuePts = (shoe.cushioning === "firm" ? 10 : shoe.cushioning === "balanced" ? 8 : 2);
+    if(shoe.stability === "high") issuePts = Math.min(10, issuePts + 2);
+  } else if(ci === "firm"){
+    // 硬くて響く → 柔らかクッション側へ
+    issuePts = (shoe.cushioning === "soft" ? 10 : shoe.cushioning === "balanced" ? 7 : 2);
+  } else if(ci === "heavy"){
+    // 重い → 軽量側へ
+    issuePts = shoe.weight_g <= 240 ? 10 : shoe.weight_g <= 265 ? 8 : shoe.weight_g <= 285 ? 5 : 2;
+  } else if(ci === "unstable"){
+    // ぐらつく → 安定性・接地の広さへ
+    issuePts = (shoe.stability === "high" ? 10 : shoe.stability === "moderate" ? 6 : 1);
+    if(shoe.heavy_runner_ok) issuePts = Math.min(10, issuePts + 2);
   } else {
-    mileagePts = 4;
+    // 不満なし・初めて → クセの少ない万能型が無難
+    issuePts = (shoe.best_use.includes("beginner") ? 9 : shoe.stability === "low" ? 4 : 7);
   }
-  score += mileagePts;
+  score += issuePts;
 
   // Build run reason
   const catJP = shoe.best_use.slice(0,2).map(x=>({daily:"デイリー",speed:"スピード",recovery:"リカバリー","long run":"ロング",beginner:"初心者向け"}[x]||x)).join("・");
@@ -2137,10 +2138,11 @@ function buildRecap(){
   wrap.className = "recap-chips";
   const ageL = ["29歳以下","30代","40代","50代","60歳以上"][answers.age-1] || "";
   const levelL = ["完走目標","サブ4〜4.5","サブ3.5〜4","サブ3狙い"][answers.level-1] || "";
-  const weeklyL = ["週20km未満","週20〜40km","週40〜60km","週60km以上"][answers.weekly-1] || "";
+  const issueMap = {soft:"沈み込みが気になる",firm:"硬さが気になる",heavy:"重さが気になる",unstable:"ぐらつきが気になる",none:""};
+  const issueL = issueMap[answers.currentIssue] || "";
   const injMap = {knee:"膝",plantar:"足底",achilles:"アキレス腱",shin:"スネ"};
   const inj = answers.injuries.filter(x=>x!=="none").map(x=>injMap[x]).filter(Boolean);
-  const chips = [ageL, `${rangeLabel("height_cm")}・${rangeLabel("weight_kg")}`, levelL, weeklyL];
+  const chips = [ageL, rangeLabel("weight_kg"), levelL, issueL];
   if(inj.length) chips.push(`ケガ歴: ${inj.join("・")}`);
   wrap.innerHTML = chips.filter(Boolean).map(c=>`<span class="chip">${escapeHtml(c)}</span>`).join("")
     + `<button class="recap-edit" onclick="editAnswers()">条件を変えて再診断</button>`;
@@ -2745,11 +2747,11 @@ function escapeHtml(s){
 function runPersonaChecks(){
   const original = {...answers, injuries:[...answers.injuries]};
   const personas = [
-    {name:"40代・70kg・膝痛・smooth", data:{age:3,height_cm:170,weight_kg:70,level:3,useCase:3,weekly:2,strike:4,width:2,injuries:["knee"],ride:"smooth",budget:3}},
-    {name:"30代・60kg・なし・bouncy", data:{age:2,height_cm:170,weight_kg:60,level:3,useCase:2,weekly:3,strike:2,width:2,injuries:["none"],ride:"bouncy",budget:4}},
-    {name:"50代・85kg・足底・grounded", data:{age:4,height_cm:170,weight_kg:85,level:1,useCase:4,weekly:1,strike:1,width:3,injuries:["plantar"],ride:"grounded",budget:4}},
-    {name:"40代・75kg・なし・auto", data:{age:3,height_cm:170,weight_kg:75,level:2,useCase:3,weekly:2,strike:4,width:2,injuries:["none"],ride:"auto",budget:2}},
-    {name:"30代・65kg・アキレス腱・responsive", data:{age:2,height_cm:170,weight_kg:65,level:4,useCase:1,weekly:3,strike:3,width:2,injuries:["achilles"],ride:"responsive",budget:4}}
+    {name:"40代70kg 膝痛 沈み込み不満", data:{age:3,currentIssue:"soft",weight_kg:70,level:3,useCase:3,strike:4,width:2,injuries:["knee"],ride:"smooth",budget:3}},
+    {name:"30代60kg 不満なし 弾む好み", data:{age:2,currentIssue:"none",weight_kg:60,level:3,useCase:2,strike:2,width:2,injuries:["none"],ride:"bouncy",budget:4}},
+    {name:"50代85kg 足底 ぐらつき不満", data:{age:4,currentIssue:"unstable",weight_kg:85,level:1,useCase:4,strike:1,width:3,injuries:["plantar"],ride:"grounded",budget:4}},
+    {name:"40代75kg 硬さ不満 お任せ", data:{age:3,currentIssue:"firm",weight_kg:75,level:2,useCase:3,strike:4,width:2,injuries:["none"],ride:"auto",budget:2}},
+    {name:"30代65kg アキレス腱 重さ不満", data:{age:2,currentIssue:"heavy",weight_kg:65,level:4,useCase:1,strike:3,width:2,injuries:["achilles"],ride:"responsive",budget:4}}
   ];
   const result = personas.map(p=>{
     Object.assign(answers, p.data, {interestedShoe:""});
@@ -2769,8 +2771,8 @@ function runPersonaChecks(){
    Restart
    ========================================================= */
 function resetAnswers(){
-  answers.age=null; answers.height_cm=null; answers.weight_kg=null;
-  answers.level=null; answers.useCase=null; answers.weekly=null;
+  answers.age=null; answers.currentIssue=null; answers.weight_kg=null;
+  answers.level=null; answers.useCase=null;
   answers.strike=null; answers.width=null; answers.injuries=[];
   answers.ride=null; answers.budget=null; answers.interestedShoe="";
 }
