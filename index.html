@@ -1017,6 +1017,43 @@
 const BLOG_HOME_URL = "https://ameblo.jp/tougyou-0111/";
 const COMPARISON_ARTICLE_URL = "";
 
+/* 診断で選ばれたシューズごとに、そのモデルが主役として登場する比較記事へ送る。
+   一律でブログのトップに送っていた導線を、結果に噛み合わせるための対応表。
+   記事IDのみを持ち、URLは entryUrl() で組み立てる。 */
+const COMPARE_ARTICLE_BY_SHOE = {
+  // 練習用18モデル
+  pegasus_42:     "12972514171", // ペガサス42 vs ノヴァブラスト6
+  vomero_18:      "12963377222", // ボメロ18と1080v15、どっちを選べばいいのか
+  evo_sl:         "12956505573", // Evo SLとWoven Evo SLの違い
+  novablast_6:    "12972514171", // ペガサス42 vs ノヴァブラスト6
+  nb_1080_v15:    "12963377222", // ボメロ18と1080v15
+  rebel_v5:       "12959983213", // Rebel V5 vs Evo SL
+  clifton_11:     "12972938719", // Clifton 11 vs 1080v15
+  cloudmonster_3: "12964134855", // Clifton 10 vs Cloudmonster 3
+  kayano_33:      "12970633617", // カヤノ33 vs ニンバス28
+  nimbus_28:      "12968144016", // 膝が痛いならどっち？ ボメロ18とニンバス28
+  rider_30:       "12972069281", // ウェーブライダー30 レビュー（該当する比較記事なし）
+  boston_13:      "12943781178", // Boston 13 vs EVO SL
+  pegasus_plus:   "12905259585", // ペガサスプラス vs EVO SL
+  vomero_plus:    "12956124787", // ボメロ18 vs ボメロプラス
+  bondi_9:        "12973421680", // Bondi 9 レビュー（該当する比較記事なし）
+  mach_7:         "12924712879", // HOKA万能シューズ比較（マッハ7単独記事なし）
+  cloudsurfer_2:  "12898973131", // クラウドモンスター2 vs クラウドサーファー2
+  cloud_6:        "12935549955", // クラウド6（該当する比較記事なし）
+  // レース10モデル（個別記事がないため、レース総合記事へ）
+  vaporfly_4:           "12925741527",
+  alphafly_3:           "12925741527",
+  metaspeed_sky_tokyo:  "12925741527",
+  metaspeed_edge_tokyo: "12925741527",
+  metaspeed_ray:        "12925741527",
+  adios_pro_5:          "12925741527",
+  rebellion_pro_3:      "12925741527",
+  sc_elite_v5:          "12925741527",
+  fastr_3:              "12925741527",
+  cloudboom_strike:     "12925741527"
+};
+const entryUrl = id => `https://ameblo.jp/tougyou-0111/entry-${id}.html`;
+
 const SHOES = [
   {
     id:"pegasus_42", name:"Nike Pegasus 42", jp_name:"ナイキ ペガサス 42", brand:"Nike",
@@ -2618,10 +2655,17 @@ function reviewCtaHTML(shoe){
 }
 
 function comparisonCtaHTML(shoe){
-  const url = COMPARISON_ARTICLE_URL || BLOG_HOME_URL;
+  // そのシューズが主役の比較記事があればそこへ。無ければ従来どおりブログへ。
+  const articleId = shoe && COMPARE_ARTICLE_BY_SHOE[shoe.id];
+  const url = articleId ? entryUrl(articleId) : (COMPARISON_ARTICLE_URL || BLOG_HOME_URL);
   if(!url) return "";
+  // レビュー記事リンクが別にある場合は、こちらを控えめな見た目にする
   const secondary = shoe && shoe.ameblo_url ? " secondary" : "";
-  return `<a class="review-cta${secondary}" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">比較記事・レビュー一覧を見る</a>`;
+  // 飛び先が個別の比較記事か、一覧かで文言を変える
+  const label = articleId
+    ? `${shoe ? shortShoeName(shoe) : "この1足"}を他モデルと比較する`
+    : "比較記事・レビュー一覧を見る";
+  return `<a class="review-cta${secondary}" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
 }
 
 function shortShoeName(shoe){
