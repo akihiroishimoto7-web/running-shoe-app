@@ -67,6 +67,20 @@ function purposeTags(s) {
   return tags.length ? tags : ["cushion"];
 }
 
+// 悩み起点のタグ。検索から来た人が使う言葉に近い切り口で絞り込めるようにする。
+// 目的別（モノ起点）とは別軸で、掛け合わせて使える。
+function concernTags(s) {
+  const tags = [];
+  const safe = s.injury_safe || [];
+  if (safe.includes("knee")) tags.push("knee");                       // 膝が不安
+  if ((s.best_use || []).includes("beginner")) tags.push("beginner"); // 初めての1足
+  if (s.weight_g <= 250) tags.push("light");                          // 軽さ重視
+  if (s.heavy_runner_ok && s.stability !== "low") tags.push("heavy");  // 体重が重め
+  if (s.cushioning === "soft") tags.push("cushion");                  // 脚を守りたい
+  if (s.width === "wide") tags.push("wide");                          // 幅広の足
+  return tags;
+}
+
 // WebP優先・JPEGフォールバック。対応外ブラウザでも従来通り表示される
 const picture = (id, alt, cls) => `<picture>
           <source srcset="img/${id}.webp" type="image/webp">
@@ -74,7 +88,7 @@ const picture = (id, alt, cls) => `<picture>
         </picture>`;
 
 const trainerCard = (s) => `
-    <article class="zukan-card" id="z-${s.id}" data-brand="${brandSlug(s.brand)}" data-purpose="${purposeTags(s).join(" ")}" data-kind="trainer">
+    <article class="zukan-card" id="z-${s.id}" data-brand="${brandSlug(s.brand)}" data-purpose="${purposeTags(s).join(" ")}" data-concern="${concernTags(s).join(" ")}" data-kind="trainer">
       <div class="zukan-top">
         ${picture(s.id, esc(s.jp_name), "zukan-img")}
         <div>
@@ -92,7 +106,7 @@ const trainerCard = (s) => `
     </article>`;
 
 const raceCard = (s) => `
-    <article class="zukan-card" id="z-${s.id}" data-brand="${brandSlug(s.brand)}" data-purpose="speed" data-kind="race">
+    <article class="zukan-card" id="z-${s.id}" data-brand="${brandSlug(s.brand)}" data-purpose="speed" data-concern="${s.weight_g <= 250 ? "light" : ""}" data-kind="race">
       <div class="zukan-top">
         ${picture(s.id, esc(s.jp_name), "zukan-img")}
         <div>
