@@ -29,6 +29,22 @@ const esc = (s) =>
 const SHOES = extractArray("SHOES");
 const RACE = extractArray("RACE_SHOES");
 
+// index.html 内の対応表をそのまま使う（二重管理を避ける）
+const COMPARE_MAP = (() => {
+  const m = html.match(/const COMPARE_ARTICLE_BY_SHOE = (\{[\s\S]*?\n\});/);
+  return m ? Function(`"use strict"; return ${m[1]};`)() : {};
+})();
+const entryUrl = (id) => `https://ameblo.jp/tougyou-0111/entry-${id}.html`;
+
+// そのモデルが主役の比較記事へのリンク。レビュー記事と同じ記事なら出さない。
+function compareLink(s) {
+  const id = COMPARE_MAP[s.id];
+  if (!id) return "";
+  const url = entryUrl(id);
+  if (s.ameblo_url === url) return "";
+  return `<a href="${esc(url)}" target="_blank" rel="noopener">他モデルと比較して読む →</a>`;
+}
+
 // フィルター用のキー。ブランドは表記ゆれを吸収して小文字スラッグ化する
 const brandSlug = (b) =>
   String(b || "")
@@ -70,6 +86,7 @@ const trainerCard = (s) => `
       <p class="zukan-weak">⚠ ${esc(s.weakness)}</p>
       <div class="zukan-links">
         ${s.ameblo_url ? `<a href="${esc(s.ameblo_url)}" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>` : ""}
+        ${compareLink(s)}
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>`;
@@ -87,6 +104,7 @@ const raceCard = (s) => `
       <p class="zukan-weak">⚠ ${esc(s.caution)}</p>
       <div class="zukan-links">
         ${s.ameblo_url ? `<a href="${esc(s.ameblo_url)}" target="_blank" rel="noopener">ブログの関連記事を読む →</a>` : ""}
+        ${compareLink(s)}
         <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
       </div>
     </article>`;

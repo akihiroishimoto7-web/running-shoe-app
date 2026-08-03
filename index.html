@@ -205,6 +205,15 @@
   .tie-hint{color:var(--gray-700)}
   .tie-note{font-size:11.5px;color:var(--gray-500)}
   .alt-tie{display:inline-block;font-size:10px;font-weight:700;color:#1c5a8a;background:#e5eff8;border-radius:999px;padding:2px 7px;margin-left:6px;vertical-align:middle}
+  /* 候補モデルの記事一覧 */
+  .related-block{background:#fff;border:1px solid var(--gray-100);border-radius:16px;padding:15px 17px;margin:18px 0 0}
+  .related-title{font-size:11px;font-weight:800;color:var(--gray-500);letter-spacing:.08em;margin-bottom:9px}
+  .related-list{list-style:none;margin:0;padding:0}
+  .related-list li{border-top:1px solid var(--gray-100)}
+  .related-list li:first-child{border-top:0}
+  .related-list a{display:block;padding:12px 2px;min-height:44px;font-size:13px;font-weight:700;color:var(--orange);line-height:1.5}
+  .related-list a:hover{text-decoration:underline}
+
   /* 安全表記（結果画面に1回） */
   .safety-note{font-size:11px;line-height:1.75;color:var(--gray-500);background:var(--gray-50,#f6f6f6);border-radius:12px;padding:12px 14px;margin:18px 0 4px}
 
@@ -477,6 +486,7 @@
       <p class="zukan-weak">⚠ 最新の厚底スーパートレーナーと比べると地味で硬い。ゆっくりジョグではやや硬すぎに感じる人も。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12962388699.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <a href="https://ameblo.jp/tougyou-0111/entry-12972514171.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -496,6 +506,7 @@
       <p class="zukan-weak">⚠ 重量300g超。速いペースでは鈍重でモッサリ。ショートランには大げさ。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12963542993.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <a href="https://ameblo.jp/tougyou-0111/entry-12963377222.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -515,6 +526,7 @@
       <p class="zukan-weak">⚠ かかとのホールドはやや緩め。アウトソールの耐久性と雨天グリップは価格なり。人気ゆえ品薄カラーが多い。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12955790955.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <a href="https://ameblo.jp/tougyou-0111/entry-12956505573.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -534,6 +546,7 @@
       <p class="zukan-weak">⚠ ロッカー＋高スタックで低速時に不安定。カーブや疲れた脚ではグラつく。ヒール接地で横ブレしやすい。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12969368888.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <a href="https://ameblo.jp/tougyou-0111/entry-12972514171.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -553,6 +566,7 @@
       <p class="zukan-weak">⚠ Fresh Foam時代の超どっしり感が好きな人には軽くなりすぎと感じることも。価格も上昇。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12966773183.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <a href="https://ameblo.jp/tougyou-0111/entry-12963377222.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -572,6 +586,7 @@
       <p class="zukan-weak">⚠ リカバリー用途には軽量すぎる。軽さ優先のアッパーは耐久性がやや弱い。どっしりした接地感が好みなら合わない。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12959982227.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <a href="https://ameblo.jp/tougyou-0111/entry-12959983213.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -591,6 +606,7 @@
       <p class="zukan-weak">⚠ 反発感は控えめで速いペースでは退屈・平坦。中身は10とほぼ同じで劇的な変化はない。アウトソールの露出ラバーが少なく摩耗が早い。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12971779893.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <a href="https://ameblo.jp/tougyou-0111/entry-12972938719.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -610,6 +626,7 @@
       <p class="zukan-weak">⚠ Cloudポッドに小石が挟まる・好みが分かれる。本当のリカバリーには硬すぎ。ヒールがスカスカと感じる人も。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12959065095.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <a href="https://ameblo.jp/tougyou-0111/entry-12964134855.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -629,6 +646,7 @@
       <p class="zukan-weak">⚠ 約298gと重量級。反発は控えめでスピード練習には不向き。「守り」に特化した設計。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12969267604.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <a href="https://ameblo.jp/tougyou-0111/entry-12970633617.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -648,6 +666,7 @@
       <p class="zukan-weak">⚠ イージー・リカバリー寄りでスピードを出すと退屈。2万円超と価格も高め。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12954928484.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <a href="https://ameblo.jp/tougyou-0111/entry-12968144016.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -667,6 +686,7 @@
       <p class="zukan-weak">⚠ 高スタック化で往年の地面に近い接地感は薄れた。ドロップも10mm→8mmに変わり、29までの感覚に慣れた人は違和感があるかも。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12972069281.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -686,6 +706,7 @@
       <p class="zukan-weak">⚠ つま先はタイトで幅広の足には窮屈。ゆっくりジョグだと硬さが目立つ。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12943781178.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -705,6 +726,7 @@
       <p class="zukan-weak">⚠ ZoomXはアウトソール耐久性が価格の割に平凡。安定感は控えめで、ゆっくりジョグ専用にはもったいない。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12964283765.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <a href="https://ameblo.jp/tougyou-0111/entry-12905259585.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -724,6 +746,7 @@
       <p class="zukan-weak">⚠ 柔らかさ優先でペースを上げる走りには不向き。ZoomXゆえ耐久性は平凡で、価格も2万円台半ばと安くない。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12965358871.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <a href="https://ameblo.jp/tougyou-0111/entry-12956124787.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -743,6 +766,7 @@
       <p class="zukan-weak">⚠ 303gと重量級で、スピードを出す走りには完全に不向き。5mmドロップはふくらはぎに負担が出る人も。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12973421680.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -762,6 +786,7 @@
       <p class="zukan-weak">⚠ 突出した個性はなく「何でも80点」タイプ。5mmドロップはかかと接地の初心者だと恩恵が薄い場面も。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12973513199.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <a href="https://ameblo.jp/tougyou-0111/entry-12924712879.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -781,6 +806,7 @@
       <p class="zukan-weak">⚠ 初代の雲のような柔らかさを期待すると硬く感じる。反発でグイグイ進むタイプではない。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12935548941.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        <a href="https://ameblo.jp/tougyou-0111/entry-12898973131.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -800,6 +826,7 @@
       <p class="zukan-weak">⚠ クッションは薄く、本格的なランニングトレーニングには不向き。あくまで「生活の中で軽く走る」ための1足。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12935549955.html" target="_blank" rel="noopener">ブログのレビュー記事を読む →</a>
+        
         <button type="button" onclick="zukanToDiagnosis()">この靴が合うか診断する ↑</button>
       </div>
     </article>
@@ -820,6 +847,7 @@
       <p class="zukan-weak">⚠ 前作より低スタック化。フル終盤の脚保護はアルファフライに譲る。</p>
       <div class="zukan-links">
         <a href="https://ameblo.jp/tougyou-0111/entry-12962010564.html" target="_blank" rel="noopener">ブログの関連記事を読む →</a>
+        <a href="https://ameblo.jp/tougyou-0111/entry-12925741527.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
       </div>
     </article>
@@ -839,6 +867,7 @@
       <p class="zukan-weak">⚠ 重量はレーサーとしては重め。5〜10kmの短い距離では持て余す。</p>
       <div class="zukan-links">
         
+        <a href="https://ameblo.jp/tougyou-0111/entry-12925741527.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
       </div>
     </article>
@@ -858,6 +887,7 @@
       <p class="zukan-weak">⚠ ピッチ走法ならエッジを。跳ねを活かせる走力が前提。</p>
       <div class="zukan-links">
         
+        <a href="https://ameblo.jp/tougyou-0111/entry-12925741527.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
       </div>
     </article>
@@ -877,6 +907,7 @@
       <p class="zukan-weak">⚠ ストライドで伸ばすタイプならスカイのほうが合う。</p>
       <div class="zukan-links">
         
+        <a href="https://ameblo.jp/tougyou-0111/entry-12925741527.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
       </div>
     </article>
@@ -896,6 +927,7 @@
       <p class="zukan-weak">⚠ 軽さ特化ゆえ脚保護は薄め。フォームが崩れると恩恵が消える。</p>
       <div class="zukan-links">
         
+        <a href="https://ameblo.jp/tougyou-0111/entry-12925741527.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
       </div>
     </article>
@@ -915,6 +947,7 @@
       <p class="zukan-weak">⚠ 広域発売2026年5月〜で在庫・カラーはタイミング次第。</p>
       <div class="zukan-links">
         
+        <a href="https://ameblo.jp/tougyou-0111/entry-12925741527.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
       </div>
     </article>
@@ -934,6 +967,7 @@
       <p class="zukan-weak">⚠ かかと接地とは相性が悪い。乗りこなすには練習が必要。</p>
       <div class="zukan-links">
         
+        <a href="https://ameblo.jp/tougyou-0111/entry-12925741527.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
       </div>
     </article>
@@ -953,6 +987,7 @@
       <p class="zukan-weak">⚠ 前作の「楽に走れる安心感」を求めると印象が違う。</p>
       <div class="zukan-links">
         
+        <a href="https://ameblo.jp/tougyou-0111/entry-12925741527.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
       </div>
     </article>
@@ -972,6 +1007,7 @@
       <p class="zukan-weak">⚠ 安定性は低く上級者向け。フルで使いこなすには脚が要る。</p>
       <div class="zukan-links">
         
+        <a href="https://ameblo.jp/tougyou-0111/entry-12925741527.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
       </div>
     </article>
@@ -991,6 +1027,7 @@
       <p class="zukan-weak">⚠ 最軽量級の切れ味はない。日本のレースでの装着率はまだ少数派。</p>
       <div class="zukan-links">
         
+        <a href="https://ameblo.jp/tougyou-0111/entry-12925741527.html" target="_blank" rel="noopener">他モデルと比較して読む →</a>
         <button type="button" onclick="zukanToDiagnosis()">診断で相性を見る ↑</button>
       </div>
     </article>
@@ -2280,6 +2317,13 @@ function showResult(){
   }
 
   // 安全表記：結果画面に1回だけ、控えめに
+  // 候補になった各モデルの記事をまとめて出す。
+  // 次点カードを開かないと記事に辿り着けなかったため、一覧として置く。
+  if(results.length){
+    const related = buildRelatedArticles(results.slice(0, 4).map(r=>r.shoe));
+    if(related) body.appendChild(related);
+  }
+
   const safety = document.createElement("p");
   safety.className = "safety-note";
   safety.textContent = "本診断はシューズ選びの参考情報です。痛みが続く場合や走行中に痛みが増す場合は、ランニングを中止し、医療機関等へご相談ください。";
@@ -2642,7 +2686,7 @@ function buildAltCard(r, rank, bestShoe, isTied){
     d.className = "alt-detail weakness";
     d.style.marginTop = "-6px";
     d.style.marginBottom = "10px";
-    d.innerHTML = `<strong>実際の履き心地</strong>${escapeHtml(s.real_feel)}<br><br><strong>⚠ 弱点</strong>${escapeHtml(s.weakness)}${reviewCtaHTML(s)}`;
+    d.innerHTML = `<strong>実際の履き心地</strong>${escapeHtml(s.real_feel)}<br><br><strong>⚠ 弱点</strong>${escapeHtml(s.weakness)}${reviewCtaHTML(s)}${comparisonCtaHTML(s)}`;
     card.after(d);
     card.dataset.expanded = "1";
   };
@@ -2652,6 +2696,33 @@ function buildAltCard(r, rank, bestShoe, isTied){
 function reviewCtaHTML(shoe){
   if(!shoe.ameblo_url) return "";
   return `<a class="review-cta" href="${escapeHtml(shoe.ameblo_url)}" target="_blank" rel="noopener noreferrer">詳しいレビューを読む</a>`;
+}
+
+/* 候補になったモデルの記事を一覧で出す。
+   次点カードを開かないと記事に辿り着けなかった分を補う。 */
+function buildRelatedArticles(shoes){
+  const rows = [];
+  const seen = new Set();
+  shoes.forEach(s=>{
+    const name = shortShoeName(s);
+    if(s.ameblo_url && !seen.has(s.ameblo_url)){
+      seen.add(s.ameblo_url);
+      rows.push(`<li><a href="${escapeHtml(s.ameblo_url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(name)} のレビューを読む</a></li>`);
+    }
+    const cid = COMPARE_ARTICLE_BY_SHOE[s.id];
+    if(cid){
+      const url = entryUrl(cid);
+      if(!seen.has(url)){
+        seen.add(url);
+        rows.push(`<li><a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(name)} を他モデルと比較する</a></li>`);
+      }
+    }
+  });
+  if(!rows.length) return null;
+  const wrap = document.createElement("div");
+  wrap.className = "related-block";
+  wrap.innerHTML = `<div class="related-title">候補モデルをもっと詳しく</div><ul class="related-list">${rows.join("")}</ul>`;
+  return wrap;
 }
 
 function comparisonCtaHTML(shoe){
